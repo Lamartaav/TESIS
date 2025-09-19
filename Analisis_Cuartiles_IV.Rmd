@@ -1,0 +1,771 @@
+
+---
+title: "Análisis de expresión por cuartiles de CA9, HIF1A y LDH en tumores de estadio IV (TCGA, tejido tumoral)"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+  pdf_document: default
+params:
+  url_tsv: "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/genes_subset_sin_dup.tsv"
+
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Este documento carga una tabla de expresión génica (formato TSV) donde las **primeras tres columnas** son `gene-id`, `gene-name`, `gene-type` y las restantes son muestras de pacientes con códigos TCGA del tipo `TCGA-XX-XXXX-YYA...`.  
+Nos quedamos **solo con muestras tumorales**, donde `YY` (primeros dos caracteres del 4to bloque) está entre `01` y `09`.  
+Luego tomamos la expresión del gen **CA9**, calculamos **cuartiles** según la definición:
+- **Q1**: mediana de la mitad inferior (excluyendo la mediana si *n* es impar)
+- **Q2**: mediana de todo el conjunto
+- **Q3**: mediana de la mitad superior (excluyendo la mediana si *n* es impar)
+
+Con esto definimos grupos:
+- **CA9 low (Q1)**: valores ≤ Q1
+- **CA9 high (Q3)**: valores ≥ Q3
+
+Finalmente comparamos la expresión de los genes: `CD4`, `FOXP3`, `CD8`, `CD163`, `ARG1`, `CD274` entre ambos grupos y producimos tablas y boxplots.
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+suppressPackageStartupMessages({
+  library(readr)
+  library(dplyr)
+  library(stringr)
+  library(tidyr)
+  library(ggplot2)
+  library(knitr)
+})
+```
+
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+url_tsv <- params$url_tsv
+
+tabla <- read.delim(url_tsv, check.names = FALSE, stringsAsFactors = FALSE)
+
+# Identificar columnas núcleo y de muestras
+core_cols <- c("gene-id", "gene-name", "gene-type")
+
+is_tumor_sample <- function(colname) {
+  if (is.na(colname) || !is.character(colname)) return(FALSE)
+  if (!startsWith(colname, "TCGA-")) return(FALSE)
+  parts <- strsplit(colname, "-", fixed = TRUE)[[1]]
+  if (length(parts) < 4) return(FALSE)
+  token4 <- parts[4]
+  if (nchar(token4) < 2) return(FALSE)
+  yy <- substr(token4, 1, 2)
+  if (!grepl("^[0-9]{2}$", yy)) return(FALSE)
+  as.integer(yy) >= 1 && as.integer(yy) <= 9
+}
+
+sample_cols <- names(tabla)[vapply(names(tabla), is_tumor_sample, logical(1))]
+length(sample_cols)
+```
+
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+keep_cols <- c(core_cols, sample_cols)
+df_tumor <- tabla[, keep_cols]
+
+# Revisión rápida
+cat("Muestras tumorales detectadas:", length(sample_cols), "de", ncol(tabla) - length(core_cols), "columnas de muestras totales.\n")
+```
+# CA9
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Tomar la(s) fila(s) con gene-name == "CA9"
+ca9_rows <- dplyr::filter(df_tumor, `gene-name` == "CA9")
+
+if (nrow(ca9_rows) == 0) {
+  stop("No se encontró el gen CA9 en la columna 'gene-name'.")
+}
+
+if (nrow(ca9_rows) > 1) {
+  message(sprintf("Aviso: se encontraron %d filas para CA9; se usará la primera (gene-id=%s).",
+                  nrow(ca9_rows), ca9_rows$`gene-id`[1]))
+}
+
+ca9_row <- ca9_rows[1, ]
+
+# Extraer valores numéricos de CA9 en las muestras tumorales
+ca9_vals <- suppressWarnings(as.numeric(ca9_row[, sample_cols] |> unlist(use.names = FALSE)))
+ca9_vals <- ca9_vals[!is.na(ca9_vals)]
+ca9_vals_sorted <- sort(ca9_vals)
+
+compute_quartiles <- function(sorted_vals) {
+  n <- length(sorted_vals)
+  if (n == 0) return(c(Q1 = NA_real_, Q2 = NA_real_, Q3 = NA_real_))
+  q2 <- stats::median(sorted_vals)
+  if (n %% 2 == 0) {
+    lower <- sorted_vals[1:(n/2)]
+    upper <- sorted_vals[(n/2 + 1):n]
+  } else {
+    lower <- sorted_vals[1:floor(n/2)]       # excluye la mediana
+    upper <- sorted_vals[(floor(n/2) + 2):n] # excluye la mediana
+  }
+  q1 <- if (length(lower) > 0) stats::median(lower) else NA_real_
+  q3 <- if (length(upper) > 0) stats::median(upper) else NA_real_
+  c(Q1 = as.numeric(q1), Q2 = as.numeric(q2), Q3 = as.numeric(q3))
+}
+
+qs <- compute_quartiles(ca9_vals_sorted)
+Q1 <- qs["Q1"]; Q2 <- qs["Q2"]; Q3 <- qs["Q3"]
+min_val <- if (length(ca9_vals_sorted) > 0) min(ca9_vals_sorted) else NA_real_
+max_val <- if (length(ca9_vals_sorted) > 0) max(ca9_vals_sorted) else NA_real_
+
+Q1; Q2; Q3; min_val; max_val
+```
+
+## Definición de grupos (CA9 low / high)
+
+
+```{r, echo=FALSE, message = FALSE}
+# Series con nombres de columnas = pacientes
+ca9_series <- suppressWarnings(as.numeric(ca9_row[, sample_cols] |> unlist(use.names = FALSE)))
+names(ca9_series) <- sample_cols
+
+low_idx  <- which(ca9_series <= Q1)
+high_idx <- which(ca9_series >= Q3)
+
+patients_low  <- names(ca9_series)[low_idx]
+patients_high <- names(ca9_series)[high_idx]
+
+low_range  <- c(min_val, Q1)
+high_range <- c(Q3, max_val)
+
+# Resumen de grupos
+ca9_summary <- tibble::tibble(
+  Grupo = c("CA9 low (Q1)", "CA9 high (Q3)"),
+  `Rango (min..Qx)` = c(sprintf("%.6g .. %.6g", low_range[1], low_range[2]),
+                        sprintf("%.6g .. %.6g", high_range[1], high_range[2])),
+  `n pacientes` = c(length(patients_low), length(patients_high)),
+  Q1 = c(Q1, NA_real_),
+  `Q2 (mediana)` = c(Q2, NA_real_),
+  Q3 = c(NA_real_, Q3)
+)
+
+knitr::kable(ca9_summary, caption = "Resumen de grupos CA9 (tumor YY 01–09)")
+```
+
+## Comparación de genes de interés
+
+```{r, echo=FALSE, message = FALSE}
+genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "HIF1A", "SLC2A1", "EPAS1",   "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "LDHA")
+
+pick_one_row_by_gene_name <- function(tabla, gene_name) {
+  rows <- dplyr::filter(tabla, `gene-name` == gene_name)
+  if (nrow(rows) == 0) {
+    return(list(row = NULL, note = paste0("No se encontró el gen ", gene_name, ".")))
+  }
+  note <- NULL
+  if (nrow(rows) > 1) {
+    note <- sprintf("Aviso: se encontraron %d filas para %s; se usa la primera (gene-id=%s).",
+                    nrow(rows), gene_name, rows$`gene-id`[1])
+  }
+  list(row = rows[1, ], note = note)
+}
+
+summary_list <- list()
+notes <- character(0)
+
+for (g in genes_of_interest) {
+  res <- pick_one_row_by_gene_name(df_tumor, g)
+  row <- res$row
+  if (!is.null(res$note)) notes <- c(notes, res$note)
+  
+  if (is.null(row)) {
+    summary_list[[g]] <- tibble::tibble(
+      gen = g,
+      n_low = length(patients_low),
+      n_high = length(patients_high),
+      media_low = NA_real_,
+      media_high = NA_real_,
+      mediana_low = NA_real_,
+      mediana_high = NA_real_,
+      `dif_media(high-low)` = NA_real_,
+      `log2FC(high/low)` = NA_real_
+    )
+    next
+  }
+  vals_low  <- suppressWarnings(as.numeric(row[, patients_low]  |> unlist(use.names = FALSE)))
+  vals_high <- suppressWarnings(as.numeric(row[, patients_high] |> unlist(use.names = FALSE)))
+  low_clean  <- vals_low[!is.na(vals_low)]
+  high_clean <- vals_high[!is.na(vals_high)]
+  
+  mean_low <- if (length(low_clean)  > 0) mean(low_clean)  else NA_real_
+  mean_high<- if (length(high_clean) > 0) mean(high_clean) else NA_real_
+  median_low <- if (length(low_clean)  > 0) stats::median(low_clean)  else NA_real_
+  median_high<- if (length(high_clean) > 0) stats::median(high_clean) else NA_real_
+  diff_mean <- if (!is.na(mean_high) && !is.na(mean_low)) mean_high - mean_low else NA_real_
+  log2fc <- if (!is.na(mean_high) && !is.na(mean_low) && mean_high > 0 && mean_low > 0) {
+    log2(mean_high/mean_low)
+  } else { NA_real_ }
+  
+  summary_list[[g]] <- tibble::tibble(
+    gen = g,
+    n_low = length(low_clean),
+    n_high = length(high_clean),
+    media_low = mean_low,
+    media_high = mean_high,
+    mediana_low = median_low,
+    mediana_high = median_high,
+    `dif_media(high-low)` = diff_mean,
+    `log2FC(high/low)` = log2fc
+  )
+}
+
+summary_df <- dplyr::bind_rows(summary_list)
+
+num_cols <- vapply(summary_df, is.numeric, logical(1))
+summary_df[num_cols] <- lapply(summary_df[num_cols], function(x) round(x, 6))
+
+knitr::kable(summary_df,
+             caption = "Diferencias de expresión entre CA9 low (Q1) y CA9 high (Q3)")
+
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+low_file <- "CA9_low_patients.txt"
+high_file <- "CA9_high_patients.txt"
+map_file <- "CA9_patient_groups.csv"
+
+writeLines(patients_low,  con = low_file)
+writeLines(patients_high, con = high_file)
+
+map_df <- tibble::tibble(
+  patient = c(patients_low, patients_high),
+  group = c(rep("CA9 low", length(patients_low)), rep("CA9 high", length(patients_high)))
+)
+readr::write_csv(map_df, map_file)
+
+cat("Archivos guardados en el directorio de trabajo:\n",
+    "- ", low_file, "\n",
+    "- ", high_file, "\n",
+    "- ", map_file, "\n", sep = "")
+```
+
+## Boxplots por gen
+
+```{r fig.width=7, fig.height=5, echo=FALSE}
+plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ca9_series) {
+  res <- pick_one_row_by_gene_name(df_in, gene_name)
+  row <- res$row
+  if (is.null(row)) {
+    message("No se pudo graficar ", gene_name, " (no encontrado).")
+    return(NULL)
+  }
+  
+  # Expresión del gen de interés para las mismas muestras en las que tenemos CA9
+  gene_vals <- suppressWarnings(as.numeric(unlist(row[, names(ca9_series)], use.names = FALSE)))
+  names(gene_vals) <- names(ca9_series)
+  
+  # Correlación Pearson con CA9 (solo en muestras con datos no-NA en ambos)
+  common_idx <- which(!is.na(ca9_series) & !is.na(gene_vals))
+  if (length(common_idx) >= 3) {
+    cor_res <- suppressWarnings(cor.test(ca9_series[common_idx], gene_vals[common_idx], method = "pearson"))
+    r_val <- round(unname(cor_res$estimate), 3)
+    p_val <- signif(cor_res$p.value, 3)
+    subtitle <- paste0("r = ", r_val, ", p = ", p_val)
+  } else {
+    subtitle <- "r = NA, p = NA"
+  }
+  
+  # Datos para boxplot + puntos por grupo
+  vals_low  <- gene_vals[patients_low]
+  vals_high <- gene_vals[patients_high]
+  d <- dplyr::bind_rows(
+    tibble::tibble(expr = vals_low,  group = "CA9 low"),
+    tibble::tibble(expr = vals_high, group = "CA9 high")
+  ) |> dplyr::filter(!is.na(expr))
+  
+  if (nrow(d) == 0) {
+    message("Sin datos para ", gene_name)
+    return(NULL)
+  }
+  
+  ggplot(d, aes(x = group, y = expr, color = group)) +
+    geom_boxplot(outlier.shape = NA, alpha = 0.35) +   # sin outliers propios del boxplot
+    geom_jitter(width = 0.2, size = 2, alpha = 0.9) +  # puntos individuales
+    scale_color_manual(values = c("CA9 low" = "blue", "CA9 high" = "red")) +
+    labs(
+      title = paste0("Expresión de ", gene_name),
+      subtitle = subtitle,
+      x = NULL, y = "Expresión", color = "Grupo"
+    ) +
+    theme_minimal(base_size = 12)
+}
+
+for (g in genes_of_interest) {
+  print(plot_gene_box(g, df_tumor, patients_low, patients_high, ca9_series))
+}
+```
+
+
+
+# HIF1A
+
+```{r, echo=FALSE, echo=FALSE, message = FALSE, results='hide'}
+# Tomar la(s) fila(s) con gene-name == "HIF1A"
+hif1a_rows <- dplyr::filter(df_tumor, `gene-name` == "HIF1A")
+
+if (nrow(hif1a_rows) == 0) {
+  stop("No se encontró el gen HIF1A en la columna 'gene-name'.")
+}
+
+if (nrow(hif1a_rows) > 1) {
+  message(sprintf("Aviso: se encontraron %d filas para HIF1A; se usará la primera (gene-id=%s).",
+                  nrow(hif1a_rows), hif1a_rows$`gene-id`[1]))
+}
+
+hif1a_row <- hif1a_rows[1, ]
+
+# Extraer valores numéricos de HIF1A en las muestras tumorales
+hif1a_vals <- suppressWarnings(as.numeric(hif1a_row[, sample_cols] |> unlist(use.names = FALSE)))
+hif1a_vals <- hif1a_vals[!is.na(hif1a_vals)]
+hif1a_vals_sorted <- sort(hif1a_vals)
+
+compute_quartiles <- function(sorted_vals) {
+  n <- length(sorted_vals)
+  if (n == 0) return(c(Q1 = NA_real_, Q2 = NA_real_, Q3 = NA_real_))
+  q2 <- stats::median(sorted_vals)
+  if (n %% 2 == 0) {
+    lower <- sorted_vals[1:(n/2)]
+    upper <- sorted_vals[(n/2 + 1):n]
+  } else {
+    lower <- sorted_vals[1:floor(n/2)]       # excluye la mediana
+    upper <- sorted_vals[(floor(n/2) + 2):n] # excluye la mediana
+  }
+  q1 <- if (length(lower) > 0) stats::median(lower) else NA_real_
+  q3 <- if (length(upper) > 0) stats::median(upper) else NA_real_
+  c(Q1 = as.numeric(q1), Q2 = as.numeric(q2), Q3 = as.numeric(q3))
+}
+
+qs <- compute_quartiles(hif1a_vals_sorted)
+Q1 <- qs["Q1"]; Q2 <- qs["Q2"]; Q3 <- qs["Q3"]
+min_val <- if (length(hif1a_vals_sorted) > 0) min(hif1a_vals_sorted) else NA_real_
+max_val <- if (length(hif1a_vals_sorted) > 0) max(hif1a_vals_sorted) else NA_real_
+
+Q1; Q2; Q3; min_val; max_val
+```
+
+
+## Definición de grupos (HIF1A low / high)
+```{r, echo=FALSE, message = FALSE}
+# Series con nombres de columnas = pacientes
+hif1a_series <- suppressWarnings(as.numeric(hif1a_row[, sample_cols] |> unlist(use.names = FALSE)))
+names(hif1a_series) <- sample_cols
+
+low_idx  <- which(hif1a_series <= Q1)
+high_idx <- which(hif1a_series >= Q3)
+
+patients_low  <- names(hif1a_series)[low_idx]
+patients_high <- names(hif1a_series)[high_idx]
+
+low_range  <- c(min_val, Q1)
+high_range <- c(Q3, max_val)
+
+# Resumen de grupos
+hif1a_summary <- tibble::tibble(
+  Grupo = c("HIF1A low (Q1)", "HIF1A high (Q3)"),
+  `Rango (min..Qx)` = c(sprintf("%.6g .. %.6g", low_range[1], low_range[2]),
+                        sprintf("%.6g .. %.6g", high_range[1], high_range[2])),
+  `n pacientes` = c(length(patients_low), length(patients_high)),
+  Q1 = c(Q1, NA_real_),
+  `Q2 (mediana)` = c(Q2, NA_real_),
+  Q3 = c(NA_real_, Q3)
+)
+
+knitr::kable(hif1a_summary, caption = "Resumen de grupos HIF1A (tumor YY 01–09)")
+```
+
+## Comparación de genes de interés
+
+```{r, echo=FALSE, message = FALSE}
+genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "CA9", "SLC2A1", "EPAS1",   "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "LDHA")
+
+pick_one_row_by_gene_name <- function(tabla, gene_name) {
+  rows <- dplyr::filter(tabla, `gene-name` == gene_name)
+  if (nrow(rows) == 0) {
+    return(list(row = NULL, note = paste0("No se encontró el gen ", gene_name, ".")))
+  }
+  note <- NULL
+  if (nrow(rows) > 1) {
+    note <- sprintf("Aviso: se encontraron %d filas para %s; se usa la primera (gene-id=%s).",
+                    nrow(rows), gene_name, rows$`gene-id`[1])
+  }
+  list(row = rows[1, ], note = note)
+}
+
+summary_list <- list()
+notes <- character(0)
+
+for (g in genes_of_interest) {
+  res <- pick_one_row_by_gene_name(df_tumor, g)
+  row <- res$row
+  if (!is.null(res$note)) notes <- c(notes, res$note)
+  
+  if (is.null(row)) {
+    summary_list[[g]] <- tibble::tibble(
+      gen = g,
+      n_low = length(patients_low),
+      n_high = length(patients_high),
+      media_low = NA_real_,
+      media_high = NA_real_,
+      mediana_low = NA_real_,
+      mediana_high = NA_real_,
+      `dif_media(high-low)` = NA_real_,
+      `log2FC(high/low)` = NA_real_
+    )
+    next
+  }
+  vals_low  <- suppressWarnings(as.numeric(row[, patients_low]  |> unlist(use.names = FALSE)))
+  vals_high <- suppressWarnings(as.numeric(row[, patients_high] |> unlist(use.names = FALSE)))
+  low_clean  <- vals_low[!is.na(vals_low)]
+  high_clean <- vals_high[!is.na(vals_high)]
+  
+  mean_low <- if (length(low_clean)  > 0) mean(low_clean)  else NA_real_
+  mean_high<- if (length(high_clean) > 0) mean(high_clean) else NA_real_
+  median_low <- if (length(low_clean)  > 0) stats::median(low_clean)  else NA_real_
+  median_high<- if (length(high_clean) > 0) stats::median(high_clean) else NA_real_
+  diff_mean <- if (!is.na(mean_high) && !is.na(mean_low)) mean_high - mean_low else NA_real_
+  log2fc <- if (!is.na(mean_high) && !is.na(mean_low) && mean_high > 0 && mean_low > 0) {
+    log2(mean_high/mean_low)
+  } else { NA_real_ }
+  
+  summary_list[[g]] <- tibble::tibble(
+    gen = g,
+    n_low = length(low_clean),
+    n_high = length(high_clean),
+    media_low = mean_low,
+    media_high = mean_high,
+    mediana_low = median_low,
+    mediana_high = median_high,
+    `dif_media(high-low)` = diff_mean,
+    `log2FC(high/low)` = log2fc
+  )
+}
+
+summary_df <- dplyr::bind_rows(summary_list)
+
+num_cols <- vapply(summary_df, is.numeric, logical(1))
+summary_df[num_cols] <- lapply(summary_df[num_cols], function(x) round(x, 6))
+
+knitr::kable(summary_df,
+             caption = "Diferencias de expresión entre HIF1A low (Q1) y HIF1A high (Q3)")
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+low_file <- "HIF1A_low_patients.txt"
+high_file <- "HIF1A_high_patients.txt"
+map_file <- "HIF1A_patient_groups.csv"
+
+writeLines(patients_low,  con = low_file)
+writeLines(patients_high, con = high_file)
+
+map_df <- tibble::tibble(
+  patient = c(patients_low, patients_high),
+  group = c(rep("HIF1A low", length(patients_low)), rep("HIF1A high", length(patients_high)))
+)
+readr::write_csv(map_df, map_file)
+
+cat("Archivos guardados en el directorio de trabajo:\n",
+    "- ", low_file, "\n",
+    "- ", high_file, "\n",
+    "- ", map_file, "\n", sep = "")
+```
+
+## Boxplots por gen
+
+```{r fig.width=7, fig.height=5, echo=FALSE, message = FALSE}
+plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, hif1a_series) {
+  res <- pick_one_row_by_gene_name(df_in, gene_name)
+  row <- res$row
+  if (is.null(row)) {
+    message("No se pudo graficar ", gene_name, " (no encontrado).")
+    return(NULL)
+  }
+  
+  # Expresión del gen de interés para las mismas muestras en las que tenemos HIF1A
+  gene_vals <- suppressWarnings(as.numeric(unlist(row[, names(hif1a_series)], use.names = FALSE)))
+  names(gene_vals) <- names(hif1a_series)
+  
+  # Correlación Pearson con HIF1A (solo en muestras con datos no-NA en ambos)
+  common_idx <- which(!is.na(hif1a_series) & !is.na(gene_vals))
+  if (length(common_idx) >= 3) {
+    cor_res <- suppressWarnings(cor.test(hif1a_series[common_idx], gene_vals[common_idx], method = "pearson"))
+    r_val <- round(unname(cor_res$estimate), 3)
+    p_val <- signif(cor_res$p.value, 3)
+    subtitle <- paste0("r = ", r_val, ", p = ", p_val)
+  } else {
+    subtitle <- "r = NA, p = NA"
+  }
+  
+  # Datos para boxplot + puntos por grupo
+  vals_low  <- gene_vals[patients_low]
+  vals_high <- gene_vals[patients_high]
+  d <- dplyr::bind_rows(
+    tibble::tibble(expr = vals_low,  group = "HIF1A low"),
+    tibble::tibble(expr = vals_high, group = "HIF1A high")
+  ) |> dplyr::filter(!is.na(expr))
+  
+  if (nrow(d) == 0) {
+    message("Sin datos para ", gene_name)
+    return(NULL)
+  }
+  
+  ggplot(d, aes(x = group, y = expr, color = group)) +
+    geom_boxplot(outlier.shape = NA, alpha = 0.35) +   # sin outliers propios del boxplot
+    geom_jitter(width = 0.2, size = 2, alpha = 0.9) +  # puntos individuales
+    scale_color_manual(values = c("HIF1A low" = "blue", "HIF1A high" = "red")) +
+    labs(
+      title = paste0("Expresión de ", gene_name),
+      subtitle = subtitle,
+      x = NULL, y = "Expresión", color = "Grupo"
+    ) +
+    theme_minimal(base_size = 12)
+}
+
+for (g in genes_of_interest) {
+  print(plot_gene_box(g, df_tumor, patients_low, patients_high, hif1a_series))
+}
+```
+
+
+# LDHA
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Tomar la(s) fila(s) con gene-name == "LDHA"
+ldha_rows <- dplyr::filter(df_tumor, `gene-name` == "LDHA")
+
+if (nrow(ldha_rows) == 0) {
+  stop("No se encontró el gen LDHA en la columna 'gene-name'.")
+}
+
+if (nrow(ldha_rows) > 1) {
+  message(sprintf("Aviso: se encontraron %d filas para LDHA; se usará la primera (gene-id=%s).",
+                  nrow(ldha_rows), ldha_rows$`gene-id`[1]))
+}
+
+ldha_row <- ldha_rows[1, ]
+
+# Extraer valores numéricos de LDHA en las muestras tumorales
+ldha_vals <- suppressWarnings(as.numeric(ldha_row[, sample_cols] |> unlist(use.names = FALSE)))
+ldha_vals <- ldha_vals[!is.na(ldha_vals)]
+ldha_vals_sorted <- sort(ldha_vals)
+
+compute_quartiles <- function(sorted_vals) {
+  n <- length(sorted_vals)
+  if (n == 0) return(c(Q1 = NA_real_, Q2 = NA_real_, Q3 = NA_real_))
+  q2 <- stats::median(sorted_vals)
+  if (n %% 2 == 0) {
+    lower <- sorted_vals[1:(n/2)]
+    upper <- sorted_vals[(n/2 + 1):n]
+  } else {
+    lower <- sorted_vals[1:floor(n/2)]       # excluye la mediana
+    upper <- sorted_vals[(floor(n/2) + 2):n] # excluye la mediana
+  }
+  q1 <- if (length(lower) > 0) stats::median(lower) else NA_real_
+  q3 <- if (length(upper) > 0) stats::median(upper) else NA_real_
+  c(Q1 = as.numeric(q1), Q2 = as.numeric(q2), Q3 = as.numeric(q3))
+}
+
+qs <- compute_quartiles(ldha_vals_sorted)
+Q1 <- qs["Q1"]; Q2 <- qs["Q2"]; Q3 <- qs["Q3"]
+min_val <- if (length(ldha_vals_sorted) > 0) min(ldha_vals_sorted) else NA_real_
+max_val <- if (length(ldha_vals_sorted) > 0) max(ldha_vals_sorted) else NA_real_
+
+Q1; Q2; Q3; min_val; max_val
+```
+
+
+## Definición de grupos (LDHA low / high)
+
+```{r, echo=FALSE, message = FALSE}
+# Series con nombres de columnas = pacientes
+ldha_series <- suppressWarnings(as.numeric(ldha_row[, sample_cols] |> unlist(use.names = FALSE)))
+names(ldha_series) <- sample_cols
+
+low_idx  <- which(ldha_series <= Q1)
+high_idx <- which(ldha_series >= Q3)
+
+patients_low  <- names(ldha_series)[low_idx]
+patients_high <- names(ldha_series)[high_idx]
+
+low_range  <- c(min_val, Q1)
+high_range <- c(Q3, max_val)
+
+# Resumen de grupos
+ldha_summary <- tibble::tibble(
+  Grupo = c("LDHA low (Q1)", "LDHA high (Q3)"),
+  `Rango (min..Qx)` = c(sprintf("%.6g .. %.6g", low_range[1], low_range[2]),
+                        sprintf("%.6g .. %.6g", high_range[1], high_range[2])),
+  `n pacientes` = c(length(patients_low), length(patients_high)),
+  Q1 = c(Q1, NA_real_),
+  `Q2 (mediana)` = c(Q2, NA_real_),
+  Q3 = c(NA_real_, Q3)
+)
+
+knitr::kable(ldha_summary, caption = "Resumen de grupos LDHA (tumor YY 01–09)")
+```
+
+## Comparación de genes de interés
+
+```{r, echo=FALSE, message = FALSE}
+genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "SLC2A1", "EPAS1",   "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "HIF1A", "CA9")
+
+pick_one_row_by_gene_name <- function(tabla, gene_name) {
+  rows <- dplyr::filter(tabla, `gene-name` == gene_name)
+  if (nrow(rows) == 0) {
+    return(list(row = NULL, note = paste0("No se encontró el gen ", gene_name, ".")))
+  }
+  note <- NULL
+  if (nrow(rows) > 1) {
+    note <- sprintf("Aviso: se encontraron %d filas para %s; se usa la primera (gene-id=%s).",
+                    nrow(rows), gene_name, rows$`gene-id`[1])
+  }
+  list(row = rows[1, ], note = note)
+}
+
+summary_list <- list()
+notes <- character(0)
+
+for (g in genes_of_interest) {
+  res <- pick_one_row_by_gene_name(df_tumor, g)
+  row <- res$row
+  if (!is.null(res$note)) notes <- c(notes, res$note)
+  
+  if (is.null(row)) {
+    summary_list[[g]] <- tibble::tibble(
+      gen = g,
+      n_low = length(patients_low),
+      n_high = length(patients_high),
+      media_low = NA_real_,
+      media_high = NA_real_,
+      mediana_low = NA_real_,
+      mediana_high = NA_real_,
+      `dif_media(high-low)` = NA_real_,
+      `log2FC(high/low)` = NA_real_
+    )
+    next
+  }
+  vals_low  <- suppressWarnings(as.numeric(row[, patients_low]  |> unlist(use.names = FALSE)))
+  vals_high <- suppressWarnings(as.numeric(row[, patients_high] |> unlist(use.names = FALSE)))
+  low_clean  <- vals_low[!is.na(vals_low)]
+  high_clean <- vals_high[!is.na(vals_high)]
+  
+  mean_low <- if (length(low_clean)  > 0) mean(low_clean)  else NA_real_
+  mean_high<- if (length(high_clean) > 0) mean(high_clean) else NA_real_
+  median_low <- if (length(low_clean)  > 0) stats::median(low_clean)  else NA_real_
+  median_high<- if (length(high_clean) > 0) stats::median(high_clean) else NA_real_
+  diff_mean <- if (!is.na(mean_high) && !is.na(mean_low)) mean_high - mean_low else NA_real_
+  log2fc <- if (!is.na(mean_high) && !is.na(mean_low) && mean_high > 0 && mean_low > 0) {
+    log2(mean_high/mean_low)
+  } else { NA_real_ }
+  
+  summary_list[[g]] <- tibble::tibble(
+    gen = g,
+    n_low = length(low_clean),
+    n_high = length(high_clean),
+    media_low = mean_low,
+    media_high = mean_high,
+    mediana_low = median_low,
+    mediana_high = median_high,
+    `dif_media(high-low)` = diff_mean,
+    `log2FC(high/low)` = log2fc
+  )
+}
+
+summary_df <- dplyr::bind_rows(summary_list)
+
+num_cols <- vapply(summary_df, is.numeric, logical(1))
+summary_df[num_cols] <- lapply(summary_df[num_cols], function(x) round(x, 6))
+
+knitr::kable(summary_df,
+             caption = "Diferencias de expresión entre LDHA low (Q1) y LDHA high (Q3)")
+
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+low_file <- "LDHA_low_patients.txt"
+high_file <- "LDHA_high_patients.txt"
+map_file <- "LDHA_patient_groups.csv"
+
+writeLines(patients_low,  con = low_file)
+writeLines(patients_high, con = high_file)
+
+map_df <- tibble::tibble(
+  patient = c(patients_low, patients_high),
+  group = c(rep("LDHA low", length(patients_low)), rep("LDHA high", length(patients_high)))
+)
+readr::write_csv(map_df, map_file)
+
+cat("Archivos guardados en el directorio de trabajo:\n",
+    "- ", low_file, "\n",
+    "- ", high_file, "\n",
+    "- ", map_file, "\n", sep = "")
+```
+
+## Boxplots por gen
+
+```{r fig.width=7, fig.height=5, echo=FALSE, message = FALSE}
+plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ldha_series) {
+  res <- pick_one_row_by_gene_name(df_in, gene_name)
+  row <- res$row
+  if (is.null(row)) {
+    message("No se pudo graficar ", gene_name, " (no encontrado).")
+    return(NULL)
+  }
+  
+  # Expresión del gen de interés para las mismas muestras en las que tenemos LDHA
+  gene_vals <- suppressWarnings(as.numeric(unlist(row[, names(ldha_series)], use.names = FALSE)))
+  names(gene_vals) <- names(ldha_series)
+  
+  # Correlación Pearson con LDHA (solo en muestras con datos no-NA en ambos)
+  common_idx <- which(!is.na(ldha_series) & !is.na(gene_vals))
+  if (length(common_idx) >= 3) {
+    cor_res <- suppressWarnings(cor.test(ldha_series[common_idx], gene_vals[common_idx], method = "pearson"))
+    r_val <- round(unname(cor_res$estimate), 3)
+    p_val <- signif(cor_res$p.value, 3)
+    subtitle <- paste0("r = ", r_val, ", p = ", p_val)
+  } else {
+    subtitle <- "r = NA, p = NA"
+  }
+  
+  # Datos para boxplot + puntos por grupo
+  vals_low  <- gene_vals[patients_low]
+  vals_high <- gene_vals[patients_high]
+  d <- dplyr::bind_rows(
+    tibble::tibble(expr = vals_low,  group = "LDHA low"),
+    tibble::tibble(expr = vals_high, group = "LDHA high")
+  ) |> dplyr::filter(!is.na(expr))
+  
+  if (nrow(d) == 0) {
+    message("Sin datos para ", gene_name)
+    return(NULL)
+  }
+  
+  ggplot(d, aes(x = group, y = expr, color = group)) +
+    geom_boxplot(outlier.shape = NA, alpha = 0.35) +   # sin outliers propios del boxplot
+    geom_jitter(width = 0.2, size = 2, alpha = 0.9) +  # puntos individuales
+    scale_color_manual(values = c("LDHA low" = "blue", "LDHA high" = "red")) +
+    labs(
+      title = paste0("Expresión de ", gene_name),
+      subtitle = subtitle,
+      x = NULL, y = "Expresión", color = "Grupo"
+    ) +
+    theme_minimal(base_size = 12)
+}
+
+for (g in genes_of_interest) {
+  print(plot_gene_box(g, df_tumor, patients_low, patients_high, ldha_series))
+}
+```
+
