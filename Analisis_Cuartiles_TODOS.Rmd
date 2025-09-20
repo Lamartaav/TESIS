@@ -8,7 +8,7 @@ output:
     number_sections: true
   pdf_document: default
 params:
-  url_tsv: "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/interseccion_tumoral_normal.tsv"
+  url_tsv: "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
 
 ---
 
