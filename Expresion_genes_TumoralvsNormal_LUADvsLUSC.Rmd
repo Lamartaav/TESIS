@@ -1,0 +1,167 @@
+---
+title: 'Expresión de Genes en LUAD y LUSC: Tejido Normal vs. Tejido Tumoral.'
+output: 
+  html_document:
+    toc: true        # <- Esto activa la tabla de contenido
+    toc_depth: 3     # <- Nivel de títulos que se mostrarán (opcional)
+    toc_float: false  # <- Hace que el índice flote (opcional)
+date: "Índice"
+---
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(survival)
+library(survminer)
+library(dplyr)
+library(tidyverse)
+library(ggrepel)
+library(scales)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(tidyr)
+library(ggsignif)
+library(rstatix)
+library(patchwork)
+library(readr)
+```
+
+```{r, include=FALSE, cache=TRUE, warning=FALSE}
+
+path_wide <- read.delim("https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/interseccion_tumoral_normal_clasificada.tsv")
+
+```
+
+# Expresión de Genes en Tejido Tumoral vs Tejido Normal Adyacente (LUAD vs. LUSC
+
+Se compara la expresión génica entre tejido tumoral y tejido adyacente entre pacientes pertenecientes a la misma cohorte: LUAD o LUSC.
+
+Expresión de genes de interés: "SLC2A1", "CA9", "HIF1A", "EPAS1", "LDHA", "SLC16A1", "SLC16A3", "HK2", "PKM", "GPI", "ALDOA", "PGK1", "PGM1", "ENO1", "CD274", "FOXP3".
+
+N = 89.
+
+Se muestra su respectivo p valor. 
+
+```{r, echo=FALSE, cache=TRUE, warning=FALSE, fig.width=12, fig.height=12, fig.show='hold'}
+# URL cruda correcta de GitHub (usa raw.githubusercontent.com)
+path_wide <- "https://raw.githubusercontent.com/Lamartaav/TESIS/main/interseccion_tumoral_normal_clasificada__wide.tsv"
+genes_req <- c("SLC2A1","CA9","HIF1A","EPAS1","LDHA","SLC16A1","SLC16A3",
+               "HK2","PKM","GPI","ALDOA","PGK1","PGM1","ENO1","CD274","FOXP3")
+
+# === Lectura ===
+wide <- read_tsv(path_wide, show_col_types = FALSE)
+
+# Alinear nombre de columna del proyecto
+if (!"Project" %in% names(wide) && "project" %in% names(wide)) {
+  wide <- rename(wide, Project = project)
+}
+
+stopifnot(all(c("patient_barcode","submitter_id","Project") %in% names(wide)))
+
+# === Derivar Tissue (Normal/Tumor) desde YY del barcode ===
+get_yy <- function(x){
+  m <- regexec("TCGA[-_.][^-_.]+[-_.][^-_.]+[-_.]([0-9]{2})", x, perl=TRUE, ignore.case=TRUE)
+  regmatches(x,m) |> lapply(function(z) if(length(z)>=2) z[2] else NA_character_) |> unlist()
+}
+yy     <- get_yy(wide$patient_barcode)
+yy_num <- suppressWarnings(as.integer(yy))
+
+wide <- wide %>%
+  mutate(
+    Tissue = case_when(
+      !is.na(yy_num) & yy_num >=  1 & yy_num <=  9 ~ "Tumor",
+      !is.na(yy_num) & yy_num >= 10 & yy_num <= 19 ~ "Normal",
+      TRUE ~ NA_character_
+    ),
+    Project = toupper(Project)
+  ) %>%
+  filter(Project %in% c("LUAD","LUSC"), !is.na(Tissue))
+
+# Mantener SOLO pacientes con par Normal y Tumor
+paired_ids <- wide %>% distinct(submitter_id, Tissue) %>% count(submitter_id) %>%
+  filter(n >= 2) %>% pull(submitter_id)
+wide_paired <- wide %>% filter(submitter_id %in% paired_ids)
+
+# Pasar genes a largo
+gene_cols <- setdiff(names(wide_paired), c("patient_barcode","submitter_id","Project","Tissue"))
+long <- wide_paired %>%
+  pivot_longer(all_of(gene_cols), names_to = "gene", values_to = "expr") %>%
+  filter(gene %in% genes_req) %>%
+  mutate(
+    Tissue  = factor(Tissue,  levels = c("Normal","Tumor")),
+    Project = factor(Project, levels = c("LUAD","LUSC"))
+  )
+
+# Paleta y tema
+pal <- c(Normal = "#6BA8A9", Tumor = "#E07A5F")
+base_theme <- theme_minimal(base_size = 13) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16),
+    axis.title.x = element_blank(),
+    axis.title.y = element_text(face = "bold"),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.position = "none"
+  )
+
+# p-value formatter (vectorizada)
+format_pval <- function(p) {
+  ifelse(is.na(p), "NA",
+         ifelse(p < 2.2e-16, "< 2e-16",
+                ifelse(p < 1e-3, formatC(p, format = "e", digits = 2),
+                       signif(p, 3))))
+}
+
+# Carpeta salida
+outdir <- "plots_luad_lusc_paired"
+if (!dir.exists(outdir)) dir.create(outdir)
+
+# --- Loop por gen: SOLO panel izquierdo (Normal vs Tumor por proyecto) ---
+for (g in unique(long$gene)) {
+  dat_g <- long %>% filter(gene == g)
+
+  # p-values pareados *por proyecto*
+  p_by_proj <- dat_g %>%
+    group_by(Project) %>%
+    summarise(
+      p = tryCatch({
+        w2 <- pivot_wider(cur_data(), id_cols = submitter_id,
+                          names_from = Tissue, values_from = expr)
+        if (all(c("Normal","Tumor") %in% names(w2))) {
+          wilcox.test(w2$Tumor, w2$Normal, paired = TRUE)$p.value
+        } else NA_real_
+      }, error = function(e) NA_real_),
+      .groups = "drop"
+    ) %>%
+    mutate(label = paste0("pValue = ", format_pval(p)))
+
+  # Anotaciones por facet
+  ymax_l  <- max(dat_g$expr, na.rm = TRUE); y_top_l <- ymax_l * 1.12
+  ann_l <- dat_g %>% distinct(Project) %>% left_join(p_by_proj, by = "Project") %>%
+    mutate(x = 1.5, y = y_top_l)
+
+  # Panel izquierdo: Normal vs Tumor facetado por Project
+  p_left <- ggplot(dat_g, aes(x = Tissue, y = expr, fill = Tissue, color = Tissue)) +
+    geom_violin(width = 0.92, alpha = 0.10, color = NA, trim = FALSE) +
+    geom_boxplot(width = 0.30, outlier.shape = NA, alpha = 0.35, color = "grey25") +
+    geom_jitter(width = 0.12, size = 1.3, alpha = 0.55) +
+    scale_fill_manual(values = pal) +
+    scale_color_manual(values = pal) +
+    scale_y_continuous(expand = expansion(mult = c(0.02, 0.18))) +
+    labs(y = "Expresión (FPKM_UQ_UNSTRANDED)", title = paste0(g, ": Normal vs Tumor")) +
+    facet_wrap(~Project, nrow = 1) +
+    base_theme +
+    geom_text(data = ann_l, aes(x = x, y = y, label = label), inherit.aes = FALSE,
+              size = 4, fontface = "bold")
+
+  print(p_left)
+
+  gfile <- file.path(outdir, paste0("exp_", g, "_paired_byProject.png"))
+  ggsave(gfile, p_left, width = 12, height = 6, dpi = 200)
+}
+
+
+```
+
