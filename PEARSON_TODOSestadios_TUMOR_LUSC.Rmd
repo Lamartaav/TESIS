@@ -1,0 +1,172 @@
+---
+title: "Correlaciones de genes (Pearson) — LUSC"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: readable
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, cache = TRUE)
+
+library(survival)
+library(survminer)
+library(dplyr)
+library(tidyverse)
+library(ggrepel)
+library(scales)
+library(ggplot2)
+library(plotly)
+
+library(dplyr)
+library(tidyr)
+library(ggsignif)
+library(rstatix)
+
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
+
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+need(c("tidyverse","GGally","ggplot2","rlang"))
+```
+
+```{r, include=FALSE}
+# Leer directamente desde GitHub
+url_luad <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral_LUSC.tsv"
+tabla <- read.delim(url_luad, check.names = FALSE)
+
+# Columnas "de paciente"; el resto se asume genes (expresión FPKM-UQ unstranded)
+cols_meta  <- c("patient_barcode","submitter_id","Project")
+cols_genes <- setdiff(colnames(tabla), cols_meta)
+
+# Asegurar tipo numérico para los genes
+X <- tabla[, cols_genes, drop = FALSE] |>
+  dplyr::as_tibble() |>
+  dplyr::mutate(dplyr::across(dplyr::everything(),
+                              ~ suppressWarnings(as.numeric(.x))))
+
+
+# Por si hay genes con varianza cero (cor() devuelve NA); no los quitamos,
+# pero avisamos para interpretación.
+genes_var_cero <- names(which(sapply(X, function(v) isTRUE(var(v, na.rm=TRUE) == 0))))
+if(length(genes_var_cero)){
+  message("Genes con varianza (≈) cero (correlaciones pueden ser NA): ",
+          paste(genes_var_cero, collapse = ", "))
+}
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+# Panel 1 (columnas)
+panel_1 <- c("SLC2A1","CA9","HIF1A","EPAS1","LDHA","SLC16A1","SLC16A3")
+# Panel 2 (columnas)
+panel_2 <- c("HK2","PKM2","GPI","ALDOA","PGK1","PGM1","ENO1","CD24")
+
+presentes <- function(v) intersect(v, colnames(X))
+faltan    <- function(v) setdiff(v, colnames(X))
+
+if(length(faltan(panel_1))) message("Panel 1 omitidos (no están en la tabla): ",
+                                    paste(faltan(panel_1), collapse=", "))
+if(length(faltan(panel_2))) message("Panel 2 omitidos (no están en la tabla): ",
+                                    paste(faltan(panel_2), collapse=", "))
+
+panel_1 <- presentes(panel_1)
+panel_2 <- presentes(panel_2)
+
+# Filas = TODOS los genes (orden alfabético), en bloques de 10
+todos_y <- sort(colnames(X), method = "radix")
+chunks_de_10 <- split(todos_y, ceiling(seq_along(todos_y)/10))
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+panel_scatter_r <- function(data, mapping, ...){
+  xname <- rlang::as_name(mapping$x)
+  yname <- rlang::as_name(mapping$y)
+  x <- data[[xname]]
+  y <- data[[yname]]
+
+  r <- suppressWarnings(cor(x, y, use = "pairwise.complete.obs", method = "pearson"))
+  p <- tryCatch(
+    suppressWarnings(cor.test(x, y, method = "pearson")$p.value),
+    error = function(e) NA_real_
+  )
+
+  stars <- if (is.na(p)) "" else if (p < 0.001) "***" else if (p < 0.01) "**" else if (p < 0.05) "*" else ""
+
+  ggplot(data = data, mapping = mapping) +
+    geom_point(alpha = 0.45, size = 0.6) +
+    geom_smooth(method = "lm", se = FALSE, linewidth = 0.35) +
+    annotate("text",
+      x = Inf, y = Inf,
+      label = sprintf("r = %.2f%s", r, stars),
+      hjust = 1.1, vjust = 1.3, size = 3.2
+    )
+}
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+plot_bloque <- function(cols_panel, filas_10, titulo){
+  # Escalado simple para que quepa todo
+  fw <- max(14, 1.6 * length(cols_panel) + 4)
+  fh <- max(12, 1.2 * length(filas_10) + 6)
+  knitr::opts_current$set(fig.width = fw, fig.height = fh, fig.align = "center")
+
+  g <- GGally::ggduo(
+    data = X,
+    columnsX = cols_panel,
+    columnsY = filas_10,
+    types = list(continuous = panel_scatter_r),
+    showStrips = TRUE,
+    title = titulo
+  ) +
+    theme_bw(base_size = 9) +
+    theme(
+      strip.background = element_rect(fill = "grey95"),
+      panel.grid.minor = element_blank(),
+      plot.title = element_text(hjust = 0.5)
+    )
+  print(g)
+}
+```
+
+Regla de estrellitas: * p<0.05, ** p<0.01, *** p<0.001.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=10, fig.height=10, fig.align='center'} 
+if(length(panel_1) > 0){
+  for(i in seq_along(chunks_de_10)){
+    filas <- chunks_de_10[[i]]
+    plot_bloque(
+      cols_panel = panel_1,
+      filas_10   = filas,
+      titulo     = sprintf("Correlación (Pearson) — Panel 1 (columnas) vs Bloque %d/%d de genes (filas) | LUAD",
+                           i, length(chunks_de_10))
+    )
+  }
+}
+
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=10, fig.height=10, fig.align='center'} 
+if(length(panel_2) > 0){
+  for(i in seq_along(chunks_de_10)){
+    filas <- chunks_de_10[[i]]
+    plot_bloque(
+      cols_panel = panel_2,
+      filas_10   = filas,
+      titulo     = sprintf("Correlación (Pearson) — Panel 2 (columnas) vs Bloque %d/%d de genes (filas) | LUAD",
+                           i, length(chunks_de_10))
+    )
+  }
+}
+```
