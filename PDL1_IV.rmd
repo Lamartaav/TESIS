@@ -18,14 +18,14 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 Este documento carga una tabla de expresión génica (formato TSV) donde las **primeras tres columnas** son `gene-id`, `gene-name`, `gene-type` y las restantes son muestras de pacientes con códigos TCGA del tipo `TCGA-XX-XXXX-YYA...`.  
 Nos quedamos **solo con muestras tumorales**, donde `YY` (primeros dos caracteres del 4to bloque) está entre `01` y `09`.  
-Luego tomamos la expresión del gen **CD24**, calculamos **cuartiles** según la definición:
+Luego tomamos la expresión del gen **CD274**, calculamos **cuartiles** según la definición:
 - **Q1**: mediana de la mitad inferior (excluyendo la mediana si *n* es impar)
 - **Q2**: mediana de todo el conjunto
 - **Q3**: mediana de la mitad superior (excluyendo la mediana si *n* es impar)
 
 Con esto definimos grupos:
-- **CD24 low (Q1)**: valores ≤ Q1
-- **CD24 high (Q3)**: valores ≥ Q3
+- **CD274 low (Q1)**: valores ≤ Q1
+- **CD274 high (Q3)**: valores ≥ Q3
 
 Finalmente comparamos la expresión de los genes: `CD4`, `FOXP3`, `CD8`, `CD163`, `ARG1`, `CD274` entre ambos grupos y producimos tablas y boxplots.
 
@@ -78,21 +78,21 @@ cat("Muestras tumorales detectadas:", length(sample_cols), "de", ncol(tabla) - l
 ```
 # CD274
 ```{r, echo=FALSE, message = FALSE, results='hide'}
-# Tomar la(s) fila(s) con gene-name == "CD24"
+# Tomar la(s) fila(s) con gene-name == "CD274"
 ca9_rows <- dplyr::filter(df_tumor, `gene-name` == "CD274")
 
 if (nrow(ca9_rows) == 0) {
-  stop("No se encontró el gen CD24 en la columna 'gene-name'.")
+  stop("No se encontró el gen CD274 en la columna 'gene-name'.")
 }
 
 if (nrow(ca9_rows) > 1) {
-  message(sprintf("Aviso: se encontraron %d filas para CD24; se usará la primera (gene-id=%s).",
+  message(sprintf("Aviso: se encontraron %d filas para CD274; se usará la primera (gene-id=%s).",
                   nrow(ca9_rows), ca9_rows$`gene-id`[1]))
 }
 
 ca9_row <- ca9_rows[1, ]
 
-# Extraer valores numéricos de CD24 en las muestras tumorales
+# Extraer valores numéricos de CD274 en las muestras tumorales
 ca9_vals <- suppressWarnings(as.numeric(ca9_row[, sample_cols] |> unlist(use.names = FALSE)))
 ca9_vals <- ca9_vals[!is.na(ca9_vals)]
 ca9_vals_sorted <- sort(ca9_vals)
@@ -121,7 +121,7 @@ max_val <- if (length(ca9_vals_sorted) > 0) max(ca9_vals_sorted) else NA_real_
 Q1; Q2; Q3; min_val; max_val
 ```
 
-## Definición de grupos (CD24 low / high)
+## Definición de grupos (CD274 low / high)
 
 
 ```{r, echo=FALSE, message = FALSE}
@@ -140,7 +140,7 @@ high_range <- c(Q3, max_val)
 
 # Resumen de grupos
 ca9_summary <- tibble::tibble(
-  Grupo = c("CD24 low (Q1)", "CD24 high (Q3)"),
+  Grupo = c("CD274 low (Q1)", "CD274 high (Q3)"),
   `Rango (min..Qx)` = c(sprintf("%.6g .. %.6g", low_range[1], low_range[2]),
                         sprintf("%.6g .. %.6g", high_range[1], high_range[2])),
   `n pacientes` = c(length(patients_low), length(patients_high)),
@@ -149,7 +149,7 @@ ca9_summary <- tibble::tibble(
   Q3 = c(NA_real_, Q3)
 )
 
-knitr::kable(ca9_summary, caption = "Resumen de grupos CD24 (tumor YY 01–09)")
+knitr::kable(ca9_summary, caption = "Resumen de grupos CD274 (tumor YY 01–09)")
 ```
 
 ## Comparación de genes de interés
@@ -230,22 +230,22 @@ num_cols <- vapply(summary_df, is.numeric, logical(1))
 summary_df[num_cols] <- lapply(summary_df[num_cols], function(x) round(x, 6))
 
 knitr::kable(summary_df,
-             caption = "Diferencias de expresión entre CD24 low (Q1) y CD24 high (Q3)")
+             caption = "Diferencias de expresión entre CD274 low (Q1) y CD274 high (Q3)")
 
 ```
 
 
 ```{r, echo=FALSE, message = FALSE, results='hide'}
-low_file <- "CD24_low_patients.txt"
-high_file <- "CD24_high_patients.txt"
-map_file <- "CD24_patient_groups.csv"
+low_file <- "CD274_low_patients.txt"
+high_file <- "CD274_high_patients.txt"
+map_file <- "CD274_patient_groups.csv"
 
 writeLines(patients_low,  con = low_file)
 writeLines(patients_high, con = high_file)
 
 map_df <- tibble::tibble(
   patient = c(patients_low, patients_high),
-  group = c(rep("CD24 low", length(patients_low)), rep("CD24 high", length(patients_high)))
+  group = c(rep("CD274 low", length(patients_low)), rep("CD274 high", length(patients_high)))
 )
 readr::write_csv(map_df, map_file)
 
@@ -266,11 +266,11 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ca9_ser
     return(NULL)
   }
   
-  # Expresión del gen de interés para las mismas muestras en las que tenemos CD24
+  # Expresión del gen de interés para las mismas muestras en las que tenemos CD274
   gene_vals <- suppressWarnings(as.numeric(unlist(row[, names(ca9_series)], use.names = FALSE)))
   names(gene_vals) <- names(ca9_series)
   
-  # Correlación Pearson con CD24 (solo en muestras con datos no-NA en ambos)
+  # Correlación Pearson con CD274 (solo en muestras con datos no-NA en ambos)
   common_idx <- which(!is.na(ca9_series) & !is.na(gene_vals))
   if (length(common_idx) >= 3) {
     cor_res <- suppressWarnings(cor.test(ca9_series[common_idx], gene_vals[common_idx], method = "pearson"))
@@ -285,8 +285,8 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ca9_ser
   vals_low  <- gene_vals[patients_low]
   vals_high <- gene_vals[patients_high]
   d <- dplyr::bind_rows(
-    tibble::tibble(expr = vals_low,  group = "CD24 low"),
-    tibble::tibble(expr = vals_high, group = "CD24 high")
+    tibble::tibble(expr = vals_low,  group = "CD274 low"),
+    tibble::tibble(expr = vals_high, group = "CD274 high")
   ) |> dplyr::filter(!is.na(expr))
   
   if (nrow(d) == 0) {
@@ -297,7 +297,7 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ca9_ser
   ggplot(d, aes(x = group, y = expr, color = group)) +
     geom_boxplot(outlier.shape = NA, alpha = 0.35) +   # sin outliers propios del boxplot
     geom_jitter(width = 0.2, size = 2, alpha = 0.9) +  # puntos individuales
-    scale_color_manual(values = c("CD24 low" = "blue", "CD24 high" = "red")) +
+    scale_color_manual(values = c("CD274 low" = "blue", "CD274 high" = "red")) +
     labs(
       title = paste0("Expresión de ", gene_name),
       subtitle = subtitle,
