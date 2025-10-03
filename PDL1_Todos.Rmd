@@ -155,7 +155,12 @@ knitr::kable(cd274_summary, caption = "Resumen de grupos CD274 (tumor YY 01–09
 ## Comparación de genes de interés
 
 ```{r, echo=FALSE, message = FALSE}
-genes_of_interest <- c("CD80", "CD86", "HLA-DRA", "IL12B", "NOS2", "TNF", "IL1B", "CXCL9", "CXCL10", "CD163", "MRC1", "IL10", "TGFB1", "MMP9", "VEGFA", "CHI3L1", "CD14", "CD33", "ITGAM", "IL10", "ARG1", "NOS2", "S100A8", "S100A9", "STAT3", "FUT4", "CD33", "S100A8", "S100A9", "ARG1", "CYBB", "NCAM1", "FCGR3A", "KLRK1", "NCR1", "NCR3", "PRF1", "GZMB", "GZMA", "IFNG", "KIR2DL1", "KIR3DL1", "CD8A", "CD8B", "PRF1", "GZMB", "IFNG", "TBX21", "CXCR3", "CD4", "TBX21", "IFNG", "IL2", "STAT1", "RORC", "IL17A", "IL17F", "IL23R", "FOXP3", "IL2RA", "CTLA4", "IKZF2", "TGFB1", "IL10",  "IL7R")
+genes_of_interest <- c("CD80", "CD86", "HLA-DRA", "IL12B", "NOS2", "TNF", "IL1B", "CXCL9", "CXCL10",
+  "CD163", "MRC1", "IL10", "TGFB1", "MMP9", "VEGFA", "CHI3L1", "CD14", "CD33",
+  "ITGAM", "ARG1", "S100A8", "S100A9", "STAT3", "FUT4", "CYBB", "NCAM1",
+  "FCGR3A", "KLRK1", "NCR1", "NCR3", "PRF1", "GZMB", "GZMA", "IFNG", "KIR2DL1",
+  "KIR3DL1", "CD8A", "CD8B", "TBX21", "CXCR3", "CD4", "IL2", "STAT1", "RORC",
+  "IL17A", "IL17F", "IL23R", "FOXP3", "IL2RA", "CTLA4", "IKZF2", "IL7R")
 
 pick_one_row_by_gene_name <- function(tabla, gene_name) {
   rows <- dplyr::filter(tabla, `gene-name` == gene_name)
