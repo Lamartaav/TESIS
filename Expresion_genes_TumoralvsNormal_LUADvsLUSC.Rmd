@@ -34,13 +34,11 @@ path_wide <- read.delim("https://raw.githubusercontent.com/Lamartaav/TESIS/refs/
 
 ```
 
-# Expresión de Genes en Tejido Tumoral vs Tejido Normal Adyacente (LUAD vs. LUSC
+# Expresión de Genes en Tejido Tumoral vs Tejido Normal Adyacente (LUAD vs. LUSC)
 
 Se compara la expresión génica entre tejido tumoral y tejido adyacente entre pacientes pertenecientes a la misma cohorte: LUAD o LUSC.
 
 Expresión de genes de interés: "SLC2A1", "CA9", "HIF1A", "EPAS1", "LDHA", "SLC16A1", "SLC16A3", "HK2", "PKM", "GPI", "ALDOA", "PGK1", "PGM1", "ENO1", "CD274", "FOXP3".
-
-N = 89.
 
 Se muestra su respectivo p valor. 
 
