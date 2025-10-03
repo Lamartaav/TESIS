@@ -1,0 +1,981 @@
+project.project_id	cases.disease_type	cases.primary_site	cases.submitter_id	demographic.vital_status	diagnoses.ajcc_pathologic_stage	diagnoses.classification_of_tumor	diagnoses.days_to_diagnosis	diagnoses.days_to_last_follow_up	diagnoses.diagnosis_is_primary_disease	diagnoses.primary_diagnosis	diagnoses.prior_malignancy
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A471	Alive	Stage IIB	primary	0	1246	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-3773	Alive	Stage IB	primary	0	427	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-NJ-A7XG	Alive	Stage IIIA	primary	0	617	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6848	Alive	Stage IIIA	primary	0	224	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6986	Alive	Stage IB	primary	0	3261	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-6851	Alive	Stage IIA	primary	0	179	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4677	Dead	'--	primary	0	38	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4245	Alive	Stage IIIA	primary	0	730	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7540	Dead	Stage IB	primary	0	1197	true	Bronchio-alveolar carcinoma, mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7576	Alive	Stage IB	primary	0	670	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8615	Alive	Stage IIIA	primary	0	446	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4501	Dead	Stage IB	primary	0	1421	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-7954	Alive	Stage IB	primary	0	605	true	Bronchiolo-alveolar adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2655	Alive	Stage IA	primary	0	1324	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4505	Dead	Stage IIB	primary	0	428	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-8177	Alive	Stage IB	primary	0	499	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-J2-A4AD	Dead	Stage IA	primary	0	550	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6592	Dead	Stage IB	primary	0	777	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8674	Alive	Stage IIA	primary	0	806	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6981	Dead	Stage IIIA	primary	0	1379	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7284	Dead	Stage IIB	primary	0	243	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6836	Alive	Stage IB	primary	0	417	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-44-6146	Alive	Stage IIB	primary	0	728	true	Mucinous adenocarcinoma	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A46P	Dead	Stage IB	primary	0	594	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-7955	Alive	Stage IB	primary	0	1072	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6597	Dead	Stage IB	primary	0	1268	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-A4BD	Alive	Stage IIA	primary	0	603	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-3771	Alive	Stage IA	primary	0	610	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4625	Alive	Stage IB	primary	0	2973	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-86-8054	Alive	Stage IIB	primary	0	1148	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5935	Dead	Stage IA	primary	0	653	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-3776	Alive	Stage IIB	primary	0	61	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8089	Dead	Stage IA	primary	0	702	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-6217	Alive	Stage IIA	primary	0	422	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6590	Dead	Stage IB	primary	0	1288	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-97-8179	Alive	Stage IA	primary	0	435	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4629	Dead	Stage IIB	primary	0	864	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5939	Dead	Stage IB	primary	0	460	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A48Y	Alive	Stage IIA	primary	0	630	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-97-8176	Dead	Stage IIIA	primary	0	468	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5931	Dead	Stage IB	primary	0	434	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6829	Dead	Stage IB	primary	0	1258	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-6744	Alive	Stage IIA	primary	0	1683	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5072	Dead	Stage IIIA	primary	0	250	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4SW	Dead	Stage IIB	primary	0	1778	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7162	Dead	Stage IA	primary	0	3169	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A48Z	Alive	Stage IIIB	primary	0	651	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-8662	Dead	Stage IB	primary	0	3361	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MN-A4N5	Alive	Stage IA	primary	0	84	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-8640	Alive	Stage IIA	primary	0	7062	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-7562	Dead	Stage IIA	primary	0	87	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4676	Dead	Stage IIA	primary	0	281	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-1596	Alive	Stage IIB	primary	0	2065	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-1680	Alive	Stage IV	primary	0	1126	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-7552	Alive	Stage IB	primary	0	1932	true	Bronchio-alveolar carcinoma, mucinous	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-69-7763	Alive	Stage IA	primary	0	690	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4670	Alive	Stage IV	primary	0	131	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-50-5944	Alive	Stage IA	primary	0	1750	true	Acinar cell carcinoma	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-64-5779	Alive	Stage IIIA	primary	0	864	true	Acinar cell carcinoma	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-97-7546	Alive	Stage IA	primary	0	1285	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7911	Alive	Stage IA	primary	0	537	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8511	Alive	Stage IB	primary	0	552	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-5644	Alive	Stage IB	primary	0	863	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8512	Dead	Stage IV	primary	0	607	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4626	Alive	'--	primary	0	3674	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-49-6742	Dead	Stage IIA	primary	0	488	true	Mucinous adenocarcinoma	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6144	Alive	Stage IA	primary	0	723	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-8119	Alive	Stage IIB	primary	0	285	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-7764	Alive	Stage IA	primary	0	414	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4631	Dead	Stage IB	primary	0	354	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-38-A44F	Alive	Stage IB	primary	0	133	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-83-5908	Alive	Stage IA	primary	0	824	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L4-A4E6	Alive	Stage IA	primary	0	435	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-5643	Alive	Stage IIIA	primary	0	1013	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8279	Alive	Stage IIA	primary	0	949	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7724	Alive	Stage IB	primary	0	705	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4662	Alive	Stage IA	primary	0	2515	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-73-A9RS	Dead	Stage IIB	primary	0	340	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L9-A5IP	Dead	Stage IV	primary	0	58	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-J2-8194	Alive	Stage IIB	primary	0	724	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-NJ-A4YI	Dead	Stage IIIA	primary	0	4	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8299	Dead	Stage IA	primary	0	469	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7149	Alive	Stage IIIB	primary	0	3940	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6987	Alive	Stage IA	primary	0	2137	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6980	Alive	Stage IA	primary	0	2109	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6835	Alive	Stage IA	primary	0	79	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8585	Alive	Stage IB	primary	0	353	true	Solid carcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-8398	Dead	Stage IIIA	primary	0	444	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4T4	Dead	Stage IIB	primary	0	2617	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-93-A4JP	Alive	Stage IV	primary	0	578	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-S2-AA1A	Alive	Stage IA	primary	0	513	true	Bronchio-alveolar carcinoma, mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5066	Alive	Stage IB	primary	0	1442	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4398	Alive	Stage IIIB	primary	0	1431	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4M6	Alive	Stage IA	primary	0	568	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L4-A4E5	Alive	Stage I	primary	0	578	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A48X	Alive	Stage IIA	primary	0	689	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6774	Alive	Stage IIIA	primary	0	658	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-5423	Alive	Stage IIB	primary	0	151	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4244	Alive	Stage IV	primary	0	0	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4382	Alive	Stage IB	primary	0	607	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4M2	Alive	Stage IA	primary	0	624	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6777	Dead	Stage IB	primary	0	987	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8055	Dead	Stage IIA	primary	0	124	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6982	Dead	Stage IIB	primary	0	995	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A4DF	Dead	Stage IA	primary	0	440	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8096	Dead	Stage IB	primary	0	719	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5930	Dead	Stage IIIA	primary	0	282	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-J2-8192	Alive	Stage IIA	primary	0	739	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-3774	Alive	Stage IB	primary	0	385	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4426	Alive	Stage IB	primary	0	791	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-71-8520	Dead	Stage IB	primary	0	210	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-7553	Alive	Stage IA	primary	0	1870	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TD	Dead	Stage IIIA	primary	0	307	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-A4VN	Alive	Stage IIA	primary	0	553	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-8171	Alive	Stage IV	primary	0	568	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A492	Alive	Stage IA	primary	0	596	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4430	Alive	Stage IB	primary	0	761	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AAR0	Alive	Stage IA	primary	0	4765	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A57B	Alive	Stage IA	primary	0	546	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L9-A443	Dead	Stage IA	primary	0	193	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-7567	Alive	Stage IIB	primary	0	568	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-3396	Alive	Stage IIIA	primary	0	1130	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6775	Alive	Stage IB	primary	0	705	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4420	Alive	Stage IB	primary	0	912	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-93-A4JO	Dead	Stage IA	primary	0	33	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-7974	Alive	Stage IIIA	primary	0	184	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A4DG	Alive	Stage IA	primary	0	608	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-4679	Alive	'--	primary	0	448	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8506	Alive	Stage IIB	primary	0	11	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-5428	Alive	Stage IIA	primary	0	670	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7672	Alive	Stage IA	primary	0	719	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-5781	Alive	Stage IB	primary	0	1559	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-NJ-A4YP	Alive	Stage IB	primary	0	50	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-O1-A52J	Dead	Stage IA	primary	0	1798	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2656	Alive	Stage IB	primary	0	1429	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-53-7813	Alive	Stage IIIB	primary	0	424	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-8402	Dead	Stage IIIA	primary	0	1498	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7633	Dead	Stage IB	primary	0	1528	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-35-4122	Alive	Stage IA	primary	0	225	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-8253	Alive	Stage IIA	primary	0	426	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4422	Alive	Stage IB	primary	0	365	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7535	Dead	Stage IB	primary	0	949	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8358	Alive	Stage IB	primary	0	653	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4T7	Dead	Stage IV	primary	0	167	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8056	Alive	Stage IIIA	primary	0	139	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6642	Alive	Stage IB	primary	0	2449	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AAR9	Dead	Stage IIB	primary	0	260	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8074	Alive	Stage IIA	primary	0	24	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-8460	Alive	Stage IA	primary	0	829	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L9-A444	Alive	Stage IA	primary	0	307	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-8497	Dead	Stage IA	primary	0	434	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4249	Alive	Stage IB	primary	0	1523	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7669	Dead	Stage IIA	primary	0	574	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-71-6725	Alive	Stage IB	primary	0	256	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8092	Dead	Stage IIB	primary	0	154	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4666	Alive	Stage IV	primary	0	800	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-6761	Alive	Stage IIIA	primary	0	354	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7159	Alive	Stage IA	primary	0	1974	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8090	Dead	Stage IA	primary	0	598	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7227	Dead	Stage IIIA	primary	0	952	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7145	Dead	Stage IV	primary	0	826	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7158	Dead	Stage IIIB	primary	0	179	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4507	Dead	Stage IIIA	primary	0	268	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6978	Dead	Stage IIA	primary	0	176	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AARO	Alive	Stage IA	primary	0	3759	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-A4D0	Dead	Stage IIA	primary	0	116	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-NJ-A4YQ	Alive	Stage IA	primary	0	1432	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-7714	Dead	Stage IIIA	primary	0	625	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7143	Dead	Stage IB	primary	0	4961	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-8499	Alive	Stage IA	primary	0	36	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-7953	Alive	Stage IA	primary	0	997	true	Bronchiolo-alveolar adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7816	Dead	Stage IV	primary	0	468	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-55-6983	Alive	Stage IIB	primary	0	2823	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-53-7624	Dead	Stage IV	primary	0	1043	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L9-A7SV	Alive	Stage IIA	primary	0	565	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8620	Dead	Stage IV	primary	0	375	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-8255	Alive	Stage IA	primary	0	129	true	Solid carcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A46Y	Dead	Stage IIIA	primary	0	414	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4M3	Alive	Stage IA	primary	0	540	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AAR3	Alive	Stage IIB	primary	0	1893	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5068	Dead	Stage IIB	primary	0	1499	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-NJ-A4YF	Alive	Stage IA	primary	0	2161	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6830	Alive	Stage IIA	primary	0	60	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7163	Alive	Stage IB	primary	0	7248	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-8648	Dead	Stage IIB	primary	0	1209	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6979	Dead	Stage IIB	primary	0	237	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-8395	Alive	Stage IIB	primary	0	1216	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-35-5375	Alive	Stage IIIA	primary	0	264	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6778	Alive	Stage IA	primary	0	1864	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8281	Alive	Stage IA	primary	0	0	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4T6	Dead	Stage IIIA	primary	0	1790	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8085	Alive	Stage IA	primary	0	904	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4M5	Alive	Stage IA	primary	0	634	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-7547	Alive	Stage IB	primary	0	1965	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6145	Alive	Stage IA	primary	0	595	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4486	Dead	Stage IA	primary	0	2318	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-8399	Alive	Stage IIIA	primary	0	2696	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-5429	Dead	Stage IIIA	primary	0	275	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-A4P8	Alive	Stage IIIA	primary	0	805	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-8496	Alive	Stage IB	primary	0	505	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7281	Alive	Stage IA	primary	0	872	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4424	Alive	Stage IIB	primary	0	913	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-3919	Dead	Stage IA	primary	0	1026	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-3772	Alive	Stage IB	primary	0	573	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7537	Dead	Stage IB	primary	0	1622	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7994	Alive	Stage IIB	primary	0	603	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-A59K	Alive	Stage IIB	primary	0	591	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8514	Alive	Stage IB	primary	0	520	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-4112	Dead	Stage IB	primary	0	808	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8094	Alive	Stage IV	primary	0	541	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4425	Alive	Stage IV	primary	0	669	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7914	Dead	Stage IIA	primary	0	187	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-6767	Alive	Stage IIB	primary	0	677	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4490	Dead	Stage IIIA	primary	0	385	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-35-4123	Alive	Stage IA	primary	0	182	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-1594	Alive	Stage IIIA	primary	0	1178	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-8117	Alive	Stage IB	primary	0	385	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4397	Dead	Stage IIB	primary	0	731	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-3918	Alive	Stage IA	primary	0	1036	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-8494	Alive	Stage IIA	primary	0	84	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4T9	Dead	Stage IIIA	primary	0	1265	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4SV	Dead	Stage IB	primary	0	2620	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-93-A4JQ	Alive	Stage IA	primary	0	526	true	Acinar cell carcinoma	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-3917	Alive	Stage IB	primary	0	1183	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4402	Dead	Stage IV	primary	0	244	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-8394	Dead	Stage IIIB	primary	0	139	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8204	Alive	Stage IB	primary	0	515	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MN-A4N1	Alive	Stage IIA	primary	0	827	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5942	Alive	Stage IA	primary	0	1847	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4395	Dead	Stage IIIB	primary	0	0	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AAR4	Dead	Stage IIIA	primary	0	879	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-55-8619	Alive	Stage IIB	primary	0	416	true	Mucinous adenocarcinoma	yes
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-69-7761	Alive	Stage IB	primary	0	186	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-7499	Dead	Stage IB	primary	0	1531	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7903	Alive	Stage IA	primary	0	567	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8208	Alive	Stage IA	primary	0	674	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-8660	Dead	Stage IIB	primary	0	321	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4427	Alive	Stage IIB	primary	0	791	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A46U	Alive	Stage IIB	primary	0	2067	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5933	Dead	Stage IIIB	primary	0	2393	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TH	Alive	Stage IA	primary	0	741	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7156	Dead	Stage IV	primary	0	976	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8669	Alive	Stage IA	primary	0	938	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-A47A	Alive	Stage IB	primary	0	466	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7539	Alive	Stage IIA	primary	0	791	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4T8	Dead	Stage IIIA	primary	0	161	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-NJ-A55R	Alive	Stage IA	primary	0	603	true	Solid carcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-53-A4EZ	Alive	Stage IIA	primary	0	1071	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6970	Dead	Stage IIIA	primary	0	464	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8359	Dead	Stage IIIA	primary	0	444	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-99-8032	Alive	Stage IA	primary	0	44	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-7109	Dead	Stage IA	primary	0	308	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7667	Alive	Stage IIB	primary	0	1097	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-NJ-A4YG	Alive	Stage IB	primary	0	2261	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8302	Alive	Stage IB	primary	0	478	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-1679	Alive	Stage IIIA	primary	0	2488	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-7271	Dead	Stage IA	primary	0	800	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6595	Dead	Stage IIIA	primary	0	189	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6968	Dead	Stage IV	primary	0	1293	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-8120	Alive	Stage IB	primary	0	260	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-99-8025	Alive	Stage IIIA	primary	0	1060	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6594	Dead	Stage IIIA	primary	0	370	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-A479	Alive	Stage IB	primary	0	486	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8076	Alive	Stage IA	primary	0	993	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TF	Dead	Stage IIA	primary	0	336	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7161	Dead	Stage IIB	primary	0	291	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4632	Dead	Stage IV	primary	0	1357	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-95-8039	Alive	Stage IA	primary	0	830	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8075	Dead	Stage IB	primary	0	694	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6147	Alive	Stage IA	primary	0	845	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-7760	Alive	Stage IIB	primary	0	202	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-44-6148	Alive	Stage IA	primary	0	704	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-1677	Dead	Stage IIIA	primary	0	628	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-NJ-A55O	Alive	Stage IIA	primary	0	13	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-5420	Alive	Stage IIIA	primary	0	457	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-8174	Dead	Stage IIA	primary	0	164	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4SY	Dead	Stage IIB	primary	0	1501	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6971	Alive	Stage IB	primary	0	1400	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8621	Alive	Stage IA	primary	0	515	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-A456	Alive	Stage IA	primary	0	896	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7573	Alive	Stage IA	primary	0	487	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A5C7	Alive	Stage IB	primary	0	2248	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-MP-A4TJ	Dead	Stage IA	primary	0	339	true	Signet ring cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-5778	Alive	Stage IB	primary	0	1305	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7726	Alive	Stage IA	primary	0	652	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-8397	Alive	Stage IIB	primary	0	1289	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L9-A8F4	Alive	Stage IB	primary	0	476	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2664	Alive	Stage IA	primary	0	1251	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6828	Alive	Stage IA	primary	0	323	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6849	Alive	Stage IIIA	primary	0	35	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-99-8033	Dead	Stage IV	primary	0	656	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8205	Alive	Stage IIA	primary	0	599	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8510	Alive	Stage IB	primary	0	539	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-A47B	Alive	Stage IB	primary	0	287	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-99-7458	Alive	Stage IIIA	primary	0	747	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AAQV	Dead	Stage II	primary	0	677	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-99-8028	Alive	Stage IA	primary	0	1118	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6847	Alive	Stage IB	primary	0	842	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TA	Dead	Stage IA	primary	0	950	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AARN	Dead	Stage IA	primary	0	1135	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5049	Alive	Stage IA	primary	0	3094	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-5899	Alive	'--	primary	0	930	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TC	Dead	Stage IIIA	primary	0	74	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AARQ	Alive	Stage I	primary	0	6732	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4384	Alive	Stage IIIA	primary	0	426	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8203	Alive	Stage IA	primary	0	547	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6591	Dead	Stage IV	primary	0	119	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7670	Alive	Stage IIA	primary	0	882	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-5425	Alive	Stage IIB	primary	0	882	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AARR	Alive	Stage IA	primary	0	4992	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-6745	Alive	Stage IIIA	primary	0	522	true	Papillary adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-7711	Dead	Stage IIA	primary	0	1046	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-8552	Alive	Stage I	primary	0	626	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-50-8459	Alive	Stage IIB	primary	0	1119	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-93-A4JN	Alive	Stage IV	primary	0	718	true	Acinar cell carcinoma	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-95-A4VP	Alive	Stage IIIA	primary	0	605	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-A4P7	Alive	Stage IB	primary	0	415	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5045	Dead	'--	primary	0	2174	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-69-8453	Alive	Stage IIB	primary	0	813	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4396	Dead	Stage IIIB	primary	0	303	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7725	Alive	Stage IA	primary	0	442	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6975	Dead	Stage IIB	primary	0	118	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7150	Dead	Stage IIB	primary	0	666	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4512	Dead	Stage IIIA	primary	0	905	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8206	Alive	Stage IA	primary	0	888	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4417	Alive	Stage IB	primary	0	455	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A491	Alive	Stage IA	primary	0	626	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-6743	Alive	Stage IIIA	primary	0	1621	true	Clear cell adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4389	Alive	Stage IA	primary	0	1369	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-7701	Alive	Stage IV	primary	0	947	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-55-8513	Alive	Stage IIB	primary	0	791	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-1592	Dead	Stage IA	primary	0	701	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-7948	Alive	Stage IB	primary	0	476	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7660	Alive	Stage IB	primary	0	592	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-69-7979	Alive	Stage IB	primary	0	408	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L9-A743	Alive	Stage IIA	primary	0	664	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-5815	Alive	Stage IIB	primary	0	866	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7574	Dead	Stage IB	primary	0	995	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-L9-A50W	Dead	Stage IIA	primary	0	442	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-86-8278	Alive	Stage IIB	primary	0	944	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8614	Alive	Stage IB	primary	0	536	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-8655	Alive	Stage IA	primary	0	2360	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-7554	Alive	Stage IIIA	primary	0	775	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6673	Dead	Stage I	primary	0	22	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7662	Alive	Stage IB	primary	0	218	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-7944	Alive	Stage IA	primary	0	377	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7995	Alive	Stage IA	primary	0	889	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-97-8547	Alive	Stage IIIA	primary	0	657	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-7498	Alive	Stage IA	primary	0	1189	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A494	Alive	Stage IB	primary	0	481	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4675	Dead	Stage IIIA	primary	0	922	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-7039	Alive	Stage IIB	primary	0	1272	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4433	Alive	Stage IB	primary	0	730	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-69-7980	Alive	Stage I	primary	0	411	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4658	Dead	Stage IB	primary	0	1600	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8097	Alive	Stage IA	primary	0	476	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Ductal and Lobular Neoplasms	Bronchus and lung	TCGA-73-4668	Alive	Stage IIB	primary	0	467	true	Invasive micropapillary carcinoma	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-55-8207	Alive	Stage IB	primary	0	977	true	Acinar cell carcinoma	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-97-7941	Alive	Stage IA	primary	0	484	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7910	Alive	Stage IIA	primary	0	1040	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8301	Alive	Stage IB	primary	0	534	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7166	Dead	Stage IIB	primary	0	258	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7152	Dead	Stage IB	primary	0	1215	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4506	Dead	Stage IIB	primary	0	999	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4390	Alive	Stage IB	primary	0	1126	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7659	Alive	Stage IA	primary	0	691	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4514	Alive	Stage IA	primary	0	1700	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A490	Dead	Stage IIA	primary	0	99	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-NJ-A55A	Alive	Stage IB	primary	0	15	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7727	Alive	Stage IIIA	primary	0	119	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-55-8508	Alive	Stage IIA	primary	0	617	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2668	Dead	Stage IB	primary	0	761	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-93-8067	Alive	Stage IB	primary	0	186	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8673	Alive	Stage IB	primary	0	862	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-7765	Alive	'--	primary	0	165	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4487	Dead	Stage IA	primary	0	855	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TE	Dead	Stage IIA	primary	0	896	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2659	Alive	Stage IIB	primary	0	1367	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-A4SU	Dead	Stage IA	primary	0	409	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7907	Dead	Stage IIA	primary	0	343	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4M1	Alive	Stage IA	primary	0	601	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8672	Dead	Stage IIB	primary	0	19	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-7771	Alive	Stage IIB	primary	0	492	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7160	Dead	Stage IV	primary	0	697	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6776	Alive	Stage IA	primary	0	2616	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7153	Alive	Stage IB	primary	0	3635	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A46R	Dead	Stage IB	primary	0	1725	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8671	Alive	Stage IIB	primary	0	839	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6972	Dead	Stage IB	primary	0	1632	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-1681	Dead	Stage IA	primary	0	1167	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-7043	Dead	Stage IA	primary	0	503	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4M7	Alive	Stage IA	primary	0	629	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4494	Dead	Stage IIIA	primary	0	1081	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-5775	Dead	Stage IIIA	primary	0	62	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5946	Alive	Stage IA	primary	0	1617	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7913	Dead	Stage IA	primary	0	561	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-6779	Dead	Stage IIB	primary	0	500	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-97-8172	Alive	Stage IB	primary	0	545	true	Acinar cell carcinoma	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7661	Dead	Stage IB	primary	0	557	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5055	Dead	Stage IIA	primary	0	1830	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4628	Dead	Stage IIB	primary	0	1492	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-7713	Alive	Stage IIA	primary	0	1157	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2662	Alive	Stage IB	primary	0	1280	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-6216	Alive	Stage IA	primary	0	141	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7283	Alive	Stage IIIA	primary	0	609	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-73-4659	Dead	Stage IIIA	primary	0	711	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8073	Alive	Stage IB	primary	0	740	true	Bronchiolo-alveolar adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-AARE	Dead	Stage IA	primary	0	1229	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4403	Alive	Stage IB	primary	0	578	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MN-A4N4	Alive	Stage IA	primary	0	1175	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8091	Alive	Stage IB	primary	0	600	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4415	Dead	Stage IIIB	primary	0	91	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7154	Dead	Stage IIIA	primary	0	593	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4410	Alive	Stage IB	primary	0	0	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4418	Dead	Stage IIIA	primary	0	274	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-1595	Alive	Stage IA	primary	0	1479	true	Clear cell adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-A4VK	Alive	Stage IIIA	primary	0	651	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-99-AA5R	Alive	Stage IA	primary	0	658	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-53-7626	Dead	Stage IIA	primary	0	929	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-8457	Alive	Stage IA	primary	0	1125	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6840	Alive	Stage IA	primary	0	372	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8507	Alive	Stage IA	primary	0	418	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6969	Alive	Stage IB	primary	0	1239	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4627	Dead	Stage IIA	primary	0	1147	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4488	Dead	Stage IA	primary	0	869	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A46O	Dead	Stage IB	primary	0	1454	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8280	Alive	Stage IIA	primary	0	701	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4434	Dead	Stage IV	primary	0	457	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-A47G	Alive	Stage IA	primary	0	351	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7536	Dead	Stage IIIA	primary	0	244	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-6831	Alive	Stage IB	primary	0	310	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-55-7728	Alive	Stage IB	primary	0	704	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-6215	Alive	Stage IB	primary	0	174	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-7973	Alive	Stage IB	primary	0	230	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-6562	Dead	Stage IIA	primary	0	376	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7815	Alive	Stage IB	primary	0	773	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4M0	Alive	Stage IB	primary	0	652	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-5645	Alive	Stage IA	primary	0	852	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A46S	Dead	Stage IB	primary	0	1653	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-A4JF	Dead	Stage IIB	primary	0	737	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-5715	Alive	Stage IB	primary	0	62	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-95-7947	Alive	Stage IA	primary	0	477	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-6593	Dead	Stage IIIA	primary	0	336	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2666	Dead	Stage IB	primary	0	97	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5051	Dead	Stage IIIA	primary	0	478	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-J2-A4AG	Alive	Stage IA	primary	0	988	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8087	Alive	Stage IB	primary	0	462	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-A4LX	Alive	Stage IB	primary	0	614	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4T2	Dead	Stage IA	primary	0	1136	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-A493	Alive	Stage IB	primary	0	28	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A472	Alive	Stage IIB	primary	0	910	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6985	Alive	Stage IB	primary	0	1233	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-J2-A4AE	Alive	Stage IA	primary	0	1079	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-62-A470	Dead	Stage IB	primary	0	1194	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7542	Dead	Stage IB	primary	0	321	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6543	Alive	Stage IA	primary	0	435	true	Bronchio-alveolar carcinoma, mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-7938	Dead	Stage IA	primary	0	18	true	Bronchiolo-alveolar carcinoma, non-mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4432	Alive	Stage IIB	primary	0	761	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-93-7348	Alive	Stage IA	primary	0	531	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7147	Dead	Stage IIB	primary	0	586	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7148	Dead	Stage IIB	primary	0	626	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-35-3615	Alive	Stage IB	primary	0	14	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-91-A4BC	Alive	Stage IIA	primary	0	44	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-7671	Alive	Stage IB	primary	0	889	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5932	Dead	Stage IIB	primary	0	1235	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-6178	Alive	Stage IIIA	primary	0	448	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-67-3770	Alive	Stage IA	primary	0	610	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-93-7347	Alive	Stage IA	primary	0	683	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Cystic, Mucinous and Serous Neoplasms	Bronchus and lung	TCGA-50-5936	Dead	Stage IIIA	primary	0	257	true	Mucinous adenocarcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6984	Dead	Stage IIB	primary	0	760	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-8254	Alive	'--	primary	0	409	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-6712	Dead	Stage IIA	primary	0	171	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-38-4630	Dead	Stage IB	primary	0	1073	true	Papillary adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-4B-A93V	Dead	Stage IA	primary	0	300	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-86-8668	Alive	Stage IA	primary	0	423	true	Bronchio-alveolar carcinoma, mucinous	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TI	Dead	Stage IIA	primary	0	429	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2661	Alive	Stage IA	primary	0	1159	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5941	Alive	Stage IIIA	primary	0	1474	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2657	Alive	Stage IB	primary	0	1351	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-97-8175	Alive	Stage IB	primary	0	551	true	Solid carcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-69-7978	Alive	Stage IIB	primary	0	134	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4405	Alive	Stage IB	primary	0	610	true	Adenocarcinoma with mixed subtypes	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8505	Alive	Stage IIIA	primary	0	440	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-A47F	Alive	Stage IIB	primary	0	337	true	Adenocarcinoma, NOS	yes
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-49-4510	Dead	Stage IIB	primary	0	896	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-1678	Alive	'--	primary	0	1189	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-MP-A4TK	Dead	Stage IIB	primary	0	582	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-62-A46V	Alive	Stage IB	primary	0	2199	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Acinar Cell Neoplasms	Bronchus and lung	TCGA-49-AAR2	Alive	Stage IB	primary	0	2224	true	Acinar cell carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-A4SS	Alive	Stage IA	primary	0	415	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-05-4250	Dead	Stage IIIA	primary	0	121	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-50-5044	Dead	Stage IIIB	primary	0	624	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-1676	Alive	Stage IA	primary	0	1728	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-2665	Alive	Stage IIB	primary	0	1301	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7155	Dead	Stage IB	primary	0	1171	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Ductal and Lobular Neoplasms	Bronchus and lung	TCGA-97-7937	Alive	Stage IB	primary	0	564	true	Invasive micropapillary carcinoma	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-64-5774	Alive	Stage IB	primary	0	2676	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7220	Dead	Stage IIIA	primary	0	807	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7167	Dead	Stage IV	primary	0	2681	true	Papillary adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-8616	Alive	Stage IB	primary	0	48	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-55-7570	Alive	Stage IA	primary	0	824	true	Adenocarcinoma, NOS	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-78-7146	Dead	Stage IIIA	primary	0	173	true	Adenocarcinoma with mixed subtypes	no
+TCGA-LUAD	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-44-3398	Alive	Stage IA	primary	0	1163	true	Adenocarcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5GF	Dead	Stage IIA	primary	0	840	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HJ	Dead	Stage IIB	primary	0	418	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7843	Alive	Stage IIA	primary	0	35	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-8455	Dead	Stage IV	primary	0	123	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5037	Alive	Stage IIA	primary	0	1690	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7338	Dead	Stage IB	primary	0	5	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NK-A7XE	Alive	Stage IIIB	primary	0	13	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-1016	Dead	Stage IB	primary	0	822	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1083	Dead	Stage IA	primary	0	1315	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3419	Alive	Stage IIB	primary	0	2811	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-LA-A7SW	Dead	Stage IIIA	primary	0	408	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-8454	Alive	Stage IIIA	primary	0	1180	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A4QR	Alive	Stage IB	primary	0	600	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7699	Dead	Stage IIIA	primary	0	1001	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5GB	Dead	Stage IB	primary	0	0	TRUE	Squamous cell carcinoma, keratinizing, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-2576	Alive	Stage IIIA	primary	0	1223	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-4132	Alive	Stage IV	primary	0	227	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1078	Dead	Stage IB	primary	0	474	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4604	Dead	Stage IIA	primary	0	399	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-96-A4JL	Alive	Stage IIA	primary	0	842	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4582	Dead	Stage IA	primary	0	3149	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2723	Alive	Stage IB	primary	0	1092	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-O2-A52N	Dead	Stage I	primary	0	1006	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-8115	Alive	Stage IIA	primary	0	407	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1082	Alive	Stage IB	primary	0	3644	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-6837	Alive	Stage IIB	primary	0	758	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8082	Alive	Stage IIA	primary	0	455	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-52-7811	Dead	Stage IB	primary	0	266	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-68-A59I	Alive	Stage IIIA	primary	0	492	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7140	Dead	Stage IIB	primary	0	632	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-8021	Alive	Stage IA	primary	0	937	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7844	Alive	Stage IB	primary	0	911	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-LA-A446	Alive	Stage IA	primary	0	401	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2734	Alive	Stage IB	primary	0	1311	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-8386	Dead	Stage IV	primary	0	1	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5019	Alive	Stage IB	primary	0	3387	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-8393	Alive	Stage IB	primary	0	1058	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2771	Alive	Stage IIB	primary	0	578	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8352	Dead	Stage IIIA	primary	0	161	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-70-6723	Alive	Stage IIA	primary	0	375	TRUE	Papillary squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HR	Alive	Stage IIA	primary	0	1244	TRUE	Basaloid squamous cell carcinoma	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5G6	Dead	Stage IIIA	primary	0	678	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2767	Alive	Stage IIIB	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5016	Alive	Stage IIA	primary	0	3850	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-1011	Dead	Stage IB	primary	0	53	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-96-7544	Dead	Stage IIB	primary	0	2160	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8288	Dead	Stage IIA	primary	0	402	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7465	Alive	Stage IIA	primary	0	990	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5927	Alive	Stage IA	primary	0	1361	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-4721	Alive	Stage IA	primary	0	4694	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-O2-A52W	Dead	Stage I	primary	0	261	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A49D	Alive	Stage IIIA	primary	0	637	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-A46L	Alive	Stage IIIA	primary	0	1723	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-A5EM	Alive	Stage II	primary	0	867	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7579	Dead	Stage IIIA	primary	0	951	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7221	Alive	Stage IB	primary	0	608	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2763	Alive	Stage IB	primary	0	30	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2744	Alive	Stage IIB	primary	0	30	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8629	Alive	Stage IIA	primary	0	481	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2711	Alive	Stage IB	primary	0	1260	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-4135	Alive	Stage IB	primary	0	207	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8139	Alive	Stage IIB	primary	0	3166	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A53D	Dead	Stage IIB	primary	0	645	TRUE	Squamous cell carcinoma, keratinizing, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8628	Alive	Stage IA	primary	0	616	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4591	Dead	Stage IIIA	primary	0	623	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1076	Alive	Stage IB	primary	0	1852	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-92-7341	Alive	Stage IB	primary	0	106	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8625	Dead	Stage IIIA	primary	0	315	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2777	Alive	Stage IB	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-2609	Dead	Stage IIB	primary	0	951	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-1017	Dead	Stage IA	primary	0	1485	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A4JB	Alive	Stage IIB	primary	0	942	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-AASB	Dead	Stage IB	primary	0	211	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NK-A5CR	Alive	Stage IB	primary	0	2542	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4605	Dead	Stage IB	primary	0	974	TRUE	Squamous cell carcinoma, large cell, nonkeratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8138	Dead	Stage IB	primary	0	539	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1070	Alive	Stage IIIA	primary	0	3636	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A5DR	Alive	Stage IA	primary	0	4	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1081	Dead	Stage IIB	primary	0	284	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4613	Dead	Stage IA	primary	0	358	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-5592	Alive	Stage IIB	primary	0	1519	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2708	Alive	Stage IIB	primary	0	2447	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8624	Alive	Stage IIB	primary	0	420	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8481	Dead	Stage IIB	primary	0	236	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-6175	Dead	Stage IIB	primary	0	294	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-A4VJ	Alive	Stage IA	primary	0	430	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4607	Dead	Stage IB	primary	0	587	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8201	Dead	Stage IIB	primary	0	397	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5029	Dead	Stage IIIA	primary	0	740	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7463	Dead	Stage IB	primary	0	1423	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-51-4079	Dead	Stage IB	primary	0	12	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5485	Dead	Stage IA	primary	0	916	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5236	Dead	Stage IIB	primary	0	276	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2765	Alive	Stage IB	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8153	Alive	Stage IB	primary	0	1992	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-7033	Alive	Stage IB	primary	0	640	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-68-A59J	Alive	Stage IB	primary	0	448	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2720	Alive	Stage IB	primary	0	97	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-4133	Alive	Stage IIIA	primary	0	238	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-8035	Alive	Stage IIB	primary	0	122	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5234	Alive	Stage IA	primary	0	2271	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3421	Alive	Stage IB	primary	0	2645	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8666	Dead	Stage IB	primary	0	687	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-96-8170	Alive	Stage IIA	primary	0	531	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-68-7755	Alive	Stage IIA	primary	0	83	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7222	Dead	Stage IB	primary	0	562	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4586	Dead	Stage IIIA	primary	0	428	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7142	Alive	Stage IB	primary	0	2227	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-2578	Dead	Stage IA	primary	0	684	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7223	Dead	Stage IIIA	primary	0	442	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-6770	Alive	Stage IB	primary	0	653	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8052	Alive	Stage IIB	primary	0	734	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5480	Dead	Stage IA	primary	0	2170	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8308	Alive	Stage IIB	primary	0	517	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5024	Alive	Stage IIIA	primary	0	2510	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-52-7622	Alive	Stage IA	primary	0	862	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-51-6867	Dead	Stage I	primary	0	1856	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2697	Dead	Stage IIA	primary	0	372	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-1005	Dead	Stage IA	primary	0	1953	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2726	Dead	Stage IIA	primary	0	358	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8083	Alive	Stage IB	primary	0	150	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2737	Alive	Stage IIB	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5036	Alive	Stage IB	primary	0	2165	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-1622	Dead	Stage IB	primary	0	881	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-51-4081	Alive	Stage IIB	primary	0	911	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-7766	Alive	Stage IA	primary	0	289	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A53J	Alive	Stage IB	primary	0	630	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2792	Alive	Stage IIB	primary	0	913	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-6647	Alive	Stage IIB	primary	0	757	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-92-8063	Alive	Stage IIIA	primary	0	122	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5492	Dead	Stage IIIA	primary	0	506	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HO	Alive	Stage IIIA	primary	0	1336	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2756	Alive	Stage IIIB	primary	0	30	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8008	Dead	Stage IB	primary	0	2639	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-A5I4	Alive	Stage IIA	primary	0	491	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4547	Alive	Stage IB	primary	0	2419	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-2608	Dead	Stage IB	primary	0	1000	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-8392	Dead	Stage IB	primary	0	501	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5239	Alive	Stage IIIA	primary	0	1834	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8140	Dead	Stage IIB	primary	0	351	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2704	Dead	Stage IIB	primary	0	1154	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4587	Dead	Stage IB	primary	0	1656	TRUE	Squamous cell carcinoma, small cell, nonkeratinizing	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-6561	Alive	Stage IB	primary	0	1224	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2709	Alive	Stage IB	primary	0	1505	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4609	Dead	Stage IA	primary	0	291	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8287	Dead	Stage IA	primary	0	23	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4589	Dead	Stage IIB	primary	0	47	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-3792	Alive	Stage IB	primary	0	12	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HP	Dead	Stage IV	primary	0	770	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-5784	Alive	Stage IB	primary	0	1268	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HQ	Dead	Stage IIIA	primary	0	448	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-4086	Dead	Stage IB	primary	0	85	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-96-7545	Dead	Stage IA	primary	0	1736	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A4JC	Dead	Stage IIA	primary	0	604	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5491	Dead	Stage IA	primary	0	1713	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2707	Dead	Stage IB	primary	0	667	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-A56U	Alive	Stage IA	primary	0	432	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5478	Dead	Stage IB	primary	0	24	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8353	Dead	Stage IIIA	primary	0	94	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3407	Dead	Stage IB	primary	0	136	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-A5IX	Alive	Stage IIB	primary	0	1031	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2800	Alive	Stage IIIB	primary	0	1492	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8623	Dead	Stage IB	primary	0	692	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7141	Alive	Stage IB	primary	0	15	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8584	Dead	Stage IIA	primary	0	383	TRUE	Papillary squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-8388	Dead	Stage IB	primary	0	412	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-8023	Alive	Stage IIIA	primary	0	649	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-AASI	Dead	Stage IIB	primary	0	1344	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8154	Alive	Stage IA	primary	0	1841	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5011	Alive	Stage IA	primary	0	4053	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2719	Alive	Stage IB	primary	0	1297	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2727	Dead	Stage IB	primary	0	516	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-6798	Dead	Stage IIIA	primary	0	195	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NK-A5CX	Alive	Stage IIA	primary	0	111	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HF	Dead	Stage IIIB	primary	0	138	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-4141	Alive	Stage IA	primary	0	12	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A53C	Alive	Stage IA	primary	0	822	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4601	Dead	Stage IIIA	primary	0	1057	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5241	Dead	Stage IB	primary	0	515	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-46-6025	Alive	Stage IIB	primary	0	324	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-96-A4JK	Alive	Stage IIA	primary	0	589	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8580	Alive	Stage IB	primary	0	1113	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-5595	Dead	Stage IB	primary	0	827	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8146	Alive	Stage IA	primary	0	3189	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2754	Alive	Stage IIIA	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1072	Alive	Stage IB	primary	0	3016	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-A5I6	Alive	Stage IIB	primary	0	538	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-5898	Alive	Stage IA	primary	0	555	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-6842	Dead	Stage IIB	primary	0	899	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A4CN	Alive	Stage IIB	primary	0	1038	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8070	Alive	Stage IB	primary	0	960	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2769	Dead	Stage IIIB	primary	0	215	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-O2-A52V	Dead	Stage II	primary	0	1335	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-1012	Dead	Stage IB	primary	0	429	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A4PA	Alive	Stage IB	primary	0	741	TRUE	Squamous cell carcinoma, large cell, nonkeratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-46-3767	Alive	Stage IA	primary	0	396	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8131	Dead	Stage IB	primary	0	383	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A50M	Dead	Stage IIA	primary	0	826	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-7964	Alive	Stage IB	primary	0	428	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-5819	Alive	Stage IIIA	primary	0	103	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3416	Dead	Stage IIB	primary	0	973	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4532	Dead	Stage IB	primary	0	3924	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5G8	Alive	Stage IIB	primary	0	1884	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2722	Alive	Stage IIB	primary	0	908	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2714	Alive	Stage IIB	primary	0	1531	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-A5C4	Alive	Stage IIA	primary	0	671	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-52-7809	Dead	Stage IB	primary	0	166	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-8490	Alive	Stage IIB	primary	0	153	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-A4ED	Alive	Stage IB	primary	0	615	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-7769	Alive	Stage IIB	primary	0	358	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A62T	Alive	Stage IIA	primary	0	440	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5FZ	Dead	Stage IIIB	primary	0	3838	TRUE	Papillary squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HL	Dead	Stage IIA	primary	0	88	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2773	Dead	Stage IB	primary	0	92	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5928	Alive	Stage IIB	primary	0	1196	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7823	Alive	Stage IIA	primary	0	1011	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-8387	Dead	Stage IIA	primary	0	403	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-68-8250	Alive	Stage IA	primary	0	244	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8150	Dead	Stage IIIA	primary	0	1655	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2780	Dead	Stage IB	primary	0	366	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-2596	Dead	Stage IIB	primary	0	80	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-8456	Alive	Stage IIA	primary	0	804	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-5670	Alive	Stage IIA	primary	0	849	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-0940	Dead	Stage IIA	primary	0	669	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2716	Alive	Stage IIB	primary	0	1475	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A513	Alive	Stage IA	primary	0	910	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-A4WN	Dead	Stage IB	primary	0	143	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8130	Alive	Stage IIB	primary	0	4765	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8145	Dead	Stage IIIB	primary	0	212	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-A59Q	Dead	Stage IIA	primary	0	322	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8479	Alive	Stage IA	primary	0	468	TRUE	Papillary squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NK-A5D1	Alive	Stage IIA	primary	0	511	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-8390	Alive	Stage IIA	primary	0	911	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-52-7812	Dead	'--	primary	0	835	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-51-4080	Dead	Stage IIIB	primary	0	12	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8304	Alive	Stage IA	primary	0	106	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5030	Dead	Stage IIIA	primary	0	59	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A4CL	Dead	Stage IA	primary	0	921	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-92-7340	Alive	Stage IIA	primary	0	82	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8144	Alive	Stage IB	primary	0	833	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-6560	Alive	Stage IIA	primary	0	1259	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HK	Alive	Stage IIB	primary	0	128	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2789	Dead	Stage IIIB	primary	0	123	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A50Z	Alive	Stage IIA	primary	0	493	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-3783	Alive	Stage IIIA	primary	0	122	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A53L	Alive	Stage IIA	primary	0	377	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8148	Alive	Stage IIIA	primary	0	2023	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HT	Alive	Stage IIIA	primary	0	804	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7730	Dead	Stage IIA	primary	0	198	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-O2-A5IB	Dead	Stage III	primary	0	340	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2794	Alive	Stage IIIB	primary	0	1645	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-A5GW	Dead	Stage IIA	primary	0	9	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8277	Dead	Stage IIIA	primary	0	307	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4593	Dead	Stage IIA	primary	0	1067	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8048	Alive	Stage IA	primary	0	765	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2782	Dead	Stage IIB	primary	0	365	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5474	Dead	Stage IB	primary	0	445	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8354	Alive	Stage IB	primary	0	995	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-3920	Alive	Stage IB	primary	0	1007	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-2605	Dead	Stage IIIB	primary	0	881	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5G7	Dead	Stage IA	primary	0	180	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-O2-A52Q	Dead	Stage III	primary	0	113	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3406	Dead	Stage IA	primary	0	371	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-4129	Alive	Stage IA	primary	0	242	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-1002	Dead	Stage IA	primary	0	131	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A53I	Alive	Stage IIA	primary	0	565	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-68-7757	Alive	Stage IA	primary	0	211	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8156	Alive	Stage IB	primary	0	1106	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-1000	Dead	Stage IB	primary	0	454	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4594	Dead	Stage IIIA	primary	0	1470	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-52-7810	Alive	Stage IIB	primary	0	923	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3410	Dead	Stage IIB	primary	0	146	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-J1-A4AH	Alive	Stage IIA	primary	0	581	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7698	Alive	Stage IA	primary	0	952	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3415	Dead	Stage IB	primary	0	2803	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2793	Dead	Stage IIIB	primary	0	306	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-8116	Alive	Stage IA	primary	0	358	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-5783	Dead	Stage IB	primary	0	2680	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-5786	Alive	Stage IB	primary	0	1032	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-7767	Alive	Stage IIB	primary	0	89	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8009	Dead	Stage IIB	primary	0	1695	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-7656	Alive	Stage IA	primary	0	596	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5022	Dead	Stage IB	primary	0	1679	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-8391	Alive	Stage IIIA	primary	0	2167	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8504	Alive	Stage IB	primary	0	510	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5031	Dead	Stage IA	primary	0	1841	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-MF-A522	Dead	Stage IB	primary	0	360	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7710	Alive	Stage IA	primary	0	42	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2757	Dead	Stage IA	primary	0	1338	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1079	Dead	Stage IIIA	primary	0	965	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5GH	Alive	Stage IB	primary	0	1182	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-4083	Dead	Stage IIB	primary	0	188	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2742	Alive	Stage IV	primary	0	641	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-6773	Dead	Stage IIB	primary	0	116	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2724	Alive	Stage IIIA	primary	0	717	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-46-3768	Dead	Stage IIIA	primary	0	299	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8626	Dead	Stage IA	primary	0	302	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-AAS8	Dead	Stage IA	primary	0	1114	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-7658	Dead	Stage IA	primary	0	2378	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A4ZK	Alive	Stage IB	primary	0	570	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-A5DI	Alive	Stage IA	primary	0	979	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-6143	Alive	Stage IB	primary	0	699	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2791	Dead	Stage IIIB	primary	0	153	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2786	Alive	Stage IA	primary	0	790	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8350	Alive	Stage IA	primary	0	683	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-90-A4EE	Alive	Stage IIA	primary	0	688	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4595	Dead	Stage IIIA	primary	0	734	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2778	Alive	Stage IIIB	primary	0	578	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8503	Alive	Stage IIB	primary	0	41	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-4130	Alive	Stage IA	primary	0	247	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2695	Alive	Stage IB	primary	0	642	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-2581	Alive	Stage IIIA	primary	0	1176	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Adenomas and Adenocarcinomas	Bronchus and lung	TCGA-43-8118	Dead	Stage IA	primary	0	89	TRUE	Adenocarcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-8022	Dead	Stage IA	primary	0	933	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-A474	Alive	Stage IIA	primary	0	353	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-7454	Alive	Stage IB	primary	0	652	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-8491	Alive	Stage IIA	primary	0	810	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-A5EL	Dead	Stage IIB	primary	0	1143	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-7943	Alive	Stage IA	primary	0	559	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8276	Alive	Stage IIA	primary	0	1050	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8128	Dead	Stage IIIA	primary	0	1150	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-6545	Alive	Stage IB	primary	0	666	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3414	Dead	Stage IV	primary	0	716	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-6737	Dead	Stage IIIA	primary	0	601	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-6771	Dead	Stage IB	primary	0	166	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3409	Alive	Stage IA	primary	0	3747	TRUE	Basaloid squamous cell carcinoma	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5483	Dead	Stage IIA	primary	0	573	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7335	Dead	Stage IIIB	primary	0	2133	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2710	Alive	Stage IIA	primary	0	2024	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-5897	Alive	Stage IA	primary	0	378	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8582	Alive	Stage IA	primary	0	1160	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4533	Alive	Stage IB	primary	0	4068	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HH	Alive	Stage IA	primary	0	37	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7582	Alive	Stage IB	primary	0	601	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5G3	Alive	Stage IIB	primary	0	4570	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5481	Dead	Stage IIB	primary	0	2409	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A4BW	Alive	Stage IIA	primary	0	585	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7696	Alive	Stage IA	primary	0	1111	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2766	Alive	Stage IIIA	primary	0	31	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8307	Alive	Stage IIB	primary	0	818	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1080	Alive	Stage IB	primary	0	3724	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-AASL	Dead	Stage IA	primary	0	826	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5035	Alive	Stage IA	primary	0	2080	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8143	Dead	Stage IIIA	primary	0	803	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-A475	Alive	Stage IIB	primary	0	296	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-A56V	Alive	Stage IIIA	primary	0	366	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A512	Alive	Stage IIA	primary	0	465	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2721	Alive	Stage IB	primary	0	983	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5477	Dead	Stage IA	primary	0	1346	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5472	Dead	Stage IB	primary	0	1975	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5034	Dead	Stage IIB	primary	0	1107	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8133	Dead	Stage IIA	primary	0	1640	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5471	Alive	Stage IB	primary	0	1845	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-7107	Dead	Stage II	primary	0	34	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A539	Alive	Stage IIB	primary	0	173	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A510	Alive	Stage IIB	primary	0	482	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5G1	Alive	Stage IIIA	primary	0	4026	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2696	Dead	Stage IIA	primary	0	109	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A4BY	Dead	Stage IB	primary	0	543	TRUE	Squamous cell carcinoma, keratinizing, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HG	Alive	Stage IIIA	primary	0	1963	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2706	Alive	Stage IA	primary	0	2820	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-6843	Dead	Stage IIA	primary	0	2224	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7731	Dead	Stage IB	primary	0	3	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8136	Dead	Stage IIB	primary	0	1189	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8071	Alive	Stage IIA	primary	0	815	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-68-7756	Alive	Stage IIIA	primary	0	202	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4538	Dead	Stage IIIA	primary	0	2979	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-8007	Dead	Stage IIB	primary	0	198	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3412	Dead	Stage IB	primary	0	345	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8351	Alive	Stage IIA	primary	0	510	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A4ZJ	Alive	Stage IA	primary	0	640	TRUE	Squamous cell carcinoma, large cell, nonkeratinizing, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2703	Dead	Stage IIB	primary	0	2945	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7697	Alive	Stage IIB	primary	0	1063	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-6738	Alive	Stage IIIA	primary	0	1927	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7337	Dead	Stage IIB	primary	0	3253	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-A5GA	Alive	Stage IB	primary	0	1280	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HI	Alive	Stage IB	primary	0	1743	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-3394	Dead	Stage IB	primary	0	1190	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2785	Alive	Stage IB	primary	0	60	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-2604	Dead	Stage IB	primary	0	958	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8355	Alive	Stage IA	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7580	Alive	Stage IB	primary	0	925	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-A5EN	Alive	Stage IIIB	primary	0	660	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5232	Alive	Stage IIA	primary	0	2471	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-5787	Dead	Stage IIIA	primary	0	329	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A5B5	Alive	Stage IA	primary	0	111	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-46-3769	Alive	'--	primary	0	135	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A538	Alive	Stage IIB	primary	0	826	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2768	Alive	Stage IIB	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A511	Dead	Stage IIB	primary	0	455	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4596	Dead	Stage IB	primary	0	17	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-68-8251	Alive	Stage IB	primary	0	406	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2781	Alive	Stage IB	primary	0	121	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3408	Dead	Stage IB	primary	0	2304	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2753	Alive	Stage IB	primary	0	31	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-96-8169	Alive	Stage IA	primary	0	557	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HE	Alive	Stage IIB	primary	0	2336	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2783	Alive	Stage IIIB	primary	0	759	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8305	Alive	Stage IB	primary	0	105	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HM	Alive	Stage IB	primary	0	1212	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-L3-A4E7	Alive	Stage IB	primary	0	392	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1071	Dead	Stage IB	primary	0	1426	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-A46K	Dead	Stage IIIA	primary	0	1045	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A53A	Dead	Stage IB	primary	0	552	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5028	Dead	Stage IIIA	primary	0	52	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-2600	Dead	Stage IA	primary	0	1874	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2795	Alive	Stage IIIB	primary	0	122	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-7657	Alive	Stage IA	primary	0	236	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-92-8064	Alive	'--	primary	0	160	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2758	Alive	Stage IB	primary	0	639	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5482	Dead	Stage IB	primary	0	357	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5027	Alive	Stage IB	primary	0	3108	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-XC-AA0X	Dead	Stage IA	primary	0	6	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7138	Dead	Stage IB	primary	0	340	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5489	Dead	Stage IA	primary	0	1912	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-0944	Dead	Stage IB	primary	0	223	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2755	Alive	Stage IB	primary	0	28	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-A46J	Alive	Stage IIB	primary	0	2589	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2787	Alive	Stage IA	primary	0	1217	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-5782	Dead	Stage IB	primary	0	962	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3417	Dead	Stage IV	primary	0	1097	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8072	Alive	Stage IA	primary	0	932	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HN	Alive	Stage IIA	primary	0	1499	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2788	Alive	Stage IB	primary	0	699	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2713	Alive	Stage IB	primary	0	1731	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-A4QQ	Dead	Stage IB	primary	0	927	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-4599	Dead	Stage IB	primary	0	1161	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2759	Alive	Stage IIIA	primary	0	762	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A53H	Alive	Stage IA	primary	0	618	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5021	Dead	Stage IB	primary	0	2086	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8622	Alive	Stage IB	primary	0	55	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5240	Alive	Stage IIB	primary	0	1541	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-O2-A52S	Dead	Stage III	primary	0	387	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-A53B	Dead	Stage IB	primary	0	61	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-46-6026	Alive	Stage IIB	primary	0	423	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5929	Dead	Stage IB	primary	0	151	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-94-7557	Dead	Stage IB	primary	0	5	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-46-3765	Alive	Stage IA	primary	0	405	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-46-3766	Alive	Stage IA	primary	0	370	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5040	Dead	Stage IIIA	primary	0	519	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A5DS	Alive	Stage IB	primary	0	8	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2790	Alive	Stage IIB	primary	0	699	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-7950	Alive	Stage IB	primary	0	576	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-7139	Alive	Stage IIB	primary	0	4261	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5473	Dead	'--	primary	0	1933	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-AASD	Dead	Stage IA	primary	0	2249	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2725	Alive	Stage IB	primary	0	816	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-18-3411	Alive	Stage IIIA	primary	0	3576	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-7822	Dead	Stage IIB	primary	0	532	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-66-2770	Alive	Stage IB	primary	0	700	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NK-A5CT	Alive	Stage IA	primary	0	1997	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8664	Dead	Stage IIB	primary	0	550	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2712	Dead	Stage IIB	primary	0	274	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-A46M	Alive	Stage IIB	primary	0	1072	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2715	Dead	Stage IA	primary	0	1075	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-AASJ	Dead	Stage IB	primary	0	3600	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-85-8049	Alive	Stage IB	primary	0	579	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1077	Dead	Stage IIB	primary	0	1058	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-43-5668	Dead	Stage IIA	primary	0	559	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-70-6722	Alive	Stage IIIA	primary	0	367	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4583	Dead	Stage IA	primary	0	4601	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-6845	Dead	Stage IIB	primary	0	708	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-34-5231	Dead	Stage IA	primary	0	1984	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-NC-A5HD	Dead	Stage IIB	primary	0	2	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-8309	Alive	Stage IA	primary	0	428	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-33-4566	Dead	Stage IB	primary	0	5287	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-22-5479	Dead	Stage IB	primary	0	2625	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-92-8065	Alive	Stage IIB	primary	0	70	TRUE	Squamous cell carcinoma, keratinizing, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-77-6844	Dead	Stage IIIA	primary	0	2284	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-37-3789	Alive	Stage IB	primary	0	13	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-56-A4BX	Alive	Stage IIA	primary	0	405	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-60-2698	Dead	Stage IIB	primary	0	311	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-21-1075	Alive	Stage IIB	primary	0	2134	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-58-A46N	Alive	Stage IB	primary	0	910	TRUE	Basaloid squamous cell carcinoma	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-L3-A524	Dead	Stage IIB	primary	0	490	TRUE	Squamous cell carcinoma, NOS	no
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-98-8020	Dead	Stage IIIA	primary	0	84	TRUE	Squamous cell carcinoma, NOS	yes
+TCGA-LUSC	Squamous Cell Neoplasms	Bronchus and lung	TCGA-39-5039	Dead	Stage IIA	primary	0	544	TRUE	Squamous cell carcinoma, NOS	yes
