@@ -155,12 +155,7 @@ knitr::kable(cd274_summary, caption = "Resumen de grupos CD274 (tumor YY 01–09
 ## Comparación de genes de interés
 
 ```{r, echo=FALSE, message = FALSE}
-genes_of_interest <- c("CD80", "CD86", "HLA-DRA", "IL12B", "NOS2", "TNF", "IL1B", "CXCL9", "CXCL10",
-  "CD163", "MRC1", "IL10", "TGFB1", "MMP9", "VEGFA", "CHI3L1", "CD14", "CD33",
-  "ITGAM", "ARG1", "S100A8", "S100A9", "STAT3", "FUT4", "CYBB", "NCAM1",
-  "FCGR3A", "KLRK1", "NCR1", "NCR3", "PRF1", "GZMB", "GZMA", "IFNG", "KIR2DL1",
-  "KIR3DL1", "CD8A", "CD8B", "TBX21", "CXCR3", "CD4", "IL2", "STAT1", "RORC",
-  "IL17A", "IL17F", "IL23R", "FOXP3", "IL2RA", "CTLA4", "IKZF2", "IL7R")
+genes_of_interest <- c("HIF1A", "SLC2A1", "SLC16A3", "LDHA", "CA9", "CD80", "CD86", "HLA-DRA", "IL12B", "NOS2", "TNF", "IL1B", "CXCL9", "CXCL10", "CD163", "MRC1", "IL10", "TGFB1", "MMP9", "VEGFA", "CHI3L1", "CD14", "CD33", "ITGAM", "ARG1", "S100A8", "S100A9", "STAT3", "FUT4", "CYBB", "NCAM1","FCGR3A", "KLRK1", "NCR1", "NCR3", "PRF1", "GZMB", "GZMA", "IFNG", "KIR2DL1", "KIR3DL1", "CD8A", "CD8B", "TBX21", "CXCR3", "CD4", "IL2", "STAT1", "RORC", "IL17A", "IL17F", "IL23R", "FOXP3", "IL2RA", "CTLA4", "IKZF2", "IL7R")
 
 pick_one_row_by_gene_name <- function(tabla, gene_name) {
   rows <- dplyr::filter(tabla, `gene-name` == gene_name)
@@ -271,7 +266,9 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, cd274_s
   names(gene_vals) <- names(cd274_series)
   
   # Correlación Pearson con CD274 (solo en muestras con datos no-NA en ambos)
-  common_idx <- which(!is.na(cd274_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  common_idx <- which(names(cd274_series) %in% extremos &
+                    !is.na(cd274_series) & !is.na(gene_vals))
   if (length(common_idx) >= 3) {
     cor_res <- suppressWarnings(cor.test(cd274_series[common_idx], gene_vals[common_idx], method = "pearson"))
     r_val <- round(unname(cor_res$estimate), 3)
@@ -310,6 +307,7 @@ for (g in genes_of_interest) {
   print(plot_gene_box(g, df_tumor, patients_low, patients_high, cd274_series))
 }
 ```
+
 ```{r corr_cd274_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con CD274 (|r| ≥ 0.2, p < 0.05)"}
 suppressPackageStartupMessages({
   library(dplyr)
@@ -328,7 +326,9 @@ corr_list <- lapply(genes_of_interest, function(g){
   gene_vals <- suppressWarnings(as.numeric(unlist(res$row[, names(cd274_series)], use.names = FALSE)))
   names(gene_vals) <- names(cd274_series)
 
-  idx <- which(!is.na(cd274_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  idx <- which(names(cd274_series) %in% extremos & !is.na(cd274_series) & !is.na(gene_vals))
+
   if (length(idx) >= 3) {
     ct <- suppressWarnings(cor.test(cd274_series[idx], gene_vals[idx], method = "pearson"))
     tibble::tibble(gene = g,
