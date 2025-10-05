@@ -63,8 +63,8 @@ stopifnot(length(tumor_patient_cols) > 0)
 expr_gxp <- tabla[, tumor_patient_cols, drop = FALSE]
 expr_gxp[] <- lapply(expr_gxp, function(x) suppressWarnings(as.numeric(x)))
 
-# Nombres de fila = gene-name (columna 2)
-rownames(expr_gxp) <- make.unique(as.character(tabla[[2]]))
+# Nombres de fila = gene-name (columna 1)
+rownames(expr_gxp) <- make.unique(as.character(tabla[[1]]))
 
 # Transformación (recomendado)
 APLICAR_LOG2 <- TRUE
@@ -185,6 +185,89 @@ if(length(panel_2) > 0){
       titulo     = sprintf("Correlación (Pearson) — Panel 2 (columnas) vs Bloque %d/%d de genes (filas) | Tumor TCGA 01–09",
                            i, length(chunks_de_10))
     )
+  }
+}
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+need(c("dplyr","purrr","knitr","kableExtra"))
+
+# ---------- utilidades ----------
+# correlación de un vector con todas las columnas de una matriz
+corr_with_all <- function(v, M){
+  n <- colSums(!is.na(M) & !is.na(v))
+  r <- suppressWarnings(cor(M, v, use = "pairwise.complete.obs", method = "pearson"))
+  p <- rep(NA_real_, length(r))
+  ok <- which(n >= 3 & is.finite(r) & abs(r) < 1)
+  tval <- r[ok] * sqrt((n[ok]-2) / pmax(1e-12, 1 - r[ok]^2))
+  p[ok] <- 2 * pt(-abs(tval), df = n[ok]-2)
+  list(r=r, p=p, n=n)
+}
+stars_from_p <- function(p){
+  ifelse(is.na(p), "",
+  ifelse(p < 0.001, "***",
+  ifelse(p < 0.01,  "**",
+  ifelse(p < 0.05,  "*",  ""))))
+}
+
+# Matriz de expresión como matrix (por si X es data.frame)
+M <- as.matrix(X)
+
+# Umbrales (cambiá acá si querés otra regla)
+r_thr <- 0.20
+p_thr <- 0.05   # Si realmente querés p>0.05 cambiá a 'p_thr <- 0.05' y usa 'p > p_thr' en el filtro de abajo.
+
+# Paneles presentes en la matriz
+paneles <- unique(c(panel_1, panel_2))
+paneles <- intersect(paneles, colnames(M))
+if(length(paneles) == 0){
+  stop("Ningún gen de panel_1/panel_2 está en la matriz X.")
+}
+
+# --------- generar tablas ----------
+for(g in paneles){
+  res <- corr_with_all(M[, g], M)
+
+  # armo tibble y saco la autocorrelación con el mismo gen 'g'
+  tb <- tibble::tibble(
+    gen_fila = colnames(M),
+    r        = as.numeric(res$r),
+    p        = as.numeric(res$p)
+  ) %>%
+    dplyr::filter(gen_fila != g) %>%
+    # FILTRO: |r| >= 0.20 y p < 0.05
+    dplyr::filter((r >=  r_thr | r <= -r_thr) & p < p_thr) %>%
+    dplyr::mutate(Significancia = stars_from_p(p)) %>%
+    dplyr::arrange(dplyr::desc(abs(r))) %>%
+    dplyr::mutate(r = round(r, 2)) %>%
+    dplyr::select(`Gen (fila)` = gen_fila, r, Significancia)
+
+  # Título de la tabla
+  subt <- sprintf("Gen (panel) %s — |r| ≥ %.2f y p < %.2f", g, r_thr, p_thr)
+
+  if(nrow(tb) == 0){
+    cat("\n\n###", g, "\n\n*No hay genes que cumplan el filtro.*\n\n")
+  } else {
+    # imprimir tabla bonita
+    tb %>%
+      knitr::kable(align = c("l","c","c"), caption = subt) %>%
+      kableExtra::kable_styling(full_width = FALSE, bootstrap_options = c("striped","hover")) %>%
+      print()
+
+    # Listas pedidas
+    pos <- tb %>% dplyr::filter(r > 0) %>% dplyr::pull(`Gen (fila)`)
+    neg <- tb %>% dplyr::filter(r < 0) %>% dplyr::pull(`Gen (fila)`)
+
+    cat("\nPara el gen", g, "los genes que se correlacionan positivamente son:",
+        if(length(pos)) paste(pos, collapse = ", ") else "ninguno", "\n\n")
+    cat("Para el gen", g, "los genes que se correlacionan negativamente son:",
+        if(length(neg)) paste(neg, collapse = ", ") else "ninguno", "\n\n")
   }
 }
 
