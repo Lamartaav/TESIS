@@ -274,3 +274,87 @@ heatmap_panel_vs_all(
 )
 
 ```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+need(c("dplyr","knitr","kableExtra"))
+
+# --- utilidades ---
+stars_from_p <- function(p){
+  ifelse(is.na(p), "",
+  ifelse(p < 0.001, "***",
+  ifelse(p < 0.01,  "**",
+  ifelse(p < 0.05,  "*",  ""))))
+}
+
+corr_with_all <- function(v, M){
+  n <- colSums(!is.na(M) & !is.na(v))
+  r <- suppressWarnings(cor(M, v, use = "pairwise.complete.obs", method = "pearson"))
+  p <- rep(NA_real_, length(r))
+  ok <- which(n >= 3 & is.finite(r) & abs(r) < 1)
+  tval <- r[ok] * sqrt((n[ok]-2) / pmax(1e-12, 1 - r[ok]^2))
+  p[ok] <- 2 * pt(-abs(tval), df = n[ok]-2)
+  list(r=r, p=p)
+}
+
+# --- matriz de expresión (log2(1+FPKM) para ser consistente con tus otros plots) ---
+M <- log2(1 + as.matrix(X))
+
+# umbrales (lo que pediste)
+r_thr <- 0.20
+p_thr <- 0.05  # filtra p > 0.05 (no significativos)
+
+# paneles presentes
+p1 <- intersect(panel_1, colnames(M))
+p2 <- intersect(panel_2, colnames(M))
+
+make_tables_for_panel <- function(panel_genes, titulo_panel){
+  if(length(panel_genes) == 0){
+    cat("\n\n###", titulo_panel, "\n\n*No hay genes del panel presentes en la matriz.*\n\n")
+    return(invisible(NULL))
+  }
+  for(g in panel_genes){
+    cp <- corr_with_all(M[, g], M)
+
+    tb <- tibble::tibble(
+      `Gen (fila)` = colnames(M),
+      r             = as.numeric(cp$r),
+      p             = as.numeric(cp$p)
+    ) |>
+      dplyr::filter(`Gen (fila)` != g) |>
+      # filtro pedido: |r| ≥ 0.20 y p > 0.05
+      dplyr::filter((r >=  r_thr | r <= -r_thr) & p < p_thr) |>
+      dplyr::mutate(Significancia = stars_from_p(p)) |>
+      dplyr::arrange(dplyr::desc(abs(r))) |>
+      dplyr::mutate(r = round(r, 2)) |>
+      dplyr::select(`Gen (fila)`, r, Significancia)
+
+    subt <- sprintf("%s — Gen (panel): %s  •  |r| ≥ %.2f  &  p > %.2f", 
+                    titulo_panel, g, r_thr, p_thr)
+
+    if(nrow(tb) == 0){
+      cat("\n\n", titulo_panel, "—", g, "\n\nNo hay genes que cumplan el filtro.\n\n")
+    } else {
+      tb |>
+        knitr::kable(align = c("l","c","c"), caption = subt) |>
+        kableExtra::kable_styling(full_width = FALSE, bootstrap_options = c("striped","hover")) |>
+        print()
+
+      pos <- tb |> dplyr::filter(r > 0) |> dplyr::pull(`Gen (fila)`)
+      neg <- tb |> dplyr::filter(r < 0) |> dplyr::pull(`Gen (fila)`)
+
+      cat("\nPara el gen ", g, " los genes que se correlacionan positivamente son: ",
+          if(length(pos)) paste(pos, collapse = ", ") else "ninguno", "\n\n", sep = "")
+      cat("Para el gen ", g, " los genes que se correlacionan negativamente son: ",
+          if(length(neg)) paste(neg, collapse = ", ") else "ninguno", "\n\n", sep = "")
+    }
+  }
+}
+
+make_tables_for_panel(p1, "Panel 1")
+make_tables_for_panel(p2, "Panel 2")
+```
