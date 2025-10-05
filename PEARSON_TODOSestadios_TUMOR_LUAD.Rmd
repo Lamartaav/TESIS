@@ -171,3 +171,105 @@ if(length(panel_2) > 0){
   }
 }
 ```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE} 
+need(c("pheatmap"))
+
+# (opcional) si no lo tenés ya definido arriba
+corr_with_all <- function(v, M){
+  n <- colSums(!is.na(M) & !is.na(v))
+  r <- suppressWarnings(cor(M, v, use = "pairwise.complete.obs", method = "pearson"))
+  p <- rep(NA_real_, length(r))
+  ok <- which(n >= 3 & is.finite(r) & abs(r) < 1)
+  tval <- r[ok] * sqrt((n[ok]-2) / pmax(1e-12, 1 - r[ok]^2))
+  p[ok] <- 2 * pt(-abs(tval), df = n[ok]-2)
+  list(r = r, p = p, n = n)
+}
+
+# === NUEVA versión: muestra SOLO estrellas ===
+heatmap_panel_vs_all <- function(X, panel_genes, titulo, block_size = 40, log_transform = TRUE){
+  panel <- intersect(panel_genes, colnames(X))
+  if(length(panel) == 0){ cat("No hay genes del panel presentes en la tabla.\n"); return(invisible(NULL)) }
+
+  M <- X
+  M[] <- lapply(M, function(x) suppressWarnings(as.numeric(x)))
+  M <- as.matrix(M)
+  if (log_transform) M <- log2(1 + M)
+
+  genes_all <- colnames(M)
+
+  R <- matrix(NA_real_, nrow = length(genes_all), ncol = length(panel),
+              dimnames = list(genes_all, panel))
+  P <- matrix(NA_real_, nrow = length(genes_all), ncol = length(panel),
+              dimnames = list(genes_all, panel))
+
+  for (j in seq_along(panel)){
+    g <- panel[j]
+    res <- corr_with_all(M[, g], M)
+    R[, j] <- res$r
+    P[, j] <- res$p
+  }
+
+  ord <- order(apply(abs(R), 1, max, na.rm = TRUE), decreasing = TRUE)
+  R <- R[ord, , drop = FALSE]
+  P <- P[ord, , drop = FALSE]
+
+  pal <- colorRampPalette(c("#2166AC","#F7F7F7","#B2182B"))(101)
+  nblocks <- ceiling(nrow(R) / block_size)
+
+  for (b in seq_len(nblocks)){
+    idx <- (((b-1)*block_size)+1) : min(b*block_size, nrow(R))
+    Rb  <- R[idx, , drop = FALSE]
+    Pb  <- P[idx, , drop = FALSE]
+
+    # SOLO estrellas (sin r)
+    stars <- matrix("", nrow = nrow(Pb), ncol = ncol(Pb), dimnames = dimnames(Pb))
+    stars[Pb < 0.001] <- "***"
+    stars[Pb >= 0.001 & Pb < 0.01] <- "**"
+    stars[Pb >= 0.01  & Pb < 0.05] <- "*"
+    numlab <- stars
+
+    fw <- max(7, 1.2 * ncol(Rb) + 4)
+    fh <- max(7, 0.35 * nrow(Rb) + 3)
+    knitr::opts_current$set(fig.width = fw, fig.height = fh, fig.align = "center")
+
+    pheatmap::pheatmap(
+      Rb,
+      color = pal,
+      breaks = seq(-1, 1, length.out = 101),
+      cluster_rows = FALSE,
+      cluster_cols = FALSE,
+      display_numbers = numlab,       # ← solo estrellas
+      number_color = "black",
+      fontsize_number = 8.5,
+      main = sprintf("%s — \n*** p<0.001  ** p<0.01  * p<0.05", titulo, b, nblocks),
+      border_color = "white"
+    )
+  }
+}
+
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=5, fig.height=15, fig.align='center'} 
+heatmap_panel_vs_all(
+  X,
+  panel_genes = panel_1,
+  titulo = "LUAD — Pearson: Panel 1 vs Todos",
+  block_size = 80
+)
+
+
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=5, fig.height=15, fig.align='center'} 
+heatmap_panel_vs_all(
+  X,
+  panel_genes = panel_2,
+  titulo = "LUAD — Pearson: Panel 2 vs Todos",
+  block_size = 80
+)
+
+```
