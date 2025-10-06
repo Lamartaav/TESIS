@@ -1,0 +1,205 @@
+---
+title: "Kaplan–Meier para CAIX (CA9) en TCGA-LUAD"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(survival)
+library(survminer)
+library(dplyr)
+library(tidyverse)
+library(ggrepel)
+library(scales)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(tidyr)
+library(ggsignif)
+library(rstatix)
+```
+
+```{r, include=FALSE}
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+```
+
+```{r, include=FALSE}
+need(c("tidyverse","survival","survminer","readr"))
+url_expr <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral_LUAD.tsv"
+url_clin <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/clinical_unido.tsv"
+
+expr <- read_tsv(url_expr)
+clinical <- read_tsv(url_clin)
+```
+
+``` {r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+## 3. Preparar tabla clínica LUAD (limpia, sin duplicados)
+```{r}
+# Función para normalizar “vacíos” a NA
+normalize_na <- function(x){
+  x <- trimws(as.character(x))
+  x[x %in% c("", "--", "'--", "NA", "Na", "na")] <- NA
+  x
+}
+
+clinical_luad <- clinical %>%
+  # Solo TCGA-LUAD
+  dplyr::filter(project.project_id == "TCGA-LUAD") %>%
+  dplyr::select(
+    cases.submitter_id,
+    demographic.vital_status,
+    demographic.days_to_death,
+    diagnoses.days_to_last_follow_up,
+    diagnoses.days_to_diagnosis
+  ) %>%
+  # Normalizar marcadores de vacío
+  dplyr::mutate(dplyr::across(dplyr::everything(), normalize_na)) %>%
+  # Eliminar filas 100% vacías en estas columnas
+  dplyr::filter(rowSums(!is.na(dplyr::across(dplyr::everything()))) > 0) %>%
+  # Consolidar a 1 fila por paciente
+  dplyr::group_by(cases.submitter_id) %>%
+  dplyr::summarise(
+    # vital_status: Dead si aparece al menos una vez; si no, Alive; si ninguno, NA
+    demographic.vital_status = dplyr::case_when(
+      any(demographic.vital_status == "Dead", na.rm = TRUE)  ~ "Dead",
+      any(demographic.vital_status == "Alive", na.rm = TRUE) ~ "Alive",
+      TRUE ~ NA_character_
+    ),
+    # Tomamos el máximo de días a muerte / último follow-up (más informativo)
+    demographic.days_to_death = suppressWarnings(max(as.numeric(demographic.days_to_death), na.rm = TRUE)),
+    diagnoses.days_to_last_follow_up = suppressWarnings(max(as.numeric(diagnoses.days_to_last_follow_up), na.rm = TRUE)),
+    # y el mínimo para days_to_diagnosis (suele ser 0 en TCGA)
+    diagnoses.days_to_diagnosis = suppressWarnings(min(as.numeric(diagnoses.days_to_diagnosis), na.rm = TRUE)),
+    .groups = "drop"
+  ) %>%
+  # Reemplazar Inf generados por max/min sin datos por NA
+  dplyr::mutate(
+    demographic.days_to_death = ifelse(is.infinite(demographic.days_to_death), NA, demographic.days_to_death),
+    diagnoses.days_to_last_follow_up = ifelse(is.infinite(diagnoses.days_to_last_follow_up), NA, diagnoses.days_to_last_follow_up),
+    diagnoses.days_to_diagnosis = ifelse(is.infinite(diagnoses.days_to_diagnosis), NA, diagnoses.days_to_diagnosis)
+  ) %>%
+  # Quitar pacientes con vital_status vacío
+  dplyr::filter(!is.na(demographic.vital_status))
+
+## 4. Expresión de CAIX (CA9) — una fila por paciente
+```{r}
+# Normalizamos IDs por las dudas (mayúsculas, sin espacios)
+norm_id <- function(x) gsub("\\s+", "", toupper(as.character(x)))
+
+expr_ca9 <- expr %>%
+  transmute(
+    submitter_id = norm_id(submitter_id),
+    CA9 = suppressWarnings(as.numeric(CA9))
+  ) %>%
+  # Consolidar a 1 fila por paciente (mediana robusta si hay múltiples filas)
+  group_by(submitter_id) %>%
+  summarise(CA9 = median(CA9, na.rm = TRUE), .groups = "drop") %>%
+  # Quitar pacientes sin CA9 válido
+  filter(!is.na(CA9))
+
+clinical_luad <- clinical_luad %>%
+  mutate(cases.submitter_id = norm_id(cases.submitter_id))
+
+# Unir expresión con clínica (y asegurar 1 fila por paciente)
+data_merged <- expr_ca9 %>%
+  inner_join(clinical_luad, by = c("submitter_id" = "cases.submitter_id")) %>%
+  distinct(submitter_id, .keep_all = TRUE)
+
+```
+
+``` {r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+data_surv <- data_merged %>%
+  mutate(
+    days_to_death = as.numeric(demographic.days_to_death),
+    days_to_follow = as.numeric(diagnoses.days_to_last_follow_up),
+    time_days = ifelse(!is.na(days_to_death), days_to_death, days_to_follow),
+    time_months = time_days / 30.44,
+    status = ifelse(demographic.vital_status == "Dead", 1, 0)
+  ) %>%
+  filter(!is.na(time_months) & time_months >= 0)
+
+
+```
+
+``` {r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+q1 <- quantile(data_surv$CA9, 0.25, na.rm = TRUE)
+q4 <- quantile(data_surv$CA9, 0.75, na.rm = TRUE)
+
+data_q <- data_surv %>%
+  mutate(
+    CAIX_group = case_when(
+      CA9 <= q1 ~ "Low",
+      CA9 >= q4 ~ "High",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  filter(!is.na(CAIX_group))
+
+```
+
+``` {r, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE, fig.width=7, fig.height=7, fig.align='center'}
+surv_object_q <- Surv(time = data_q$time_months, event = data_q$status)
+
+fit_q <- survfit(surv_object_q ~ CAIX_group, data = data_q)
+
+ggsurvplot(
+  fit_q,
+  data = data_q,
+  pval = TRUE,
+  risk.table = TRUE,
+  conf.int = FALSE,
+  legend.title = "CAIX (CA9)",
+  legend.labs = c("Low", "High"),
+  title = "CAIX and Overall Survival (TCGA-LUAD) – Cuartiles",
+  xlab = "Time (months)",
+  ylab = "Overall survival probability",
+  risk.table.height = 0.25,
+  palette = c("#4A90E2", "#E91E63")
+)
+
+```
+
+``` {r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+median_cut <- median(data_surv$CA9, na.rm = TRUE)
+
+data_median <- data_surv %>%
+  mutate(
+    CAIX_group = ifelse(CA9 >= median_cut, "High", "Low")
+  )
+
+```
+
+``` {r, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE, fig.width=7, fig.height=7, fig.align='center'}
+surv_object_m <- Surv(time = data_median$time_months, event = data_median$status)
+
+fit_m <- survfit(surv_object_m ~ CAIX_group, data = data_median)
+
+ggsurvplot(
+  fit_m,
+  data = data_median,
+  pval = TRUE,
+  risk.table = TRUE,
+  conf.int = FALSE,
+  legend.title = "CAIX (CA9)",
+  legend.labs = c("Low", "High"),
+  title = "CAIX and Overall Survival (TCGA-LUAD) – Mediana",
+  xlab = "Time (months)",
+  ylab = "Overall survival probability",
+  risk.table.height = 0.25,
+  palette = c("#4A90E2", "#E91E63")
+)
+
+```
+
+``` {r, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+cox_model <- coxph(Surv(time_months, status) ~ CAIX_group, data = data_median)
+summary(cox_model)
+```
+
+
+
+
