@@ -155,7 +155,7 @@ knitr::kable(ca9_summary, caption = "Resumen de grupos CA9 (tumor YY 01–09)")
 ## Comparación de genes de interés
 
 ```{r, echo=FALSE, message = FALSE}
-genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "HIF1A", "SLC2A1", "EPAS1",   "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "LDHA", "SLC16A1", "SLC16A3", "GPI")
+genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "HIF1A", "SLC2A1", "EPAS1", "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "LDHA", "SLC16A1", "SLC16A3", "GPI")
 
 pick_one_row_by_gene_name <- function(tabla, gene_name) {
   rows <- dplyr::filter(tabla, `gene-name` == gene_name)
@@ -308,7 +308,7 @@ for (g in genes_of_interest) {
 }
 ```
 
-```{r corr_ca9_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con CA9 (|r| ≥ 0.2, p < 0.05)"}
+```{r corr_ca9_tabla_fig, echo=FALSE, message=FALSE, include=TRUE}
 suppressPackageStartupMessages({
   library(dplyr)
   library(knitr)
@@ -475,7 +475,7 @@ knitr::kable(hif1a_summary, caption = "Resumen de grupos HIF1A (tumor YY 01–09
 ## Comparación de genes de interés
 
 ```{r, echo=FALSE, message = FALSE}
-genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "CA9", "SLC2A1", "EPAS1",   "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "LDHA", "SLC16A1", "SLC16A3", "GPI")
+genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "CA9", "SLC2A1", "EPAS1", "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "LDHA", "SLC16A1", "SLC16A3", "GPI")
 
 pick_one_row_by_gene_name <- function(tabla, gene_name) {
   rows <- dplyr::filter(tabla, `gene-name` == gene_name)
@@ -627,7 +627,7 @@ for (g in genes_of_interest) {
 }
 ```
 
-```{r corr_hif1a_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con HIF1A (|r| ≥ 0.2, p < 0.05)"}
+```{r corr_hif1a_tabla_fig, echo=FALSE, message=FALSE, include=TRUE}
 suppressPackageStartupMessages({
   library(dplyr)
   library(knitr)
@@ -795,7 +795,7 @@ knitr::kable(ldha_summary, caption = "Resumen de grupos LDHA (tumor YY 01–09)"
 ## Comparación de genes de interés
 
 ```{r, echo=FALSE, message = FALSE}
-genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "SLC2A1", "EPAS1",   "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "HIF1A", "CA9", "SLC16A1", "SLC16A3", "GPI")
+genes_of_interest <- c("CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "SLC2A1", "EPAS1", "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "HIF1A", "CA9", "SLC16A1", "SLC16A3", "GPI")
 
 pick_one_row_by_gene_name <- function(tabla, gene_name) {
   rows <- dplyr::filter(tabla, `gene-name` == gene_name)
@@ -948,7 +948,7 @@ for (g in genes_of_interest) {
 }
 ```
 
-```{r corr_ldha_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con LDHA (|r| ≥ 0.2, p < 0.05)"}
+```{r corr_ldha_tabla_fig, echo=FALSE, message=FALSE, include=TRUE}
 suppressPackageStartupMessages({
   library(dplyr)
   library(knitr)
