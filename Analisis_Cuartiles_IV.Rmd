@@ -626,7 +626,7 @@ for (g in genes_of_interest) {
 }
 ```
 
-```{r corr_ca9_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con HIF1A (|r| ≥ 0.2, p < 0.05)"}
+```{r corr_hif1a_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con HIF1A (|r| ≥ 0.2, p < 0.05)"}
 suppressPackageStartupMessages({
   library(dplyr)
   library(knitr)
