@@ -266,7 +266,9 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ca9_ser
   names(gene_vals) <- names(ca9_series)
   
   # Correlación Pearson con CA9 (solo en muestras con datos no-NA en ambos)
-  common_idx <- which(!is.na(ca9_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  common_idx <- which(names(ca9_series) %in% extremos &
+                    !is.na(ca9_series) & !is.na(gene_vals))
   if (length(common_idx) >= 3) {
     cor_res <- suppressWarnings(cor.test(ca9_series[common_idx], gene_vals[common_idx], method = "pearson"))
     r_val <- round(unname(cor_res$estimate), 3)
@@ -306,7 +308,92 @@ for (g in genes_of_interest) {
 }
 ```
 
+```{r corr_ca9_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con CA9 (|r| ≥ 0.2, p < 0.05)"}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(knitr)
+  library(gridExtra)
+  library(grid)
+  library(ggplot2)
+})
 
+# --- construir correlaciones (igual que antes) ---
+corr_list <- lapply(genes_of_interest, function(g){
+  res <- pick_one_row_by_gene_name(df_tumor, g)
+  if (is.null(res$row)) {
+    return(tibble::tibble(gene = g, r = NA_real_, p = NA_real_, n = 0))
+  }
+  gene_vals <- suppressWarnings(as.numeric(unlist(res$row[, names(ca9_series)], use.names = FALSE)))
+  names(gene_vals) <- names(ca9_series)
+
+  idx <- which(!is.na(ca9_series) & !is.na(gene_vals))
+  if (length(idx) >= 3) {
+    ct <- suppressWarnings(cor.test(ca9_series[idx], gene_vals[idx], method = "pearson"))
+    tibble::tibble(gene = g,
+                   r = unname(ct$estimate),
+                   p = ct$p.value,
+                   n = length(idx))
+  } else {
+    tibble::tibble(gene = g, r = NA_real_, p = NA_real_, n = length(idx))
+  }
+})
+
+corr_df <- dplyr::bind_rows(corr_list)
+
+sig_df <- corr_df %>%
+  filter(!is.na(r), !is.na(p)) %>%
+  filter(abs(r) >= 0.2, p < 0.05) %>%
+  arrange(desc(r))
+
+tab_out <- sig_df %>%
+  mutate(r = round(r, 3),
+         p = signif(p, 3)) %>%
+  select(gene, r, p, n)   # <<< sin 'direction'
+
+# --- asumo que ya construiste 'tab_out' como en el chunk previo ---
+if (!exists("tab_out")) {
+  stop("No se encontró 'tab_out'. Ejecutá el chunk que lo construye antes de este.")
+}
+
+if (nrow(tab_out) == 0) {
+  cat("**No se encontraron genes con |r| ≥ 0.2 y p < 0.05 respecto de CA9.**")
+} else {
+  print(
+    DT::datatable(
+      tab_out,
+      rownames = FALSE,
+      options = list(
+        paging   = FALSE,   # muestra todo sin paginar
+        searching= TRUE,    # buscador por si la lista es larga
+        info     = FALSE,
+        scrollX  = TRUE,    # scroll horizontal si hace falta
+        dom      = 't'      # solo la tabla (sin barra de botones)
+      ),
+      caption = htmltools::tags$caption(
+        style = 'caption-side: top; text-align: left; font-weight: bold;',
+        'Genes con correlación significativa con CA9 (|r| ≥ 0.2, p < 0.05)'
+      )
+    )
+  )
+}
+
+# --- listas pedidas (se mantienen) ---
+pos_genes <- sig_df %>%
+  filter(r >= 0.2) %>%
+  arrange(desc(r)) %>%
+  pull(gene)
+
+neg_genes <- sig_df %>%
+  filter(r <= -0.2) %>%
+  arrange(r) %>%
+  pull(gene)
+
+cat("\n\nLos genes que se correlacionan positivamente con CA9 son: ",
+    if (length(pos_genes)) paste(pos_genes, collapse = ", ") else "ninguno", ".\n", sep = "")
+
+cat("\nLos genes que se correlacionan negativamente con CA9 son: ",
+    if (length(neg_genes)) paste(neg_genes, collapse = ", ") else "ninguno", ".\n", sep = "")
+```
 
 # HIF1A
 
@@ -497,7 +584,9 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, hif1a_s
   names(gene_vals) <- names(hif1a_series)
   
   # Correlación Pearson con HIF1A (solo en muestras con datos no-NA en ambos)
-  common_idx <- which(!is.na(hif1a_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  common_idx <- which(names(hif1a_series) %in% extremos &
+                    !is.na(hif1a_series) & !is.na(gene_vals))
   if (length(common_idx) >= 3) {
     cor_res <- suppressWarnings(cor.test(hif1a_series[common_idx], gene_vals[common_idx], method = "pearson"))
     r_val <- round(unname(cor_res$estimate), 3)
@@ -537,6 +626,92 @@ for (g in genes_of_interest) {
 }
 ```
 
+```{r corr_ca9_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con HIF1A (|r| ≥ 0.2, p < 0.05)"}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(knitr)
+  library(gridExtra)
+  library(grid)
+  library(ggplot2)
+})
+
+# --- construir correlaciones (igual que antes) ---
+corr_list <- lapply(genes_of_interest, function(g){
+  res <- pick_one_row_by_gene_name(df_tumor, g)
+  if (is.null(res$row)) {
+    return(tibble::tibble(gene = g, r = NA_real_, p = NA_real_, n = 0))
+  }
+  gene_vals <- suppressWarnings(as.numeric(unlist(res$row[, names(hif1a_series)], use.names = FALSE)))
+  names(gene_vals) <- names(hif1a_series)
+
+  idx <- which(!is.na(hif1a_series) & !is.na(gene_vals))
+  if (length(idx) >= 3) {
+    ct <- suppressWarnings(cor.test(hif1a_series[idx], gene_vals[idx], method = "pearson"))
+    tibble::tibble(gene = g,
+                   r = unname(ct$estimate),
+                   p = ct$p.value,
+                   n = length(idx))
+  } else {
+    tibble::tibble(gene = g, r = NA_real_, p = NA_real_, n = length(idx))
+  }
+})
+
+corr_df <- dplyr::bind_rows(corr_list)
+
+sig_df <- corr_df %>%
+  filter(!is.na(r), !is.na(p)) %>%
+  filter(abs(r) >= 0.2, p < 0.05) %>%
+  arrange(desc(r))
+
+tab_out <- sig_df %>%
+  mutate(r = round(r, 3),
+         p = signif(p, 3)) %>%
+  select(gene, r, p, n)   # <<< sin 'direction'
+
+# --- asumo que ya construiste 'tab_out' como en el chunk previo ---
+if (!exists("tab_out")) {
+  stop("No se encontró 'tab_out'. Ejecutá el chunk que lo construye antes de este.")
+}
+
+if (nrow(tab_out) == 0) {
+  cat("**No se encontraron genes con |r| ≥ 0.2 y p < 0.05 respecto de HIF1A.**")
+} else {
+  print(
+    DT::datatable(
+      tab_out,
+      rownames = FALSE,
+      options = list(
+        paging   = FALSE,   # muestra todo sin paginar
+        searching= TRUE,    # buscador por si la lista es larga
+        info     = FALSE,
+        scrollX  = TRUE,    # scroll horizontal si hace falta
+        dom      = 't'      # solo la tabla (sin barra de botones)
+      ),
+      caption = htmltools::tags$caption(
+        style = 'caption-side: top; text-align: left; font-weight: bold;',
+        'Genes con correlación significativa con HIF1A (|r| ≥ 0.2, p < 0.05)'
+      )
+    )
+  )
+}
+
+# --- listas pedidas (se mantienen) ---
+pos_genes <- sig_df %>%
+  filter(r >= 0.2) %>%
+  arrange(desc(r)) %>%
+  pull(gene)
+
+neg_genes <- sig_df %>%
+  filter(r <= -0.2) %>%
+  arrange(r) %>%
+  pull(gene)
+
+cat("\n\nLos genes que se correlacionan positivamente con HIF1A son: ",
+    if (length(pos_genes)) paste(pos_genes, collapse = ", ") else "ninguno", ".\n", sep = "")
+
+cat("\nLos genes que se correlacionan negativamente con HIF1A son: ",
+    if (length(neg_genes)) paste(neg_genes, collapse = ", ") else "ninguno", ".\n", sep = "")
+```
 
 # LDHA
 
@@ -729,7 +904,9 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ldha_se
   names(gene_vals) <- names(ldha_series)
   
   # Correlación Pearson con LDHA (solo en muestras con datos no-NA en ambos)
-  common_idx <- which(!is.na(ldha_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  common_idx <- which(names(ldha_series) %in% extremos &
+                    !is.na(ldha_series) & !is.na(gene_vals))
   if (length(common_idx) >= 3) {
     cor_res <- suppressWarnings(cor.test(ldha_series[common_idx], gene_vals[common_idx], method = "pearson"))
     r_val <- round(unname(cor_res$estimate), 3)
@@ -767,5 +944,92 @@ plot_gene_box <- function(gene_name, df_in, patients_low, patients_high, ldha_se
 for (g in genes_of_interest) {
   print(plot_gene_box(g, df_tumor, patients_low, patients_high, ldha_series))
 }
+```
+
+```{r corr_ldha_tabla_fig, echo=FALSE, message=FALSE, fig.width=5, fig.height=10, fig.cap="Genes con correlación significativa con LDHA (|r| ≥ 0.2, p < 0.05)"}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(knitr)
+  library(gridExtra)
+  library(grid)
+  library(ggplot2)
+})
+
+# --- construir correlaciones (igual que antes) ---
+corr_list <- lapply(genes_of_interest, function(g){
+  res <- pick_one_row_by_gene_name(df_tumor, g)
+  if (is.null(res$row)) {
+    return(tibble::tibble(gene = g, r = NA_real_, p = NA_real_, n = 0))
+  }
+  gene_vals <- suppressWarnings(as.numeric(unlist(res$row[, names(ldha_series)], use.names = FALSE)))
+  names(gene_vals) <- names(ldha_series)
+
+  idx <- which(!is.na(ca9_series) & !is.na(gene_vals))
+  if (length(idx) >= 3) {
+    ct <- suppressWarnings(cor.test(ldha_series[idx], gene_vals[idx], method = "pearson"))
+    tibble::tibble(gene = g,
+                   r = unname(ct$estimate),
+                   p = ct$p.value,
+                   n = length(idx))
+  } else {
+    tibble::tibble(gene = g, r = NA_real_, p = NA_real_, n = length(idx))
+  }
+})
+
+corr_df <- dplyr::bind_rows(corr_list)
+
+sig_df <- corr_df %>%
+  filter(!is.na(r), !is.na(p)) %>%
+  filter(abs(r) >= 0.2, p < 0.05) %>%
+  arrange(desc(r))
+
+tab_out <- sig_df %>%
+  mutate(r = round(r, 3),
+         p = signif(p, 3)) %>%
+  select(gene, r, p, n)   # <<< sin 'direction'
+
+# --- asumo que ya construiste 'tab_out' como en el chunk previo ---
+if (!exists("tab_out")) {
+  stop("No se encontró 'tab_out'. Ejecutá el chunk que lo construye antes de este.")
+}
+
+if (nrow(tab_out) == 0) {
+  cat("**No se encontraron genes con |r| ≥ 0.2 y p < 0.05 respecto de LDHA.**")
+} else {
+  print(
+    DT::datatable(
+      tab_out,
+      rownames = FALSE,
+      options = list(
+        paging   = FALSE,   # muestra todo sin paginar
+        searching= TRUE,    # buscador por si la lista es larga
+        info     = FALSE,
+        scrollX  = TRUE,    # scroll horizontal si hace falta
+        dom      = 't'      # solo la tabla (sin barra de botones)
+      ),
+      caption = htmltools::tags$caption(
+        style = 'caption-side: top; text-align: left; font-weight: bold;',
+        'Genes con correlación significativa con LDHA (|r| ≥ 0.2, p < 0.05)'
+      )
+    )
+  )
+}
+
+# --- listas pedidas (se mantienen) ---
+pos_genes <- sig_df %>%
+  filter(r >= 0.2) %>%
+  arrange(desc(r)) %>%
+  pull(gene)
+
+neg_genes <- sig_df %>%
+  filter(r <= -0.2) %>%
+  arrange(r) %>%
+  pull(gene)
+
+cat("\n\nLos genes que se correlacionan positivamente con LDHA son: ",
+    if (length(pos_genes)) paste(pos_genes, collapse = ", ") else "ninguno", ".\n", sep = "")
+
+cat("\nLos genes que se correlacionan negativamente con LDHA son: ",
+    if (length(neg_genes)) paste(neg_genes, collapse = ", ") else "ninguno", ".\n", sep = "")
 ```
 
