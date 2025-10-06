@@ -326,7 +326,8 @@ corr_list <- lapply(genes_of_interest, function(g){
   gene_vals <- suppressWarnings(as.numeric(unlist(res$row[, names(ca9_series)], use.names = FALSE)))
   names(gene_vals) <- names(ca9_series)
 
-  idx <- which(!is.na(ca9_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  idx <- which(names(ca9_series) %in% extremos & !is.na(ca9_series) & !is.na(gene_vals))
   if (length(idx) >= 3) {
     ct <- suppressWarnings(cor.test(ca9_series[idx], gene_vals[idx], method = "pearson"))
     tibble::tibble(gene = g,
@@ -644,7 +645,8 @@ corr_list <- lapply(genes_of_interest, function(g){
   gene_vals <- suppressWarnings(as.numeric(unlist(res$row[, names(hif1a_series)], use.names = FALSE)))
   names(gene_vals) <- names(hif1a_series)
 
-  idx <- which(!is.na(hif1a_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  idx <- which(names(hif1a_series) %in% extremos & !is.na(hif1a_series) & !is.na(gene_vals))
   if (length(idx) >= 3) {
     ct <- suppressWarnings(cor.test(hif1a_series[idx], gene_vals[idx], method = "pearson"))
     tibble::tibble(gene = g,
@@ -964,7 +966,8 @@ corr_list <- lapply(genes_of_interest, function(g){
   gene_vals <- suppressWarnings(as.numeric(unlist(res$row[, names(ldha_series)], use.names = FALSE)))
   names(gene_vals) <- names(ldha_series)
 
-  idx <- which(!is.na(ca9_series) & !is.na(gene_vals))
+  extremos <- c(patients_low, patients_high)
+  idx <- which(names(ldha_series) %in% extremos & !is.na(ldha_series) & !is.na(gene_vals))
   if (length(idx) >= 3) {
     ct <- suppressWarnings(cor.test(ldha_series[idx], gene_vals[idx], method = "pearson"))
     tibble::tibble(gene = g,
