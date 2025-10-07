@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 Este documento carga una tabla de expresión génica (formato TSV) donde las **primeras tres columnas** son `gene-id`, `gene-name`, `gene-type` y las restantes son muestras de pacientes con códigos TCGA del tipo `TCGA-XX-XXXX-YYA...`.  
 Nos quedamos **solo con muestras tumorales**, donde `YY` (primeros dos caracteres del 4to bloque) está entre `01` y `09`.  
-Luego tomamos la expresión del gen **CA9**, calculamos **cuartiles** según la definición:
+Luego tomamos la expresión de los genes **CA9** **HIF1A** y **LDH**, calculamos **cuartiles** según la definición:
 - **Q1**: mediana de la mitad inferior (excluyendo la mediana si *n* es impar)
 - **Q2**: mediana de todo el conjunto
 - **Q3**: mediana de la mitad superior (excluyendo la mediana si *n* es impar)
@@ -27,7 +27,8 @@ Con esto definimos grupos:
 - **CA9 low (Q1)**: valores ≤ Q1
 - **CA9 high (Q3)**: valores ≥ Q3
 
-Finalmente comparamos la expresión de los genes: `CD4`, `FOXP3`, `CD8`, `CD163`, `ARG1`, `CD274` entre ambos grupos y producimos tablas y boxplots.
+Finalmente comparamos la expresión de los genes: "CD4", "FOXP3", "CD8B", "CD8A", "CD163", "ARG1", "CD274", "HIF1A", "SLC2A1", "EPAS1", "HK2", "PKM", "ALDOA", "PGK1", "PGM1", "ENO1", "LDHA", "SLC16A1", "SLC16A3" y "GPI" entre ambos grupos y producimos tablas y boxplots.
+
 
 
 ```{r, echo=FALSE, message = FALSE, results='hide'}
