@@ -34,7 +34,7 @@ interseccion_tumoral_normal <- read.delim("https://raw.githubusercontent.com/Lam
 
 # Expresión de Genes en Tejido Tumoral vs Tejido Normal Adyacente
 
-Expresión de genes de interés: "SLC2A1", "CA9", "HIF1A", "EPAS1", "LDHA", "SLC16A1", "SLC16A3", "HK2", "PKM", "GPI", "ALDOA", "PGK1", "PGM1", "ENO1", "CD274", "FOXP3".
+Expresión de genes de interés: "SLC2A1",  "SLC16A1", "SLC16A3","CA9", "HIF1A", "LDHA", "FOXP3", "CD274", "EPAS1", "HK2", "PKM", "GPI", "ALDOA", "PGK1", "PGM1", "ENO1".
 
 N = 89.
 
