@@ -1,0 +1,199 @@
+---
+title: "PDL1 LUAD Plots de Violin - HIF1A, SLC2A1, SLC16A3, LDHA, CA9"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+  pdf_document: default
+params:
+  url_tsv: "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
+
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+suppressPackageStartupMessages({
+  library(survival)
+  library(survminer)
+  library(dplyr)
+  library(tidyverse)
+  library(ggrepel)
+  library(scales)
+  library(ggplot2)
+  library(plotly)
+  library(dplyr)
+  library(tidyr)
+  library(ggsignif)
+  library(rstatix)
+})
+
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+
+need(c("tidyverse", "ggplot2", "reshape2", "cowplot"))
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Expresión génica
+url_expr <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
+expr <- read_tsv(url_expr)
+
+# Datos clínicos
+url_clin <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/clinical_unido.tsv"
+clin <- read_tsv(url_clin)
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Mantener sólo columnas relevantes en clínica
+library(stringr)
+
+clin_sel <- clin %>%
+  select(cases.submitter_id, project.project_id, diagnoses.ajcc_pathologic_stage) %>%
+  mutate(
+    stage_norm = diagnoses.ajcc_pathologic_stage %>%
+      str_to_upper() %>%                       # mayúsculas
+      str_replace_all("[^A-Z0-9 ]", "") %>%    # limpia signos
+      str_trim()
+  ) %>%
+  mutate(
+    stage_group = case_when(
+      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(I|IA|IB)\\b")  ~ "Early",
+      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(II|IIA|IIB)\\b") ~ "Early",
+      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(III|IIIA|IIIB|IIIC)\\b") ~ "Advance",
+      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(IV|IVA|IVB|IVC)\\b") ~ "Advance",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  filter(!is.na(stage_group))
+
+# Transponer expresión génica: filas = pacientes, columnas = genes
+expr_t <- expr %>%
+  select(-`gene-id`, -`gene-type`) %>%
+  column_to_rownames("gene-name") %>%
+  t() %>%
+  as.data.frame()
+
+expr_t$cases.submitter_id <- substr(rownames(expr_t), 1, 12)
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Eliminar duplicados de pacientes en la tabla clínica
+clin_sel <- clin_sel %>%
+  distinct(cases.submitter_id, .keep_all = TRUE)
+# Unir por ID de paciente
+dat <- inner_join(clin_sel, expr_t, by = "cases.submitter_id")
+
+# Filtrar proyectos
+dat_LUAD <- filter(dat, project.project_id == "TCGA-LUAD")
+dat_LUSC <- filter(dat, project.project_id == "TCGA-LUSC")
+
+genes_interes <- c("CA9", "HIF1A", "SLC2A1", "SLC16A3", "LDHA")
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Agregar esta librería
+need(c("ggpubr"))
+
+# Reemplazar la función por esta versión CON p-values
+plot_violin_panel <- function(df, proyecto){
+  # asegurar numérico (por si quedaron como char)
+  vars_num <- c("CD274", "CA9", "HIF1A", "SLC2A1", "SLC16A3", "LDHA")
+  vars_num <- vars_num[vars_num %in% names(df)]
+  df <- df %>% mutate(across(all_of(vars_num), as.numeric))
+
+  # dividir por mediana de CD274 (dentro del proyecto)
+  mediana_pd <- median(df$CD274, na.rm = TRUE)
+  df <- df %>%
+    mutate(CD274_group = ifelse(CD274 > mediana_pd, "High", "Low"),
+           CD274_group = factor(CD274_group, levels = c("Low","High")))
+
+  plist <- list()
+  for (g in c("CA9","HIF1A","SLC2A1","SLC16A3","LDHA")){
+    if (!g %in% names(df)) next
+
+    p <- ggplot(df, aes(x = CD274_group, y = .data[[g]], fill = CD274_group)) +
+      geom_violin(trim = FALSE, alpha = 0.7) +
+      geom_boxplot(width = 0.12, fill = "white", outlier.shape = NA) +
+      # p-valor Low vs High dentro de cada faceta (Wilcoxon)
+      ggpubr::stat_compare_means(
+        comparisons = list(c("Low","High")),
+        method = "wilcox.test",
+        label = "p.signif",        # muestra **, ***, etc.
+        hide.ns = TRUE
+      ) +
+      facet_wrap(~stage_group, ncol = 2) +
+      scale_fill_manual(values = c("Low" = "#55A869", "High" = "#C44E51")) +
+      theme_bw(base_size = 13) +
+      labs(title = g, subtitle = proyecto,
+           x = "CD274 expresión", y = "Expresión (FPKM)") +
+      theme(legend.position = "none")
+
+    plist[[g]] <- p
+  }
+  cowplot::plot_grid(plotlist = plist, ncol = 2)
+}
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+## 8️⃣ Conteo de pacientes por grupo (LUAD y LUSC)
+need(c("tidyr", "knitr"))
+
+make_counts_table <- function(df){
+  # Asegurar numérico y descartar faltantes necesarios
+  df2 <- df %>%
+    mutate(CD274 = suppressWarnings(as.numeric(CD274))) %>%
+    filter(!is.na(CD274), !is.na(stage_group))
+
+  cut_med <- median(df2$CD274, na.rm = TRUE)
+
+  df2 <- df2 %>%
+    mutate(
+      CD274_group = if_else(CD274 > cut_med, "High", "Low"),
+      CD274_group = factor(CD274_group, levels = c("Low","High")),
+      stage_group = factor(stage_group, levels = c("Early","Advance"))
+    )
+
+  # N por Stage x CD274 (y total por stage)
+  tab <- df2 %>%
+    count(stage_group, CD274_group, name = "N") %>%
+    tidyr::pivot_wider(names_from = CD274_group, values_from = N, values_fill = 0) %>%
+    mutate(Total = Low + High)
+
+  list(median_cut = cut_med, table = tab, total = nrow(df2))
+}
+
+# LUAD
+luad <- make_counts_table(dat_LUAD)
+cat("**LUAD** — Mediana CD274 usada para el corte (FPKM): ", signif(luad$median_cut, 5),
+    " — Total pacientes usados: ", luad$total, "\n", sep = "")
+knitr::kable(luad$table, caption = "LUAD — N por estadio y por grupo de CD274 (Low/High)")
+
+# LUSC
+lusc <- make_counts_table(dat_LUSC)
+cat("**LUSC** — Mediana CD274 usada para el corte (FPKM): ", signif(lusc$median_cut, 5),
+    " — Total pacientes usados: ", lusc$total, "\n", sep = "")
+knitr::kable(lusc$table, caption = "LUSC — N por estadio y por grupo de CD274 (Low/High)")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=12, fig.height=17, fig.align='center'} 
+plot_violin_panel(dat_LUAD, "LUAD")
+
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=12, fig.height=17, fig.align='center'} 
+plot_violin_panel(dat_LUSC, "LUSC")
+
+```
