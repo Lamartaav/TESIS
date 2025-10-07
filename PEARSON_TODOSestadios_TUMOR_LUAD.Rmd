@@ -1,5 +1,5 @@
 ---
-title: "Correlaciones de genes (Pearson) — LUAD"
+title: "Correlaciones de genes (Pearson) - LUAD - Todos los estadios"
 output:
   html_document:
     toc: true
@@ -69,6 +69,7 @@ if(length(genes_var_cero)){
 panel_1 <- c("SLC2A1","CA9","HIF1A","EPAS1","LDHA","SLC16A1","SLC16A3")
 # Panel 2 (columnas)
 panel_2 <- c("HK2","PKM2","GPI","ALDOA","PGK1","PGM1","ENO1","CD24")
+panel_todos  <- c("SLC2A1","CA9","HIF1A","EPAS1","LDHA","SLC16A1","SLC16A3","HK2","PKM2","GPI","ALDOA","PGK1","PGM1","ENO1","CD24")
 
 presentes <- function(v) intersect(v, colnames(X))
 faltan    <- function(v) setdiff(v, colnames(X))
@@ -187,8 +188,12 @@ corr_with_all <- function(v, M){
 }
 
 # === NUEVA versión: muestra SOLO estrellas ===
-heatmap_panel_vs_all <- function(X, panel_genes, titulo, block_size = 40, log_transform = TRUE){
-  panel <- intersect(panel_genes, colnames(X))
+
+heatmap_panel_vs_all <- function(
+  X, panel_genes, titulo,
+  block_size = 40, log_transform = TRUE,
+  save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos", base_name = "LUAD_Panel_vs_Todos", dpi = 300
+){panel <- intersect(panel_genes, colnames(X))
   if(length(panel) == 0){ cat("No hay genes del panel presentes en la tabla.\n"); return(invisible(NULL)) }
 
   M <- X
@@ -256,10 +261,10 @@ heatmap_panel_vs_all(
   X,
   panel_genes = panel_1,
   titulo = "LUAD — Pearson: Panel 1 vs Todos",
-  block_size = 80
+  block_size = 80,
+  save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos",
+  base_name = "LUAD_Panel1_vs_Todos"
 )
-
-
 
 ```
 
@@ -270,11 +275,28 @@ heatmap_panel_vs_all(
   panel_genes = panel_2,
   titulo = "LUAD — Pearson: Panel 2 vs Todos",
   block_size = 80
+  save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos",
+  base_name = "LUAD_Panel2_vs_Todos"
 )
 
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=7, fig.height=12, fig.align='center'} 
+heatmap_panel_vs_all(
+  X,
+  panel_genes = panel_todos,
+  titulo = "LUAD — Pearson",
+  block_size = 80,
+  save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos",
+  base_name = "LUAD_PanelTodos_vs_Todos"
+)
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+options(knitr.kable.NA = '', knitr.kable.format = 'html')
+need(c("dplyr","knitr","kableExtra"))
 need <- function(pkgs){
   miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
   if(length(miss)) install.packages(miss)
