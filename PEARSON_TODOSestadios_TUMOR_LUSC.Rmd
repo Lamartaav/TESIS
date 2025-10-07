@@ -260,7 +260,7 @@ heatmap_panel_vs_all(
   X,
   panel_genes = panel_1,
   titulo = "LUSC — Pearson: Panel 1 vs Todos",
-  block_size = 80
+  block_size = 80,
   save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos",
   base_name = "LUSC_Panel1_vs_Todos"
 )
@@ -275,7 +275,7 @@ heatmap_panel_vs_all(
   X,
   panel_genes = panel_2,
   titulo = "LUSC — Pearson: Panel 2 vs Todos",
-  block_size = 80
+  block_size = 80,
   save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos",
   base_name = "LUSC_Panel2_vs_Todos"
 )
@@ -286,7 +286,7 @@ heatmap_panel_vs_all(
   X,
   panel_genes = panel_todos,
   titulo = "LUSC — Pearson: Todos",
-  block_size = 80
+  block_size = 80,
   save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos",
   base_name = "LUSC_Panel2_vs_Todos"
 )
