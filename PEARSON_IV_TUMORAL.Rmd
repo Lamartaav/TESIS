@@ -1,6 +1,6 @@
 ---
 
-title: "Correlación de Pearson — Panel vs TODOS los genes (Solo tumor TCGA 01–09)"
+title: "Correlación de Pearson — Panel vs TODOS los genes (Solo tumor TCGA 01–09) - Estadio IV"
 output: html_document
 
 ---
