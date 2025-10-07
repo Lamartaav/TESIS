@@ -281,11 +281,11 @@ heatmap_panel_vs_all(
 )
 
 ```
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=5, fig.height=15, fig.align='center'} 
+```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=7, fig.height=12, fig.align='center'} 
 heatmap_panel_vs_all(
   X,
   panel_genes = panel_todos,
-  titulo = "LUSC — Pearson: Panel 2 vs Todos",
+  titulo = "LUSC — Pearson: Todos",
   block_size = 80
   save_dir = "/Users/martuvillar/UA/TESIS/PacientesTodos",
   base_name = "LUSC_Panel2_vs_Todos"
