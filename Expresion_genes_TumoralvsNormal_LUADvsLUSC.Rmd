@@ -44,7 +44,7 @@ Se muestra su respectivo p valor.
 
 ```{r, echo=FALSE, cache=TRUE, warning=FALSE, fig.width=12, fig.height=12, fig.show='hold'}
 # URL cruda correcta de GitHub (usa raw.githubusercontent.com)
-path_wide <- "https://raw.githubusercontent.com/Lamartaav/TESIS/main/interseccion_tumoral_normal_clasificada__wide.tsv"
+path_wide <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/interseccion_tumoral_normal_clasificada.tsv"
 genes_req <- c("SLC2A1","CA9","HIF1A","EPAS1","LDHA","SLC16A1","SLC16A3",
                "HK2","PKM","GPI","ALDOA","PGK1","PGM1","ENO1","CD274","FOXP3")
 
@@ -162,4 +162,3 @@ for (g in unique(long$gene)) {
 
 
 ```
-
