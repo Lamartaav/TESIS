@@ -1,0 +1,172 @@
+---
+title: "Volcano Plot — Early vs Advanced Stage (TCGA)"
+author: "MV"
+date: "2025-10-12"
+output: html_document
+---
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+need(c("tidyverse","readr","stringr","ggplot2"))
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+url_expr <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
+url_cli  <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/clinical_unido.tsv"
+
+expr <- readr::read_tsv(url_expr, guess_max = 1e6, show_col_types = FALSE)
+cli  <- readr::read_tsv(url_cli,  guess_max = 1e6, show_col_types = FALSE)
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+map_stage_group <- function(x){
+  x <- str_to_upper(trimws(as.character(x)))
+  case_when(
+    str_detect(x, "^STAGE\\s*I([AB])?\\b")  ~ "Early",
+    str_detect(x, "^STAGE\\s*II([AB])?\\b") ~ "Early",
+    str_detect(x, "^STAGE\\s*III([AB])?\\b")~ "Advanced",
+    str_detect(x, "^STAGE\\s*IV([AB])?\\b") ~ "Advanced",
+    TRUE ~ NA_character_
+  )
+}
+
+# === 2) Clínica: Early vs Advanced, deduplicando por paciente (elige el más avanzado) ===
+map_stage_group <- function(x){
+  x <- stringr::str_to_upper(trimws(as.character(x)))
+  dplyr::case_when(
+    stringr::str_detect(x, "^STAGE\\s*I([AB])?\\b")  ~ "Early",
+    stringr::str_detect(x, "^STAGE\\s*II([AB])?\\b") ~ "Early",
+    stringr::str_detect(x, "^STAGE\\s*III([AB])?\\b")~ "Advanced",
+    stringr::str_detect(x, "^STAGE\\s*IV([AB])?\\b") ~ "Advanced",
+    TRUE ~ NA_character_
+  )
+}
+
+cli_group <- cli %>%
+  dplyr::transmute(
+    submitter_short = `cases.submitter_id`,
+    StageGroup = map_stage_group(`diagnoses.ajcc_pathologic_stage`)
+  ) %>%
+  dplyr::filter(!is.na(StageGroup)) %>%
+  # ordenar factor para que "Advanced" > "Early"
+  dplyr::mutate(StageGroup = factor(StageGroup, levels = c("Early","Advanced"), ordered = TRUE)) %>%
+  dplyr::group_by(submitter_short) %>%
+  dplyr::summarise(StageGroup = max(StageGroup), .groups = "drop")  # se queda con el más avanzado
+
+# === 3) Expresión: renombrar columnas a TCGA-XX-XXXX y quedarnos con pacientes válidos ===
+all_patients <- names(expr)[-(1:3)]
+short_ids <- stringr::str_replace(all_patients, "^((TCGA-[A-Za-z0-9]{2}-[A-Za-z0-9]{4})).*$", "\\1")
+colnames(expr)[-(1:3)] <- short_ids
+
+patients_use <- intersect(short_ids, cli_group$submitter_short)
+expr_sub <- expr[, c("gene-name", patients_use), drop = FALSE]
+
+# === 4) LARGO + resumen por gen con chequeos de n por grupo ===
+expr_long <- expr_sub %>%
+  tidyr::pivot_longer(-`gene-name`, names_to = "submitter_short", values_to = "expr") %>%
+  dplyr::inner_join(cli_group, by = "submitter_short") %>%
+  dplyr::mutate(expr = suppressWarnings(as.numeric(expr)))
+
+res <- expr_long %>%
+  dplyr::group_by(`gene-name`) %>%
+  dplyr::summarise(
+    n_Early = sum(StageGroup == "Early" & !is.na(expr)),
+    n_Adv   = sum(StageGroup == "Advanced" & !is.na(expr)),
+    mean_Early = mean(expr[StageGroup=="Early"], na.rm = TRUE),
+    mean_Adv   = mean(expr[StageGroup=="Advanced"], na.rm = TRUE),
+    log2FC     = log2(mean_Adv + 1) - log2(mean_Early + 1),
+    pvalue     = tryCatch(
+      wilcox.test(expr[StageGroup=="Early"], expr[StageGroup=="Advanced"])$p.value,
+      error = function(e) NA_real_
+    ),
+    .groups = "drop"
+  ) %>%
+  # Filtrar genes con datos suficientes en ambos grupos (evita NAs masivos)
+  dplyr::filter(n_Early >= 3, n_Adv >= 3, !is.na(pvalue), !is.na(log2FC)) %>%
+  dplyr::mutate(
+    negLogP = -log10(pvalue),
+    # Opción A: solo criterio p<0.05
+    #signif = ifelse(pvalue < 0.05, "Significativo", "No significativo")
+    # Opción B (alternativa): además exigir tamaño de efecto
+    signif = ifelse(pvalue < 0.05 & abs(log2FC) > 0.25, "Significativo", "No significativo")
+  )
+
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Extraer IDs TCGA-XX-XXXX
+all_patients <- names(expr)[-(1:3)]
+short_ids <- str_replace(all_patients, "^((TCGA-[A-Za-z0-9]{2}-[A-Za-z0-9]{4})).*$", "\\1")
+colnames(expr)[-(1:3)] <- short_ids
+
+# Mantener solo pacientes con datos de Early/Advanced
+patients_use <- cli_group$submitter_short
+expr_sub <- expr[, c("gene-name", intersect(short_ids, patients_use)), drop=FALSE]
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+expr_long <- expr_sub %>%
+  pivot_longer(-`gene-name`, names_to = "submitter_short", values_to = "expr") %>%
+  inner_join(cli_group, by = "submitter_short") %>%
+  mutate(expr = as.numeric(expr))
+
+res <- expr_long %>%
+  group_by(`gene-name`) %>%
+  summarise(
+    mean_Early  = mean(expr[StageGroup=="Early"], na.rm=TRUE),
+    mean_Adv    = mean(expr[StageGroup=="Advanced"], na.rm=TRUE),
+    log2FC      = log2(mean_Adv + 1) - log2(mean_Early + 1),
+    pvalue      = tryCatch(
+      wilcox.test(expr[StageGroup=="Early"], expr[StageGroup=="Advanced"])$p.value,
+      error = function(e) NA_real_
+    ),
+    .groups="drop"
+  ) %>%
+  mutate(
+    negLogP = -log10(pvalue),
+    signif = case_when(
+      pvalue < 0.05 & abs(log2FC) > 1 ~ "Significativo",
+      TRUE ~ "No significativo"
+    )
+  ) %>%
+  drop_na()
+
+cli_group %>% count(StageGroup)
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+
+ggplot(res, aes(x = log2FC, y = negLogP, color = signif)) +
+  geom_point(alpha = 0.8, size = 1.6) +
+  geom_vline(xintercept = c(-0.25, 0.25), linetype="dashed", color="grey40") +  # si usás umbral 0.25
+  geom_hline(yintercept = -log10(0.05), linetype="dashed", color="grey40") +
+  scale_color_manual(values = c("Significativo"="#d62728", "No significativo"="grey60")) +
+  labs(
+    title = "Volcano Plot — Early vs Advanced Stage",
+    x = "log₂(Fold Change) (Advanced / Early)",
+    y = "–log₁₀(p-valor)",
+    color = "Significancia"
+  ) +
+  theme_minimal(base_size = 12)
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='include'}
+res %>%
+  arrange(pvalue) %>%
+  slice_head(n=70)
+
+```
+
+
