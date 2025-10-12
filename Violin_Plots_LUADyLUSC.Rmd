@@ -1,199 +1,255 @@
 ---
-title: "PDL1 LUAD Plots de Violin - HIF1A, SLC2A1, SLC16A3, LDHA, CA9"
+title: "PD-L1 (CD274) vs genes glucolíticos/hipóxicos por proyecto y estadio (TCGA)"
+author: "MV-VS"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output:
   html_document:
     toc: true
     toc_float: true
     number_sections: true
-  pdf_document: default
 params:
-  url_tsv: "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
-
+  url_expr: "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
+  url_clin: "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/clinical_unido.tsv"
+  genes_objetivo: ["CA9","HIF1A","SLC2A1","SLC16A3","LDHA","PDK1"]
+  out_dir: "figs_pdL1"   # carpeta donde se guardan PNG
 ---
 
-```{r, echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-```
 
-
-```{r, echo=FALSE, message = FALSE, results='hide'}
-suppressPackageStartupMessages({
-  library(survival)
-  library(survminer)
-  library(dplyr)
-  library(tidyverse)
-  library(ggrepel)
-  library(scales)
-  library(ggplot2)
-  library(plotly)
-  library(dplyr)
-  library(tidyr)
-  library(ggsignif)
-  library(rstatix)
-})
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 need <- function(pkgs){
   miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
   if(length(miss)) install.packages(miss)
   invisible(lapply(pkgs, library, character.only = TRUE))
 }
+need(c("tidyverse","readr","stringr","ggplot2","ggpubr","patchwork"))
 
-need(c("tidyverse", "ggplot2", "reshape2", "cowplot"))
-
-```
-
-```{r, echo=FALSE, message = FALSE, results='hide'}
-# Expresión génica
-url_expr <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
-expr <- read_tsv(url_expr)
-
-# Datos clínicos
-url_clin <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/clinical_unido.tsv"
-clin <- read_tsv(url_clin)
+dir.create(params$out_dir, showWarnings = FALSE)
 
 ```
 
-```{r, echo=FALSE, message = FALSE, results='hide'}
-# Mantener sólo columnas relevantes en clínica
-library(stringr)
 
-clin_sel <- clin %>%
-  select(cases.submitter_id, project.project_id, diagnoses.ajcc_pathologic_stage) %>%
-  mutate(
-    stage_norm = diagnoses.ajcc_pathologic_stage %>%
-      str_to_upper() %>%                       # mayúsculas
-      str_replace_all("[^A-Z0-9 ]", "") %>%    # limpia signos
-      str_trim()
+
+```{r, echo=FALSE, include=FALSE}
+# --- Expresión (filas=genes; columnas: gene-id, gene-name, gene-type, luego pacientes) ---
+expr_raw <- readr::read_tsv(params$url_expr, show_col_types = FALSE)
+
+# Aseguramos nombres estándar
+stopifnot(all(colnames(expr_raw)[1:3] == c("gene-name","gene-id","gene-type")))
+
+# Nos quedamos con CD274 + genes objetivo (y solo esos para agilizar)
+genes_keep <- c("CD274", params$genes_objetivo)
+expr_sub <- expr_raw %>% dplyr::filter(`gene-name` %in% genes_keep)
+
+# --- Función para sacar el submitter_id TCGA-XX-XXXX de cada columna de muestra ---
+to_submitter <- function(x){
+  # extrae el primer bloque TCGA-XX-XXXX de cualquier barcode largo
+  sub("^((TCGA-[A-Z0-9]{2}-[A-Z0-9]{4})).*$", "\\1", x)
+}
+
+# Construimos una tabla tidy: (gene, submitter_id, expr)
+sample_cols <- setdiff(colnames(expr_sub), c("gene-id","gene-name","gene-type"))
+expr_long <- expr_sub %>%
+  tidyr::pivot_longer(all_of(sample_cols), names_to="sample", values_to="expr") %>%
+  dplyr::mutate(submitter_id = to_submitter(sample)) %>%
+  dplyr::select(`gene-name`, submitter_id, expr) %>%
+  # si hay múltiples columnas por el mismo paciente, tomamos la mediana
+  dplyr::group_by(`gene-name`, submitter_id) %>%
+  dplyr::summarise(expr = suppressWarnings(median(as.numeric(expr), na.rm = TRUE)), .groups="drop")
+
+# --- Clínica ---
+# --- Clínica (quedarse con un único estadio por paciente: el MÁS ALTO) ---
+clin <- readr::read_tsv(params$url_clin, show_col_types = FALSE)
+
+# Orden de severidad de AJCC (menor -> mayor)
+stage_levels <- c(
+  "Stage I","Stage IA","Stage IB",
+  "Stage II","Stage IIA","Stage IIB",
+  "Stage III","Stage IIIA","Stage IIIB",
+  "Stage IV","Stage IVA","Stage IVB"
+)
+early_levels    <- c("Stage I","Stage IA","Stage IB","Stage II","Stage IIA","Stage IIB")
+advanced_levels <- c("Stage III","Stage IIIA","Stage IIIB","Stage IV","Stage IVA","Stage IVB")
+
+stage_map <- function(x){
+  out <- dplyr::case_when(
+    x %in% early_levels    ~ "Early",
+    x %in% advanced_levels ~ "Advanced",
+    TRUE ~ NA_character_
+  )
+  factor(out, levels = c("Early","Advanced"))
+}
+
+# Tomar por paciente el estadio MÁS ALTO (max según stage_levels)
+clin_min <- clin %>%
+  dplyr::transmute(
+    submitter_id = `cases.submitter_id`,
+    project      = `project.project_id`,                # "TCGA-LUAD" / "TCGA-LUSC"
+    stage_raw    = trimws(`diagnoses.ajcc_pathologic_stage`)
   ) %>%
-  mutate(
-    stage_group = case_when(
-      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(I|IA|IB)\\b")  ~ "Early",
-      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(II|IIA|IIB)\\b") ~ "Early",
-      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(III|IIIA|IIIB|IIIC)\\b") ~ "Advance",
-      str_detect(stage_norm, "(^|\\b)(STAGE\\s*)?(IV|IVA|IVB|IVC)\\b") ~ "Advance",
-      TRUE ~ NA_character_
-    )
+  # fuera NA de entrada
+  dplyr::filter(!is.na(submitter_id), !is.na(project), !is.na(stage_raw)) %>%
+  # asignar un orden para comparar severidad
+  dplyr::mutate(stage_ord = match(stage_raw, stage_levels)) %>%
+  # si un paciente tiene varios rows, quedarse con la fila de mayor severidad
+  dplyr::group_by(submitter_id) %>%
+  dplyr::slice_max(order_by = stage_ord, n = 1, with_ties = TRUE) %>%
+  dplyr::slice(1) %>%                           # si hay empates raros, toma la primera
+  dplyr::ungroup() %>%
+  # mapear a Early/Advanced y fijar factores
+  dplyr::mutate(
+    stage_group = stage_map(stage_raw),
+    project     = factor(project, levels = c("TCGA-LUAD","TCGA-LUSC"))
   ) %>%
-  filter(!is.na(stage_group))
-
-# Transponer expresión génica: filas = pacientes, columnas = genes
-expr_t <- expr %>%
-  select(-`gene-id`, -`gene-type`) %>%
-  column_to_rownames("gene-name") %>%
-  t() %>%
-  as.data.frame()
-
-expr_t$cases.submitter_id <- substr(rownames(expr_t), 1, 12)
+  # excluir los que no mapean a Early/Advanced
+  dplyr::filter(!is.na(stage_group))
 
 ```
 
-```{r, echo=FALSE, message = FALSE, results='hide'}
-# Eliminar duplicados de pacientes en la tabla clínica
-clin_sel <- clin_sel %>%
-  distinct(cases.submitter_id, .keep_all = TRUE)
-# Unir por ID de paciente
-dat <- inner_join(clin_sel, expr_t, by = "cases.submitter_id")
+```{r, echo=FALSE, include=FALSE}
+# CD274 por paciente
+cd274_tbl <- expr_long %>%
+  dplyr::filter(`gene-name` == "CD274") %>%
+  dplyr::rename(cd274_expr = expr)
 
-# Filtrar proyectos
-dat_LUAD <- filter(dat, project.project_id == "TCGA-LUAD")
-dat_LUSC <- filter(dat, project.project_id == "TCGA-LUSC")
+# Unimos clínica
+cd274_clin <- clin_min %>%
+  dplyr::inner_join(cd274_tbl, by = "submitter_id")
 
-genes_interes <- c("CA9", "HIF1A", "SLC2A1", "SLC16A3", "LDHA")
+# Definir Low/High por mediana **dentro de cada (project x stage_group)**
+cd274_clin <- cd274_clin %>%
+  dplyr::group_by(project, stage_group) %>%
+  dplyr::mutate(
+    med_cd274 = median(cd274_expr, na.rm = TRUE),
+    CD274_group = ifelse(cd274_expr <= med_cd274, "Low", "High")
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(CD274_group = factor(CD274_group, levels = c("Low","High")))
 
 ```
 
-```{r, echo=FALSE, message = FALSE, results='hide'}
-# Agregar esta librería
-need(c("ggpubr"))
+```{r, echo=FALSE, include=FALSE}
+genes_tbl <- expr_long %>%
+  dplyr::filter(`gene-name` %in% params$genes_objetivo) %>%
+  dplyr::rename(gene = `gene-name`)
 
-# Reemplazar la función por esta versión CON p-values
-plot_violin_panel <- function(df, proyecto){
-  # asegurar numérico (por si quedaron como char)
-  vars_num <- c("CD274", "CA9", "HIF1A", "SLC2A1", "SLC16A3", "LDHA")
-  vars_num <- vars_num[vars_num %in% names(df)]
-  df <- df %>% mutate(across(all_of(vars_num), as.numeric))
+dat_all <- cd274_clin %>%
+  dplyr::select(submitter_id, project, stage_group, CD274_group) %>%
+  dplyr::inner_join(genes_tbl, by = "submitter_id") %>%
+  dplyr::filter(!is.na(expr)) %>%
+  dplyr::mutate(gene = factor(gene, levels = params$genes_objetivo))
 
-  # dividir por mediana de CD274 (dentro del proyecto)
-  mediana_pd <- median(df$CD274, na.rm = TRUE)
-  df <- df %>%
-    mutate(CD274_group = ifelse(CD274 > mediana_pd, "High", "Low"),
-           CD274_group = factor(CD274_group, levels = c("Low","High")))
+```
 
-  plist <- list()
-  for (g in c("CA9","HIF1A","SLC2A1","SLC16A3","LDHA")){
-    if (!g %in% names(df)) next
-
-    p <- ggplot(df, aes(x = CD274_group, y = .data[[g]], fill = CD274_group)) +
-      geom_violin(trim = FALSE, alpha = 0.7) +
-      geom_boxplot(width = 0.12, fill = "white", outlier.shape = NA) +
-      # p-valor Low vs High dentro de cada faceta (Wilcoxon)
-      ggpubr::stat_compare_means(
-        comparisons = list(c("Low","High")),
-        method = "wilcox.test",
-        label = "p.signif",        # muestra **, ***, etc.
-        hide.ns = TRUE
-      ) +
-      facet_wrap(~stage_group, ncol = 2) +
-      scale_fill_manual(values = c("Low" = "#55A869", "High" = "#C44E51")) +
-      theme_bw(base_size = 13) +
-      labs(title = g, subtitle = proyecto,
-           x = "CD274 expresión", y = "Expresión (FPKM)") +
-      theme(legend.position = "none")
-
-    plist[[g]] <- p
+```{r, echo=FALSE, include=FALSE}
+plot_violin_gene <- function(df_gene, titulo = ""){
+  # sin datos
+  if (nrow(df_gene) == 0) {
+    return(ggplot() + theme_void() + ggtitle(paste(titulo, "(sin datos)")))
   }
-  cowplot::plot_grid(plotlist = plist, ncol = 2)
-}
 
-```
-
-```{r, echo=FALSE, message = FALSE, results='hide'}
-## 8️⃣ Conteo de pacientes por grupo (LUAD y LUSC)
-need(c("tidyr", "knitr"))
-
-make_counts_table <- function(df){
-  # Asegurar numérico y descartar faltantes necesarios
-  df2 <- df %>%
-    mutate(CD274 = suppressWarnings(as.numeric(CD274))) %>%
-    filter(!is.na(CD274), !is.na(stage_group))
-
-  cut_med <- median(df2$CD274, na.rm = TRUE)
-
-  df2 <- df2 %>%
-    mutate(
-      CD274_group = if_else(CD274 > cut_med, "High", "Low"),
-      CD274_group = factor(CD274_group, levels = c("Low","High")),
-      stage_group = factor(stage_group, levels = c("Early","Advance"))
+  # --- p-val por faceta (Low vs High dentro de cada stage_group) ---
+  p_tbl <- df_gene %>%
+    dplyr::filter(!is.na(stage_group), !is.na(CD274_group), !is.na(expr)) %>%
+    dplyr::group_by(stage_group) %>%
+    dplyr::summarise(
+      p = tryCatch(
+        wilcox.test(expr[CD274_group == "Low"], expr[CD274_group == "High"])$p.value,
+        error = function(e) NA_real_
+      ),
+      y_pos = as.numeric(stats::quantile(expr, 0.98, na.rm = TRUE)) * 1.10,
+      .groups = "drop"
+    ) %>%
+    dplyr::mutate(
+      group1 = "Low", group2 = "High",
+      p.signif = cut(
+        p,
+        breaks  = c(-Inf, 1e-4, 1e-3, 1e-2, 5e-2, Inf),
+        labels  = c("****","***","**","*","ns"),
+        right   = TRUE
+      )
     )
 
-  # N por Stage x CD274 (y total por stage)
-  tab <- df2 %>%
-    count(stage_group, CD274_group, name = "N") %>%
-    tidyr::pivot_wider(names_from = CD274_group, values_from = N, values_fill = 0) %>%
-    mutate(Total = Low + High)
+  # tope para que entren las etiquetas
+  ylim_top <- max(
+    p_tbl$y_pos,
+    as.numeric(stats::quantile(df_gene$expr, 0.99, na.rm = TRUE)),
+    na.rm = TRUE
+  ) * 1.02
 
-  list(median_cut = cut_med, table = tab, total = nrow(df2))
+  # --- plot ---
+  p <- ggplot(df_gene, aes(x = CD274_group, y = expr, fill = CD274_group)) +
+    geom_violin(trim = FALSE, alpha = 0.7) +
+    geom_boxplot(width = 0.12, fill = "white", outlier.shape = NA) +
+    ggpubr::stat_pvalue_manual(
+      data       = p_tbl,
+      label      = "p.signif",
+      xmin       = "group1",
+      xmax       = "group2",
+      y.position = "y_pos",
+      tip.length = 0.01,
+      bracket.size = 0.4,
+      inherit.aes = FALSE
+    ) +
+    facet_grid(~ stage_group) +
+    labs(x = NULL, y = "Expresión (FPKM UQ unstranded)", title = titulo) +
+    theme_bw(base_size = 14) +
+    theme(
+      legend.position = "none",
+      strip.background = element_rect(fill = "grey92"),
+      strip.text = element_text(face = "bold", size = 13),
+      plot.title  = element_text(face = "bold", size = 15)
+    ) +
+    coord_cartesian(ylim = c(NA, ylim_top))
+
+  p
 }
 
-# LUAD
-luad <- make_counts_table(dat_LUAD)
-cat("**LUAD** — Mediana CD274 usada para el corte (FPKM): ", signif(luad$median_cut, 5),
-    " — Total pacientes usados: ", luad$total, "\n", sep = "")
-knitr::kable(luad$table, caption = "LUAD — N por estadio y por grupo de CD274 (Low/High)")
-
-# LUSC
-lusc <- make_counts_table(dat_LUSC)
-cat("**LUSC** — Mediana CD274 usada para el corte (FPKM): ", signif(lusc$median_cut, 5),
-    " — Total pacientes usados: ", lusc$total, "\n", sep = "")
-knitr::kable(lusc$table, caption = "LUSC — N por estadio y por grupo de CD274 (Low/High)")
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=12, fig.height=17, fig.align='center'} 
-plot_violin_panel(dat_LUAD, "LUAD")
 
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE, fig.width=12, fig.height=17, fig.align='center'} 
-plot_violin_panel(dat_LUSC, "LUSC")
+```{r make-plots, echo=FALSE, fig.width=12, fig.height=30, dpi=200}
+
+make_panel <- function(df_project, project_label){
+  available_genes <- df_project %>%
+    dplyr::group_by(gene) %>%
+    dplyr::summarise(n = sum(!is.na(expr)), .groups = "drop") %>%
+    dplyr::filter(n > 0) %>%
+    dplyr::pull(gene)
+
+  plots <- lapply(available_genes, function(g){
+    pdat <- df_project %>% dplyr::filter(gene == g)
+    plot_violin_gene(pdat, titulo = g)
+  })
+
+  patchwork::wrap_plots(plots, ncol = 1) +  # <— una sola columna
+    patchwork::plot_annotation(
+      title = paste0(ifelse(project_label=="TCGA-LUAD","A","B"), ". ", project_label),
+      theme = theme(plot.title = element_text(face="bold", size = 20))
+    )
+}
+
+# Más aire global entre subplots
+theme_set(theme_bw(base_size = 14) +
+            theme(panel.spacing = grid::unit(1.2, "lines"),
+                  strip.text = element_text(size = 13, face = "bold")))
+
+plt_luad <- make_panel(dat_all %>% dplyr::filter(project == "TCGA-LUAD"), "TCGA-LUAD")
+plt_lusc <- make_panel(dat_all %>% dplyr::filter(project == "TCGA-LUSC"), "TCGA-LUSC")
+
+plt_luad
+plt_lusc
+
+
+
+```
+
+```{r, echo=FALSE, include=TRUE}
+# Pacientes usados por celda (Proyecto x Estadio) y por grupo CD274
+cd274_clin %>%
+  dplyr::count(project, stage_group, CD274_group, name = "n_pacientes") %>%
+  arrange(project, stage_group, CD274_group) %>%
+  knitr::kable()
 
 ```
