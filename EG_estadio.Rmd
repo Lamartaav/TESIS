@@ -1,0 +1,155 @@
+---
+title: "Expresión de cd274 por estadio tumoral (TCGA)"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+need(c("tidyverse","readr","stringr","ggplot2","knitr"))
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# URLs provistas
+url_expr <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
+url_cli  <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/clinical_unido.tsv"
+
+# Cargar tablas
+expr <- readr::read_tsv(url_expr, guess_max = 1e6, show_col_types = FALSE)
+cli  <- readr::read_tsv(url_cli,  guess_max = 1e6, show_col_types = FALSE)
+
+# Verificamos columnas clave
+stopifnot(all(c("gene-name","gene-id","gene-type") %in% names(expr)))
+stopifnot(all(c("cases.submitter_id","diagnoses.ajcc_pathologic_stage") %in% names(cli)))
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Filtrar fila del gen cd274 (por gene-name)
+cd274_row <- expr %>% filter(`gene-name` == "CD274")
+
+if(nrow(cd274_row) == 0){
+  stop("No se encontró el gen 'cd274' en la columna 'gene-name'.")
+} else if(nrow(cd274_row) > 1){
+  message("Advertencia: hay múltiples filas para cd274; se usará la primera.")
+  cd274_row <- cd274_row %>% slice(1)
+}
+
+# Columnas de pacientes (todas excepto las 3 primeras)
+patient_cols <- setdiff(names(expr), c("gene-name","gene-id","gene-type"))
+
+# Pasar a formato largo y extraer el ID corto TCGA-XX-XXXX
+cd274_long <- cd274_row %>%
+  select(all_of(patient_cols)) %>%
+  pivot_longer(everything(), names_to = "patient_barcode_full", values_to = "cd274_expr") %>%
+  mutate(
+    # Extrae "TCGA-XX-XXXX" del comienzo del barcode completo
+    submitter_short = str_replace(patient_barcode_full,
+                                  "^((TCGA-[A-Za-z0-9]{2}-[A-Za-z0-9]{4})).*$", "\\1"),
+    cd274_expr = suppressWarnings(as.numeric(cd274_expr))
+  )
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Función para mapear AJCC a Stage I/II/III/IV
+map_stage <- function(x){
+  x <- trimws(as.character(x))
+  x <- na_if(x, "")
+  x <- na_if(x, "--")
+  x <- stringr::str_to_upper(x)
+
+  dplyr::case_when(
+    stringr::str_detect(x, "^STAGE\\s*I([AB])?\\b")   ~ "Stage I",
+    stringr::str_detect(x, "^STAGE\\s*II([AB])?\\b")  ~ "Stage II",
+    stringr::str_detect(x, "^STAGE\\s*III([AB])?\\b") ~ "Stage III",
+    stringr::str_detect(x, "^STAGE\\s*IV([AB])?\\b")  ~ "Stage IV",
+    TRUE ~ NA_character_
+  )
+}
+
+# === Deduplicar clinical: quedarse con UN estadio por paciente (el más avanzado) ===
+
+# Orden deseado para priorizar el estadio más avanzado
+stage_levels <- c("Stage I","Stage II","Stage III","Stage IV")
+
+cli_stage_raw <- cli %>%
+  transmute(
+    submitter_short = `cases.submitter_id`,
+    TumorStage = map_stage(`diagnoses.ajcc_pathologic_stage`)
+  )
+
+# Contar duplicados antes
+dup_info <- cli_stage_raw %>%
+  filter(!is.na(TumorStage)) %>%
+  count(submitter_short) %>%
+  filter(n > 1)
+
+if(nrow(dup_info) > 0){
+  message(sprintf("Hay %d pacientes con múltiples filas clínicas; se elegirá el estadio más avanzado.", nrow(dup_info)))
+}
+
+cli_stage <- cli_stage_raw %>%
+  # descartar filas sin estadio interpretable
+  filter(!is.na(TumorStage)) %>%
+  mutate(TumorStage = factor(TumorStage, levels = stage_levels, ordered = TRUE)) %>%
+  # elegir, por paciente, el estadio máximo (más avanzado)
+  group_by(submitter_short) %>%
+  summarise(TumorStage = max(TumorStage, na.rm = TRUE), .groups = "drop")
+
+
+# Unir por TCGA-XX-XXXX
+dat <- cd274_long %>%
+  inner_join(cli_stage, by = "submitter_short") %>%
+  mutate(
+    TumorStage = factor(TumorStage, levels = c("Stage I","Stage II","Stage III","Stage IV"))
+  )
+
+n_total <- nrow(dat)
+n_total
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Paleta solicitada
+stage_cols <- c(
+  "Stage I"  = "#2ca02c", # verde
+  "Stage II" = "#ffdd00", # amarillo
+  "Stage III"= "#ff8c00", # naranja
+  "Stage IV" = "#d62728"  # rojo
+)
+
+p <- ggplot(dat, aes(x = TumorStage, y = cd274_expr, color = TumorStage)) +
+  geom_point(position = position_jitter(width = 0.15, height = 0), alpha = 0.7, size = 2) +
+  scale_color_manual(values = stage_cols, drop = FALSE) +
+  labs(
+    x = "Tumor Stage (AJCC)",
+    y = "Expresión de cd274 (FPKM UQ unstranded)",
+    color = "Estadio",
+    title = "Expresión del gen cd274 por estadio tumoral",
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+
+p
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='include'}
+conteos <- dat %>%
+  count(TumorStage, name = "n_pacientes") %>%
+  mutate(porcentaje = round(100 * n_pacientes / sum(n_pacientes), 1))
+
+knitr::kable(conteos, caption = sprintf("Pacientes usados en el gráfico (total = %d)", nrow(dat)))
+
+```
+
+

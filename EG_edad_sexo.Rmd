@@ -1,0 +1,232 @@
+---
+title: "Expresión de cd274 por sexo (TCGA)"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+need <- function(pkgs){
+  miss <- pkgs[!sapply(pkgs, requireNamespace, quietly = TRUE)]
+  if(length(miss)) install.packages(miss)
+  invisible(lapply(pkgs, library, character.only = TRUE))
+}
+need(c("tidyverse","readr","stringr","ggplot2","knitr"))
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+url_expr <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/tejido_tumoral.tsv"
+url_cli  <- "https://raw.githubusercontent.com/Lamartaav/TESIS/refs/heads/main/clinical_unido.tsv"
+
+expr <- readr::read_tsv(url_expr, guess_max = 1e6, show_col_types = FALSE)
+cli  <- readr::read_tsv(url_cli,  guess_max = 1e6, show_col_types = FALSE)
+
+stopifnot(all(c("gene-name","gene-id","gene-type") %in% names(expr)))
+stopifnot(all(c("cases.submitter_id","demographic.gender") %in% names(cli)))
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# 2.1 localizar fila de cd274
+cd274_row <- expr %>% dplyr::filter(`gene-name` == "CD274")
+if(nrow(cd274_row) == 0){
+  stop("No se encontró el gen 'cd274' en la columna 'gene-name'.")
+} else if(nrow(cd274_row) > 1){
+  message("Advertencia: hay múltiples filas para cd274; se usará la primera.")
+  cd274_row <- cd274_row %>% dplyr::slice(1)
+}
+
+# 2.2 columnas de pacientes (todas menos las 3 primeras)
+patient_cols <- setdiff(names(expr), c("gene-name","gene-id","gene-type"))
+
+# 2.3 pasar a formato largo y extraer TCGA-XX-XXXX
+cd274_long <- cd274_row %>%
+  dplyr::select(dplyr::all_of(patient_cols)) %>%
+  tidyr::pivot_longer(dplyr::everything(),
+                      names_to = "patient_barcode_full",
+                      values_to = "cd274_expr") %>%
+  dplyr::mutate(
+    submitter_short = stringr::str_replace(patient_barcode_full,
+                                           "^((TCGA-[A-Za-z0-9]{2}-[A-Za-z0-9]{4})).*$", "\\1"),
+    cd274_expr = suppressWarnings(as.numeric(cd274_expr))
+  )
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Helper: moda simple (valor más frecuente), ignora NA; si hay empate, toma el primero
+mode_non_na <- function(x){
+  x <- x[!is.na(x)]
+  if(length(x) == 0) return(NA_character_)
+  tab <- sort(table(x), decreasing = TRUE)
+  names(tab)[1]
+}
+
+cli_gender <- cli %>%
+  dplyr::transmute(
+    submitter_short = `cases.submitter_id`,
+    gender_raw = `demographic.gender`
+  ) %>%
+  # normalizar a "female"/"male", otras variantes -> NA
+  dplyr::mutate(
+    gender_norm = stringr::str_to_lower(trimws(as.character(gender_raw))),
+    gender = dplyr::case_when(
+      stringr::str_detect(gender_norm, "^female$") ~ "female",
+      stringr::str_detect(gender_norm, "^male$")   ~ "male",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  dplyr::group_by(submitter_short) %>%
+  dplyr::summarise(
+    gender = mode_non_na(gender),
+    .groups = "drop"
+  ) %>%
+  dplyr::filter(!is.na(gender))  # excluir pacientes sin género válido
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+dat <- cd274_long %>%
+  dplyr::inner_join(cli_gender, by = "submitter_short") %>%
+  dplyr::mutate(
+    gender = factor(gender, levels = c("female","male"))
+  )
+
+n_total <- nrow(dat)
+n_total
+
+# Colores solicitados: rosa para female, azul para male
+sex_cols <- c(
+  "female" = "#e91e63",  # rosa
+  "male"   = "#1f77b4"   # azul
+)
+
+p <- ggplot(dat, aes(x = gender, y = cd274_expr, color = gender)) +
+  geom_point(position = position_jitter(width = 0.15, height = 0), alpha = 0.7, size = 2) +
+  scale_color_manual(values = sex_cols, drop = FALSE, labels = c("Female","Male")) +
+  scale_x_discrete(labels = c("female" = "Female", "male" = "Male")) +
+  labs(
+    x = "Sexo",
+    y = "Expresión de cd274 (FPKM UQ unstranded)",
+    color = "Sexo",
+    title = "Expresión del gen cd274 por sexo",
+    subtitle = "TCGA (join por TCGA-XX-XXXX; pacientes sin género válido excluidos)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+
+p
+
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='include'}
+conteos <- dat %>%
+  dplyr::count(gender, name = "n_pacientes") %>%
+  dplyr::mutate(
+    gender = forcats::fct_recode(gender, "Female" = "female", "Male" = "male"),
+    porcentaje = round(100 * n_pacientes / sum(n_pacientes), 1)
+  )
+
+knitr::kable(conteos, caption = sprintf("Pacientes usados en el gráfico (total = %d)", nrow(dat)))
+
+```
+
+```{r, echo=FALSE, message = FALSE, results='hide'}
+# Convertir edad días -> años; deduplicar por paciente tomando la mínima no-NA
+cli_age <- cli %>%
+  dplyr::transmute(
+    submitter_short = `cases.submitter_id`,
+    age_days_raw = `diagnoses.age_at_diagnosis`
+  ) %>%
+  dplyr::mutate(
+    # fuerza a numérico por si viene como char; divide por 365 para años
+    age_years = suppressWarnings(as.numeric(age_days_raw)) / 365
+  ) %>%
+  dplyr::filter(!is.na(age_years) & is.finite(age_years)) %>%
+  dplyr::group_by(submitter_short) %>%
+  dplyr::summarise(
+    age_years = min(age_years, na.rm = TRUE),  # una edad por paciente
+    .groups = "drop"
+  )
+
+# Definir bins de edad
+cut_age <- function(y){
+  dplyr::case_when(
+    y < 35                    ~ "0–35",
+    y >= 35 & y < 50          ~ "35–50",
+    y >= 50 & y < 70          ~ "50–70",
+    y >= 70 & y < 80          ~ "70–80",
+    y >= 80                   ~ "80+",
+    TRUE ~ NA_character_
+  )
+}
+
+cli_age <- cli_age %>%
+  dplyr::mutate(
+    age_group = cut_age(age_years),
+    age_group = factor(age_group, levels = c("0–35","35–50","50–70","70–80","80+"), ordered = TRUE)
+  ) %>%
+  dplyr::filter(!is.na(age_group))   # excluir sin grupo válido
+
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='include'}
+dat <- cd274_long %>%
+  dplyr::inner_join(cli_age, by = "submitter_short")
+
+n_total <- nrow(dat)
+n_total
+
+# Paleta simple para distinguir grupos (opcional)
+age_cols <- c(
+  "0–35" = "#9ecae1",
+  "35–50"= "#6baed6",
+  "50–70"= "#4292c6",
+  "70–80"= "#2171b5",
+  "80+"  = "#084594"
+)
+
+p <- ggplot(dat, aes(x = age_group, y = cd274_expr, color = age_group)) +
+  geom_point(position = position_jitter(width = 0.15, height = 0), alpha = 0.7, size = 2) +
+  scale_color_manual(values = age_cols, drop = FALSE) +
+  labs(
+    x = "Rango de edad (años al diagnóstico)",
+    y = "Expresión de cd274 (FPKM UQ unstranded)",
+    color = "Rango de edad",
+    title = "Expresión del gen cd274 por rangos de edad",
+    subtitle = "TCGA (join por TCGA-XX-XXXX; pacientes sin edad válida excluidos)"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right")
+
+p
+
+
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='include'}
+conteos <- dat %>%
+  dplyr::count(age_group, name = "n_pacientes") %>%
+  dplyr::mutate(porcentaje = round(100 * n_pacientes / sum(n_pacientes), 1))
+
+knitr::kable(conteos, caption = sprintf("Pacientes usados en el gráfico (total = %d)", nrow(dat)))
+
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='include'}
+
+```
+
+
+```{r, echo=FALSE, message = FALSE, results='include'}
+
+```
