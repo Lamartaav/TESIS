@@ -76,6 +76,9 @@ clinical_luad <- clinical %>%
     diagnoses.days_to_diagnosis = suppressWarnings(min(as.numeric(diagnoses.days_to_diagnosis), na.rm = TRUE)),
     .groups = "drop"
   ) %>%
+  
+
+
   # Reemplazar Inf generados por max/min sin datos por NA
   dplyr::mutate(
     demographic.days_to_death = ifelse(is.infinite(demographic.days_to_death), NA, demographic.days_to_death),
@@ -97,7 +100,7 @@ expr_ca9 <- expr %>%
   ) %>%
   # Consolidar a 1 fila por paciente (mediana robusta si hay múltiples filas)
   group_by(submitter_id) %>%
-  summarise(CA9 = median(CA9, na.rm = TRUE), .groups = "drop") %>%
+  summarise(CA9 = median(CA9, na.rm = TRUE)), .groups = "drop") %>%
   # Quitar pacientes sin CA9 válido
   filter(!is.na(CA9))
 
@@ -138,6 +141,9 @@ data_q <- data_surv %>%
     )
   ) %>%
   filter(!is.na(CAIX_group))
+  data_q <- data_q %>%
+  mutate(CAIX_group = factor(CAIX_group, levels = c("Low", "High")))
+
 
 ```
 
@@ -169,7 +175,11 @@ median_cut <- median(data_surv$CA9, na.rm = TRUE)
 data_median <- data_surv %>%
   mutate(
     CAIX_group = ifelse(CA9 >= median_cut, "High", "Low")
+  ) %>%
+  mutate(
+    CAIX_group = factor(CAIX_group, levels = c("Low", "High"))
   )
+
 
 ```
 
@@ -199,7 +209,5 @@ ggsurvplot(
 cox_model <- coxph(Surv(time_months, status) ~ CAIX_group, data = data_median)
 summary(cox_model)
 ```
-
-
 
 
