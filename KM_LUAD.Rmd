@@ -89,7 +89,6 @@ clinical_luad <- clinical %>%
   dplyr::filter(!is.na(demographic.vital_status))
 
 ## 4. Expresión de CAIX (CA9) — una fila por paciente
-```{r}
 # Normalizamos IDs por las dudas (mayúsculas, sin espacios)
 norm_id <- function(x) gsub("\\s+", "", toupper(as.character(x)))
 
