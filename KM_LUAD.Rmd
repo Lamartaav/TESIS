@@ -97,11 +97,13 @@ expr_ca9 <- expr %>%
     submitter_id = norm_id(submitter_id),
     CA9 = suppressWarnings(as.numeric(CA9))
   ) %>%
-  # Consolidar a 1 fila por paciente (mediana robusta si hay múltiples filas)
   group_by(submitter_id) %>%
-  summarise(CA9 = median(CA9, na.rm = TRUE)), .groups = "drop") %>%
-  # Quitar pacientes sin CA9 válido
+  summarise(
+    CA9 = median(CA9, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
   filter(!is.na(CA9))
+
 
 clinical_luad <- clinical_luad %>%
   mutate(cases.submitter_id = norm_id(cases.submitter_id))
